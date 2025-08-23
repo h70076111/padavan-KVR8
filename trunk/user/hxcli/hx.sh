@@ -359,9 +359,9 @@ EOF
  		mem=$(cat /proc/$(pidof hx-cli)/status | grep -w VmRSS | awk '{printf "%.1f MB", $2/1024}')
    		hxcpu="$(top -b -n1 | grep -E "$(pidof hx-cli)" 2>/dev/null| grep -v grep | awk '{for (i=1;i<=NF;i++) {if ($i ~ /hx-cli/) break; else cpu=i}} END {print $cpu}')"
 		logger -t "【HX客户端】" "运行成功！"
-  		logger -t "【HX客户端】" "内存占用 ${mem} CPU占用 ${vntcpu}%"
+  		logger -t "【HX客户端】" "内存占用 ${mem} CPU占用 ${hxcpu}%"
   		hxcli_restart o
-		echo `date +%s` > /tmp/vntcli_time
+		echo `date +%s` > /tmp/hxcli_time
 		hx_rules
 	else
 		logger -t "【HX客户端】" "运行失败, 注意检查${HXCLI}是否下载完整,10 秒后自动尝试重新启动"
