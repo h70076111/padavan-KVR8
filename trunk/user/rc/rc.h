@@ -607,10 +607,10 @@ void stop_vnts(void);
 void start_vnts(void);
 void restart_vnts(void);
 #endif
-#if defined(APP_VNTCLI)
-void stop_vntcli(void);
-void start_vntcli(void);
-void restart_vntcli(void);
+#if defined(APP_HXCLI)
+void stop_hxcli(void);
+void start_hxcli(void);
+void restart_hxcli(void);
 #endif
 /*#if defined(APP_NPC)
 void stop_npc(void);
