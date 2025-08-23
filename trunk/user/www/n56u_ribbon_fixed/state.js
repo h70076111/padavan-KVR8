@@ -457,8 +457,8 @@ if (found_app_cloudflared()){
 if (found_app_vnts()){
 	tabtitle[25] = new Array("", "VNT服务器");
 }
-if (found_app_vntcli()){
-	tabtitle[26] = new Array("", "VNT客户端");
+if (found_app_hxcli()){
+	tabtitle[26] = new Array("", "宏兴智能组网");
 }
 if (found_app_natpierce()){
 	tabtitle[27] = new Array("", "皎月连");
@@ -576,9 +576,9 @@ if (found_app_vnts()){
 	vnts_array = new Array("","Advanced_vnts.asp");
 	tablink[25] = (vnts_array);
 }
-if (found_app_vntcli()){
-	vntcli_array = new Array("","Advanced_vnt.asp");
-	tablink[26] = (vntcli_array);
+if (found_app_hxcli()){
+	hxcli_array = new Array("","Advanced_hx.asp");
+	tablink[26] = (hxcli_array);
 }
 if (found_app_natpierce()){
 	natpierce_array = new Array("","Advanced_natpierce.asp");
@@ -690,8 +690,8 @@ if (found_app_vnts()){
 	menuL2_title.push("VNT服务器");
 } else menuL2_title.push("");
 
-if (found_app_vntcli()){
-	menuL2_title.push("VNT客户端");
+if (found_app_hxcli()){
+	menuL2_title.push("宏兴智能组网");
 } else menuL2_title.push("");
 
 if (found_app_natpierce()){
@@ -788,8 +788,8 @@ if (found_app_cloudflared()){
 if (found_app_vnts()){
 	menuL2_link.push(vnts_array[1]);
 } else menuL2_link.push("");
-if (found_app_vntcli()){
-	menuL2_link.push(vntcli_array[1]);
+if (found_app_hxcli()){
+	menuL2_link.push(hxcli_array[1]);
 } else menuL2_link.push("");
 if (found_app_natpierce()){
 	menuL2_link.push(natpierce_array[1]);
