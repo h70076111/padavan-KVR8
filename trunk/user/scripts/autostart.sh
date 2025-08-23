@@ -96,9 +96,9 @@ logger -t "自动启动" "正在启动VNT服务端"
 /usr/bin/vnts.sh start &
 fi
 
-if [ $(nvram get vntcli_enable) = 1 ] || [ $(nvram get vntcli_enable) = 2 ]  ; then
-logger -t "自动启动" "正在启动VNT客户端"
-/usr/bin/vnt.sh start &
+if [ $(nvram get hxcli_enable) = 1 ] || [ $(nvram get hxcli_enable) = 2 ]  ; then
+logger -t "自动启动" "正在启动HX客户端"
+/usr/bin/hx.sh start &
 fi
 
 if [ $(nvram get easytier_enable) = 1 ] || [ $(nvram get easytier_enable) = 2 ] || [ $(nvram get easytier_web_enable) = 1 ] ; then
