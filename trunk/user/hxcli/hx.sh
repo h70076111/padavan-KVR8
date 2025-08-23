@@ -102,7 +102,7 @@ dowload_hxcli() {
 	length=`expr $length / 1048576`
  	hxcli_size0="$(check_disk_size $bin_path)"
  	[ ! -z "$length" ] && logger -t "【HX客户端】" "程序大小 ${length}M， 程序路径可用空间 ${hxcli_size0}M "
-        curl -Lko "$HXCLI" "${proxy}https://github.com/lmq8267/vnt-cli/releases/download/${tag}/vnt-cli_mipsel-unknown-linux-musl" || wget --no-check-certificate -O "$VNTCLI" "${proxy}https://github.com/lmq8267/vnt-cli/releases/download/${tag}/vnt-cli_mipsel-unknown-linux-musl"
+        curl -Lko "$HXCLI" "${proxy}https://github.com/lmq8267/vnt-cli/releases/download/${tag}/vnt-cli_mipsel-unknown-linux-musl" || wget --no-check-certificate -O "$HXCLI" "${proxy}https://github.com/lmq8267/vnt-cli/releases/download/${tag}/vnt-cli_mipsel-unknown-linux-musl"
 	if [ "$?" = 0 ] ; then
 		chmod +x $HXCLI
 		if [[ "$($HXCLI -h 2>&1 | wc -l)" -gt 3 ]] ; then
@@ -116,10 +116,10 @@ dowload_hxcli() {
 			break
        		else
 	   		logger -t "【HX客户端】" "下载不完整，请手动下载 ${proxy}https://github.com/lmq8267/vnt-cli/releases/download/${tag}/vnt-cli_mipsel-unknown-linux-musl 上传到  $HXCLI"
-	   		rm -f $VNTCLI
+	   		rm -f $HXCLI
 	  	fi
 	else
-		logger -t "【VNT客户端】" "下载失败，请手动下载 ${proxy}https://github.com/lmq8267/vnt-cli/releases/download/${tag}/vnt-cli_mipsel-unknown-linux-musl 上传到  $HXCLI"
+		logger -t "【HX客户端】" "下载失败，请手动下载 ${proxy}https://github.com/lmq8267/vnt-cli/releases/download/${tag}/vnt-cli_mipsel-unknown-linux-musl 上传到  $HXCLI"
    	fi
 	done
 }
@@ -174,8 +174,8 @@ hx_rules() {
 	iptables -t nat -I POSTROUTING -o ${tunname} -j MASQUERADE
 	[ "$hxcli_proxy" = "1" ] && sysctl -w net.ipv4.ip_forward=1 >/dev/null 2>&1
 	if [ ! -z "$hx_tcp_port" ] ; then
-		 iptables -I INPUT -p tcp --dport $vnt_tcp_port -j ACCEPT
-		 ip6tables -I INPUT -p tcp --dport $vnt_tcp_port -j ACCEPT
+		 iptables -I INPUT -p tcp --dport $hx_tcp_port -j ACCEPT
+		 ip6tables -I INPUT -p tcp --dport $hx_tcp_port -j ACCEPT
 	fi
 	hx_keep
 }
@@ -222,7 +222,7 @@ appenders:
     path: /tmp/hx-cli.log
     append: true
     encoder:
-      pattern: "{d(%Y-%m-%d %H:%M:%S vnt-cli:)} [{f}:{L}] {h({l})} {M}:{m}{n}"
+      pattern: "{d(%Y-%m-%d %H:%M:%S hx-cli:)} [{f}:{L}] {h({l})} {M}:{m}{n}"
     policy:
       kind: compound
       trigger:
@@ -241,7 +241,7 @@ root:
 EOF
 		fi
 		[ ! -L /tmp/hx-cli.1.log ] && ln -sf /tmp/hx-cli.log /tmp/hx-cli.1.log
-		[ ! -L /tmp/hx-cli.2.log ] && ln -sf /tmp/vnt-cli.log /tmp/hx-cli.2.log
+		[ ! -L /tmp/hx-cli.2.log ] && ln -sf /tmp/hx-cli.log /tmp/hx-cli.2.log
 		sed -i 's|limit: 10 mb|limit: 1 mb|g' ${log_path}/log4rs.yaml
 		sed -i 's|count: 5|count: 2|g' ${log_path}/log4rs.yaml
 		logyaml=$(cat ${log_path}/log4rs.yaml | grep path: | awk -F'path: ' '{print $2}')
@@ -274,7 +274,7 @@ EOF
 		i=`expr $r - 1`
 		hx_route=`nvram get hxcli_route_x$i`
 		hx_ip=`nvram get hxcli_ip_x$i`
-		hx_peer="${hx_route},${vnt_ip}"
+		hx_peer="${hx_route},${hx_ip}"
 		hx_peer="$(echo $hx_peer | tr -d ' ')"
 		CMD="${CMD} -i ${hx_peer}"
 	done
@@ -324,7 +324,7 @@ EOF
 	[ "$hxcli_punch" = "0" ] || CMD="${CMD} --punch ${hxcli_punch}"
 	[ "$hxcli_comp" = "0" ] || CMD="${CMD} --compressor ${hxcli_comp}"
 	[ "$hxcli_relay" = "0" ] || CMD="${CMD} --use-channel ${hxcli_relay}"
-	mappnum=`nvram get vntcli_mappnum_x`
+	mappnum=`nvram get hxcli_mappnum_x`
 	for m in $(seq 1 $mappnum)
 	do
 		p=`expr $m - 1`
@@ -406,7 +406,7 @@ cmdfile="/tmp/hx-cli_cmd.log"
 
 hx_info() {
 	if [ ! -z "$hx_process" ] ; then
-		cd $vntpath
+		cd $hxpath
 		./hx-cli --info >$cmdfile 2>&1
 	else
 		echo "$hx_error" >$cmdfile 2>&1
@@ -416,7 +416,7 @@ hx_info() {
 
 hx_all() {
 	if [ ! -z "$hx_process" ] ; then
-		cd $vntpath
+		cd $hxpath
 		./hx-cli --all >$cmdfile 2>&1
 	else
 		echo "$hx_error" >$cmdfile 2>&1
@@ -426,7 +426,7 @@ hx_all() {
 
 hx_list() {
 	if [ ! -z "$hx_process" ] ; then
-		cd $vntpath
+		cd $hxpath
 		./hx-cli --list >$cmdfile 2>&1
 	else
 		echo "$hx_error" >$cmdfile 2>&1
@@ -436,7 +436,7 @@ hx_list() {
 
 hx_route() {
 	if [ ! -z "$hx_process" ] ; then
-		cd $vntpath
+		cd $hxpath
 		./hx-cli --route >$cmdfile 2>&1
 	else
 		echo "$hx_error" >$cmdfile 2>&1
@@ -445,9 +445,9 @@ hx_route() {
 }
 
 hx_status() {
-	if [ ! -z "$vnt_process" ] ; then
+	if [ ! -z "$hx_process" ] ; then
 		hxcpu="$(top -b -n1 | grep -E "$(pidof hx-cli)" 2>/dev/null| grep -v grep | awk '{for (i=1;i<=NF;i++) {if ($i ~ /hx-cli/) break; else cpu=i}} END {print $cpu}')"
-		echo -e "\t\t vnt-cli 运行状态\n" >$cmdfile
+		echo -e "\t\t hx-cli 运行状态\n" >$cmdfile
 		[ ! -z "$hxcpu" ] && echo "CPU占用 ${hxcpu}% " >>$cmdfile 2>&1
 		hxram="$(cat /proc/$(pidof hx-cli | awk '{print $NF}')/status|grep -w VmRSS|awk '{printf "%.2fMB\n", $2/1024}')"
 		[ ! -z "$hxram" ] && echo "内存占用 ${hxram}" >>$cmdfile 2>&1
@@ -492,7 +492,7 @@ hxlist)
 	hx_list
 	;;
 hxroute)
-	vnt_route
+	hx_route
 	;;
 hxstatus)
 	hx_status
