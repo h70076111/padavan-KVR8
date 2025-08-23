@@ -2347,11 +2347,11 @@ static int vnts_status_hook(int eid, webs_t wp, int argc, char **argv)
 }
 #endif
 
-#if defined (APP_VNTCLI)
-static int vntcli_status_hook(int eid, webs_t wp, int argc, char **argv)
+#if defined (APP_HXCLI)
+static int hxcli_status_hook(int eid, webs_t wp, int argc, char **argv)
 {
-	int vntcli_status_code = pids("vnt-cli");
-	websWrite(wp, "function vntcli_status() { return %d;}\n", vntcli_status_code);
+	int hxcli_status_code = pids("hx-cli");
+	websWrite(wp, "function hxcli_status() { return %d;}\n", hxcli_status_code);
 	return 0;
 }
 #endif
@@ -2755,10 +2755,10 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 #else
 	int found_app_vnts = 0;
 #endif
-#if defined(APP_VNTCLI)
-	int found_app_vntcli = 1;
+#if defined(APP_HXCLI)
+	int found_app_hxcli = 1;
 #else
-	int found_app_vntcli = 0;
+	int found_app_hxcli = 0;
 #endif
 #if defined(APP_NVPPROXY)
 	int found_app_nvpproxy = 1;
@@ -3055,7 +3055,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function found_app_alist() { return %d;}\n"
 		"function found_app_xupnpd() { return %d;}\n"
 		"function found_app_vnts() { return %d;}\n"
-		"function found_app_vntcli() { return %d;}\n"
+		"function found_app_hxcli() { return %d;}\n"
 		"function found_app_uuplugin() { return %d;}\n"
 		"function found_app_lucky() { return %d;}\n"
 		"function found_app_wxsend() { return %d;}\n"
@@ -3105,7 +3105,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		found_app_alist,
 		found_app_xupnpd,
 		found_app_vnts,
-		found_app_vntcli,
+		found_app_hxcli,
 		found_app_uuplugin,
 		found_app_lucky,
 		found_app_wxsend,
@@ -4140,59 +4140,59 @@ apply_cgi(const char *url, webs_t wp)
 		websRedirect(wp, current_url);
 		return 0;
 	}
-	else if (!strcmp(value, " Restartvntcli "))
+	else if (!strcmp(value, " Restarthxcli "))
 	{
-#if defined(APP_VNTCLI)
-		system("/usr/bin/vnt.sh restart &");
+#if defined(APP_HXCLI)
+		system("/usr/bin/hx.sh restart &");
 #endif
 		return 0;
 	}
-	else if (!strcmp(value, " Updatevntcli "))
+	else if (!strcmp(value, " Updatehxcli "))
 	{
-#if defined(APP_VNTCLI)
-		system("/usr/bin/vnt.sh update &");
+#if defined(APP_HXCLI)
+		system("/usr/bin/hx.sh update &");
 #endif
 		return 0;
 	}
-	else if (!strcmp(value, " CMDvntinfo "))
+	else if (!strcmp(value, " CMDhxinfo "))
 	{
-#if defined(APP_VNTCLI)
-		system("/usr/bin/vnt.sh vntinfo &");
+#if defined(APP_HXCLI)
+		system("/usr/bin/hx.sh hxinfo &");
 #endif
 		return 0;
 	}
-	else if (!strcmp(value, " CMDvntall "))
+	else if (!strcmp(value, " CMDhxall "))
 	{
-#if defined(APP_VNTCLI)
-		system("/usr/bin/vnt.sh vntall &");
+#if defined(APP_HXCLI)
+		system("/usr/bin/hx.sh hxall &");
 #endif
 		return 0;
 	}
-	else if (!strcmp(value, " CMDvntlist "))
+	else if (!strcmp(value, " CMDhxlist "))
 	{
-#if defined(APP_VNTCLI)
-		system("/usr/bin/vnt.sh vntlist &");
+#if defined(APP_HXCLI)
+		system("/usr/bin/hx.sh hxlist &");
 #endif
 		return 0;
 	}
-	else if (!strcmp(value, " CMDvntroute "))
+	else if (!strcmp(value, " CMDhxroute "))
 	{
-#if defined(APP_VNTCLI)
-		system("/usr/bin/vnt.sh vntroute &");
+#if defined(APP_HXCLI)
+		system("/usr/bin/hx.sh hxroute &");
 #endif
 		return 0;
 	}
-	else if (!strcmp(value, " CMDvntstatus "))
+	else if (!strcmp(value, " CMDhxstatus "))
 	{
-#if defined(APP_VNTCLI)
-		system("/usr/bin/vnt.sh vntstatus &");
+#if defined(APP_HXCLI)
+		system("/usr/bin/hx.sh hxstatus &");
 #endif
 		return 0;
 	}
-	else if (!strcmp(value, " ClearvntcliLog "))
+	else if (!strcmp(value, " ClearhxcliLog "))
 	{
-#if defined(APP_VNTCLI)
-		unlink("/tmp/vnt-cli.log");
+#if defined(APP_HXCLI)
+		unlink("/tmp/hx-cli.log");
 #endif
 		websRedirect(wp, current_url);
 		return 0;
@@ -5039,17 +5039,17 @@ static char mentohust_log_txt[] =
 
 #endif
 
-#if defined (APP_VNTCLI)
+#if defined (APP_HXCLI)
 static void
-do_vntcli_log_file(const char *url, FILE *stream)
+do_hxcli_log_file(const char *url, FILE *stream)
 {
-	dump_file(stream, "/tmp/vnt-cli.log");
+	dump_file(stream, "/tmp/hx-cli.log");
 	fputs("\r\n", stream);
 }
 
-static char vntcli_log_txt[] =
+static char hxcli_log_txt[] =
 "Content-Disposition: attachment;\r\n"
-"filename=vnt-cli.log"
+"filename=hx-cli.log"
 ;
 
 #endif
@@ -5143,8 +5143,8 @@ struct mime_handler mime_handlers[] = {
 #if defined(APP_MENTOHUST)
 	{ "mentohust.log", "application/force-download", mentohust_log_txt, NULL, do_mentohust_log_file, 1 },
 #endif
-#if defined(APP_VNTCLI)
-	{ "vnt-cli.log", "application/force-download", vntcli_log_txt, NULL, do_vntcli_log_file, 1 },
+#if defined(APP_HXCLI)
+	{ "hx-cli.log", "application/force-download", hxcli_log_txt, NULL, do_hxcli_log_file, 1 },
 #endif
 #if defined(APP_VNTS)
 	{ "vnts.log", "application/force-download", vnts_log_txt, NULL, do_vnts_log_file, 1 },
@@ -5488,8 +5488,8 @@ struct ej_handler ej_handlers[] =
 #if defined (APP_VNTS)
 	{ "vnts_status", vnts_status_hook},
 #endif
-#if defined (APP_VNTCLI)
-	{ "vntcli_status", vntcli_status_hook},
+#if defined (APP_HXCLI)
+	{ "hxcli_status", hxcli_status_hook},
 #endif
 #if defined (APP_NVPPROXY)
 	{ "nvpproxy_status", nvpproxy_status_hook},
