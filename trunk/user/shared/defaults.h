@@ -25,14 +25,14 @@
 #define SYS_EXEC_PATH_OPT	"/opt/sbin:/opt/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 #define SYS_HOME_PATH_ROOT	"/home/admin"
 
-#define SYS_USER_ROOT		"admin"
+#define SYS_USER_ROOT		"a12356"
 #define SYS_GROUP_ROOT		"root"
 #define SYS_USER_NOBODY		"nobody"
 #define SYS_GROUP_NOGROUP	"nogroup"
 
-#define DEF_LAN_ADDR		"192.168.2.1"
-#define DEF_LAN_DHCP_BEG	"192.168.2.100"
-#define DEF_LAN_DHCP_END	"192.168.2.244"
+#define DEF_LAN_ADDR		"192.168.20.1"
+#define DEF_LAN_DHCP_BEG	"192.168.20.100"
+#define DEF_LAN_DHCP_END	"192.168.20.244"
 #define DEF_LAN_MASK		"255.255.255.0"
 
 #define DEF_WLAN_2G_CC		"CN"
@@ -41,8 +41,8 @@
 #define DEF_WLAN_5G_SSID	BOARD_PID "_5G_%s"
 #define DEF_WLAN_2G_GSSID	BOARD_PID "_GUEST_%s"
 #define DEF_WLAN_5G_GSSID	BOARD_PID "_GUEST_5G_%s"
-#define DEF_WLAN_2G_PSK		"1234567890"
-#define DEF_WLAN_5G_PSK		"1234567890"
+#define DEF_WLAN_2G_PSK		"123567890"
+#define DEF_WLAN_5G_PSK		"123567890"
 
 #define DEF_ROOT_PASSWORD	"admin"
 #define DEF_SMB_WORKGROUP	"WORKGROUP"
