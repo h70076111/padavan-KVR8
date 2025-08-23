@@ -112,17 +112,17 @@
 			{"zero_route_x", "24", NULL, FALSE},
 			{0,0,0,0}
 		};
-	struct variable variables_VNTCLI_VNTCLImapp[] = {
-			{"vntcli_mappnet_x", "24", NULL, FALSE},
-			{"vntcli_mappport_x", "24", NULL, FALSE},
-			{"vntcli_mappip_x", "24", NULL, FALSE},
-			{"vntcli_mapeerport_x", "24", NULL, FALSE},
+	struct variable variables_HXCLI_HXCLImapp[] = {
+			{"hxcli_mappnet_x", "24", NULL, FALSE},
+			{"hxcli_mappport_x", "24", NULL, FALSE},
+			{"hxcli_mappip_x", "24", NULL, FALSE},
+			{"hxcli_mapeerport_x", "24", NULL, FALSE},
 			{0,0,0,0}
 		};
-	struct variable variables_VNTCLI_VNTCLIroute[] = {
-			{"vntcli_name_x", "24", NULL, FALSE},
-			{"vntcli_route_x", "24", NULL, FALSE},
-			{"vntcli_ip_x", "24", NULL, FALSE},
+	struct variable variables_HXCLI_HXCLIroute[] = {
+			{"hxcli_name_x", "24", NULL, FALSE},
+			{"hxcli_route_x", "24", NULL, FALSE},
+			{"hxcli_ip_x", "24", NULL, FALSE},
 			{0,0,0,0}
 		};
 	struct variable variables_SspConf_SspList[] = {
@@ -1010,38 +1010,38 @@
 	};
 #endif
 
-#if defined(APP_VNTCLI)
-	struct variable variables_VNTCLI[] = {
-			{"vntcli_enable", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_token", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_ip", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_localadd", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_serip", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_model", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_key", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_log", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_proxy", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_first", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_wg", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_finger", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_serverw", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_desname", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_id", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_tunname", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_mtu", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_dns", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_stun", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_port", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_punch", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_comp", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_relay", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_wan", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_bin", "", NULL, EVM_RESTART_VNTCLI},
-			{"scripts.vnt.conf", "File", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_routenum_x", "", NULL, EVM_RESTART_VNTCLI},
-			{"VNTCLIroute", "Group", ARGV((char*)variables_VNTCLI_VNTCLIroute, "8", "55", "vntcli_routenum_x"), EVM_RESTART_VNTCLI},
-			{"vntcli_mappnum_x", "", NULL, EVM_RESTART_VNTCLI},
-			{"VNTCLImapp", "Group", ARGV((char*)variables_VNTCLI_VNTCLImapp, "8", "55", "vntcli_mappnum_x"), EVM_RESTART_VNTCLI},
+#if defined(APP_HXCLI)
+	struct variable variables_HXCLI[] = {
+			{"hxcli_enable", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_token", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_ip", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_localadd", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_serip", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_model", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_key", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_log", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_proxy", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_first", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_wg", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_finger", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_serverw", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_desname", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_id", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_tunname", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_mtu", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_dns", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_stun", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_port", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_punch", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_comp", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_relay", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_wan", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_bin", "", NULL, EVM_RESTART_HXCLI},
+			{"scripts.hx.conf", "File", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_routenum_x", "", NULL, EVM_RESTART_HXCLI},
+			{"HXCLIroute", "Group", ARGV((char*)variables_HXCLI_HXCLIroute, "8", "55", "hxcli_routenum_x"), EVM_RESTART_HXCLI},
+			{"hxcli_mappnum_x", "", NULL, EVM_RESTART_HXCLI},
+			{"HXCLImapp", "Group", ARGV((char*)variables_HXCLI_HXCLImapp, "8", "55", "hxcli_mappnum_x"), EVM_RESTART_HXCLI},
 			{0,0,0,0}
 	};
 #endif
@@ -1781,8 +1781,8 @@
 #if defined(APP_VNTS)
 		{"VNTS",		variables_VNTS},
 #endif
-#if defined(APP_VNTCLI)
-		{"VNTCLI",		variables_VNTCLI},
+#if defined(APP_HXCLI)
+		{"HXCLI",		variables_HXCLI},
 #endif
 #if defined(APP_TAILSCALE)
 		{"TAILSCALE",		variables_TAILSCALE},
@@ -1961,8 +1961,8 @@
 #if defined(APP_VNTS)
 		{EVM_RESTART_VNTS,		EVT_RESTART_VNTS,		RCN_RESTART_VNTS,	0},
 #endif
-#if defined(APP_VNTCLI)
-		{EVM_RESTART_VNTCLI,		EVT_RESTART_VNTCLI,		RCN_RESTART_VNTCLI,	0},
+#if defined(APP_HXCLI)
+		{EVM_RESTART_HXCLI,		EVT_RESTART_HXCLI,		RCN_RESTART_HXCLI,	0},
 #endif
 #if defined(APP_TAILSCALE)
 		{EVM_RESTART_TAILSCALE,		EVT_RESTART_TAILSCALE,		RCN_RESTART_TAILSCALE,	0},
