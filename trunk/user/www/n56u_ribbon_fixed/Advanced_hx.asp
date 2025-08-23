@@ -108,7 +108,7 @@ function applyRule(){
 	showLoading();
 	
 	document.form.action_mode.value = " Apply ";
-	document.form.current_page.value = "/Advanced_vnt.asp";
+	document.form.current_page.value = "/Advanced_hx.asp";
 	document.form.next_page.value = "";
 	
 	document.form.submit();
@@ -124,16 +124,16 @@ function textarea_scripts_enabled(v){
 
 
 function change_hxcli_model(mflag){
-	var m = document.form.vntcli_model.value;
+	var m = document.form.hxcli_model.value;
 	var Showmodel = (m >= 1 && m <= 7);
 
 
 	showhide_div("hxcli_key_tr", Showmodel);
-	showhide_div("vntcli_key_td", Showmodel);
+	showhide_div("hxcli_key_td", Showmodel);
 }
 
 function change_hxcli_enable(mflag){
-	var m = document.form.vntcli_enable.value;
+	var m = document.form.hxcli_enable.value;
 	var is_hxcli_enable = (m == "1" || m == "2") ? "重启" : "更新";
 	document.form.restarthxcli.value = is_hxcli_enable;
 
@@ -256,7 +256,7 @@ function change_hxcli_enable(mflag){
 function button_restarthxcli() {
     var m = document.form.hxcli_enable.value;
 
-    var actionMode = (m == "1" || m == "2") ? ' Restartvntcli ' : ' Updatevntcli ';
+    var actionMode = (m == "1" || m == "2") ? ' Restarthxcli ' : ' Updatehxcli ';
 
     change_hxcli_enable(m); 
 
@@ -360,7 +360,7 @@ function showROUTEList(){
 	    }
 		code += '<tr>';
 		code += '<td colspan="5">&nbsp;</td>'
-		code += '<td><button class="btn btn-danger" type="submit" onclick="markrouteRULES(this, 64, \' Del \');" name="VNTCLIroute"><i class="icon icon-minus icon-white"></i></button></td>';
+		code += '<td><button class="btn btn-danger" type="submit" onclick="markrouteRULES(this, 64, \' Del \');" name="HXCLIroute"><i class="icon icon-minus icon-white"></i></button></td>';
 		code += '</tr>'
 	}
 	code +='</table>';
@@ -374,12 +374,12 @@ function showMAPPList(){
 	else{
 	    for(var i = 0; i < m_mapplist.length; i++){
 		if(m_mapplist[i][0] == 0)
-		vntcli_mappnet="TCP";
+		hxcli_mappnet="TCP";
 		else{
-		vntcli_mappnet="UDP";
+		hxcli_mappnet="UDP";
 		}
 		code +='<tr id="rowrl' + i + '">';
-		code +='<td width="15%">&nbsp;' + vntcli_mappnet + '</td>';
+		code +='<td width="15%">&nbsp;' + hxcli_mappnet + '</td>';
 		code +='<td width="25%">&nbsp;' + m_mapplist[i][1] + '</td>';
 		code +='<td width="30%">' + m_mapplist[i][2] + '</td>';
 		code +='<td width="20%">&nbsp;' + m_mapplist[i][3] + '</td>';
@@ -400,7 +400,7 @@ function showMAPPList(){
 function clearLog(){
 	var $j = jQuery.noConflict();
 	$j.post('/apply.cgi', {
-		'action_mode': ' ClearvntcliLog ',
+		'action_mode': ' ClearhxcliLog ',
 		'next_host': 'Advanced_hx.asp#log'
 	}).always(function() {
 		setTimeout(function() {
@@ -500,7 +500,7 @@ function button_hxcli_status() {
 	<input type="hidden" name="next_page" value="">
 	<input type="hidden" name="next_host" value="">
 	<input type="hidden" name="sid_list" value="HXCLI;LANHostConfig;General;">
-	<input type="hidden" name="group_id" value="HXCLIroute;VNTCLImapp">
+	<input type="hidden" name="group_id" value="HXCLIroute;HXCLImapp">
 	<input type="hidden" name="action_mode" value="">
 	<input type="hidden" name="action_script" value="">
 	<input type="hidden" name="hxcli_routenum_x_0" value="<% nvram_get_x("HXCLIroute", "hxcli_routenum_x"); %>" readonly="1" />
@@ -529,11 +529,11 @@ function button_hxcli_status() {
 	<div class="round_bottom">
 	<div>
 	<ul class="nav nav-tabs" style="margin-bottom: 10px;">
-	<li class="active"><a id="tab_vntcli_cfg" href="#cfg">基本设置</a></li>
-	<li><a id="tab_vntcli_pri" href="#pri">高级设置</a></li>
-	<li><a id="tab_vntcli_sta" href="#sta">运行状态</a></li>
-	<li><a id="tab_vntcli_log" href="#log">运行日志</a></li>
-	<li><a id="tab_vntcli_help" href="#help">帮助说明</a></li>
+	<li class="active"><a id="tab_hxcli_cfg" href="#cfg">基本设置</a></li>
+	<li><a id="tab_hxcli_pri" href="#pri">高级设置</a></li>
+	<li><a id="tab_hxcli_sta" href="#sta">运行状态</a></li>
+	<li><a id="tab_hxcli_log" href="#log">运行日志</a></li>
+	<li><a id="tab_hxcli_help" href="#help">帮助说明</a></li>
 
 	</ul>
 	</div>
@@ -554,26 +554,26 @@ function button_hxcli_status() {
 	<td id="hxcli_status"></td><td></td>
 	</tr>
 	<tr>
-	<th width="30%" style="border-top: 0 none;">启用vnt-cli</th>
+	<th width="30%" style="border-top: 0 none;">启用hx-cli</th>
 	<td style="border-top: 0 none;">
-	<select name="vntcli_enable" class="input" onChange="change_vntcli_enable();" style="width: 218px;">
+	<select name="hxcli_enable" class="input" onChange="change_hxcli_enable();" style="width: 218px;">
 	<option value="0" <% nvram_match_x("","hxcli_enable", "0","selected"); %>>【关闭】</option>
 	<option value="1" <% nvram_match_x("","hxcli_enable", "1","selected"); %>>【开启】</option>
 	<option value="2" <% nvram_match_x("","hxcli_enable", "2","selected"); %>>【开启】配置文件</option>
 	</select>
 	</td>
 	<td colspan="4" style="border-top: 0 none;">
-	<input class="btn btn-success" style="width:150px" type="button" name="restartvntcli" value="更新" onclick="button_restarthxcli()" />
+	<input class="btn btn-success" style="width:150px" type="button" name="restarthxcli" value="更新" onclick="button_restarthxcli()" />
 	</td>
 	</tr>
 	<tr>
 	<th colspan="4" style="background-color: #756c78;">基础设置</th>
 	</tr>
-	<tr id="vntcli_file_tr" style="display:none">
+	<tr id="hxcli_file_tr" style="display:none">
 	<td colspan="4" style="border-top: 0 none;">
 	<i class="icon-hand-right"></i> <a href="javascript:spoiler_toggle('scripts.hx')"><span>点此修改 /etc/storage/hx.conf 配置文件</span></a>&nbsp;&nbsp;&nbsp;&nbsp;配置文件模板：<a href="https://github.com/vnt-dev/vnt/blob/main/vnt-cli/README.md#-f-conf" target="blank">点此查看</a>
 	<div id="scripts.hx">
-	<textarea rows="18" wrap="off" spellcheck="false" maxlength="2097152" class="span12" name="scripts.vnt.conf" style="font-family:'Courier New'; font-size:12px;"><% nvram_dump("scripts.vnt.conf",""); %></textarea>
+	<textarea rows="18" wrap="off" spellcheck="false" maxlength="2097152" class="span12" name="scripts.hx.conf" style="font-family:'Courier New'; font-size:12px;"><% nvram_dump("scripts.hx.conf",""); %></textarea>
 	</div>
 	</td>
 	</tr>
@@ -634,8 +634,8 @@ function button_hxcli_status() {
 	</div>
 	</div>
 	<div style="position: absolute; margin-left: -10000px;">
-	<input type="radio" value="1" name="hxcli_log" id="vntcli_log_1" class="input" value="1" <% nvram_match_x("", "hxcli_log", "1", "checked"); %> /><#checkbox_Yes#>
-	<input type="radio" value="0" name="hxcli_log" id="vntcli_log_0" class="input" value="0" <% nvram_match_x("", "hxcli_log", "0", "checked"); %> /><#checkbox_No#>
+	<input type="radio" value="1" name="hxcli_log" id="hxcli_log_1" class="input" value="1" <% nvram_match_x("", "hxcli_log", "1", "checked"); %> /><#checkbox_Yes#>
+	<input type="radio" value="0" name="hxcli_log" id="hxcli_log_0" class="input" value="0" <% nvram_match_x("", "hxcli_log", "0", "checked"); %> /><#checkbox_No#>
 	</div>
 	</td>
 	</tr><tr id="hxcli_log_td"><td colspan="3"></td></tr>
@@ -701,7 +701,7 @@ function button_hxcli_status() {
 	</div>
 	<div style="position: absolute; margin-left: -10000px;">
 	<input type="radio" value="1" name="hxcli_first" id="hxcli_first_1" class="input" value="1" <% nvram_match_x("", "hxcli_first", "1", "checked"); %> /><#checkbox_Yes#>
-	<input type="radio" value="0" name="vntcli_first" id="hxcli_first_0" class="input" value="0" <% nvram_match_x("", "hxcli_first", "0", "checked"); %> /><#checkbox_No#>
+	<input type="radio" value="0" name="hxcli_first" id="hxcli_first_0" class="input" value="0" <% nvram_match_x("", "hxcli_first", "0", "checked"); %> /><#checkbox_No#>
 	</div>
 	</td>
 	</tr><td colspan="2" id="hxcli_first_td"></td>
@@ -746,7 +746,7 @@ function button_hxcli_status() {
 	<input type="radio" value="0" name="hxcli_serverw" id="hxcli_serverw_0" class="input" value="0" <% nvram_match_x("", "hxcli_serverw", "0", "checked"); %> /><#checkbox_No#>
 	</div>
 	</td>
-	</tr><td colspan="2" id="vntcli_serverw_td"></td>
+	</tr><td colspan="2" id="hxcli_serverw_td"></td>
 	<tr id="hxcli_desname_tr">
 	<th width="30%" style="border-top: 0 none;">设备名称</th>
 	<td style="border-top: 0 none;">
@@ -759,13 +759,13 @@ function button_hxcli_status() {
 	<input type="text" maxlength="128" class="input" size="15" placeholder="建议与接口IP一致" id="hxcli_id" name="hxcli_id" value="<% nvram_get_x("","hxcli_id"); %>" onKeyPress="return is_string(this,event);" />
 	</td>
 	</tr><td colspan="3" id="hxcli_id_td"></td>
-	<tr id="vntcli_tunname_tr">
+	<tr id="hxcli_tunname_tr">
 	<th width="30%" style="border-top: 0 none;">TUN网卡名</th>
 	<td style="border-top: 0 none;">
 	<input name="hxcli_tunname" type="text" class="input" id="hxcli_tunname" placeholder="hx-tun" onkeypress="return is_string(this,event);" value="<% nvram_get_x("","hxcli_tunname"); %>" size="32" maxlength="15" /></td>
 	</td>
 	</tr><td colspan="3" id="hxcli_tunname_td"></td>
-	<tr id="vntcli_mtu_tr">
+	<tr id="hxcli_mtu_tr">
           <th width="30%" style="border-top: 0 none;">MTU</th>
           <td style="border-top: 0 none;">
           <input type="text" name="hxcli_mtu" maxlength="4" class="input" placeholder="1450" size="5" value="<% nvram_get_x("","hxcli_mtu"); %>" onkeypress="return is_number(this,event);"/> 
@@ -1073,7 +1073,7 @@ function button_hxcli_status() {
 	TUN网卡名
         </td>
         <td style="color: white; width: 85%; text-align: left;">
- 	【--nic】指定虚拟网卡名称，默认tun模式使用vnt-tun 在多开进程的时候需要指定不同网卡名 
+ 	【--nic】指定虚拟网卡名称，默认tun模式使用hx-tun 在多开进程的时候需要指定不同网卡名 
         </td>
 	</tr>
 	<tr style="border-bottom: 1px solid #ccc;">
