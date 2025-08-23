@@ -598,20 +598,20 @@ void restart_tailscale(void){
 }
 #endif
 
-#if defined(APP_VNTCLI)
-void stop_vntcli(void){
-	eval("/usr/bin/vnt.sh","stop");
+#if defined(APP_HXCLI)
+void stop_hxcli(void){
+	eval("/usr/bin/hx.sh","stop");
 }
 
-void start_vntcli(void){
-	int vntcli_enable = nvram_get_int("vntcli_enable");
-	if ( vntcli_enable == 1 || vntcli_enable == 2)
-		eval("/usr/bin/vnt.sh","start");
+void start_hxcli(void){
+	int hxcli_enable = nvram_get_int("hxcli_enable");
+	if ( hxcli_enable == 1 || hxcli_enable == 2)
+		eval("/usr/bin/hx.sh","start");
 }
 
-void restart_vntcli(void){
-	stop_vntcli();
-	start_vntcli();
+void restart_hxcli(void){
+	stop_hxcli();
+	start_hxcli();
 }
 #endif
 
@@ -1190,8 +1190,8 @@ stop_services(int stopall)
 #if defined(APP_ZEROTIER)
 	stop_zerotier();
 #endif
-#if defined(APP_VNTCLI)
-	stop_vntcli();
+#if defined(APP_HXCLI)
+	stop_hxcli();
 #endif
 #if defined(APP_ALIDDNS)
 	stop_aliddns();
