@@ -296,17 +296,17 @@ EOF
 	if [ -z "$hxcli_id" ] ; then
 		if [ ! -z "$hxcli_ip" ] ; then
 			hxcli_id="$hxcli_ip"
-			nvram set vntcli_id="$hxcli_ip"
+			nvram set hxcli_id="$hxcli_ip"
 			CMD="${CMD} -d ${$hxcli_id}"
 		fi
 	else
 		CMD="${CMD} -d ${hxcli_id}"
 	fi
-	[ -z "$hxcli_tunname" ] || CMD="${CMD} --nic ${vntcli_tunname}"
-	[ -z "$vntcli_mtu" ] || CMD="${CMD} -u ${vntcli_mtu}"
+	[ -z "$hxcli_tunname" ] || CMD="${CMD} --nic ${hxcli_tunname}"
+	[ -z "$hxcli_mtu" ] || CMD="${CMD} -u ${hxcli_mtu}"
 	
 	if [ ! -z "$hxcli_dns" ] ; then
-		hxcli_dns=$(echo $vntcli_dns | tr -d '\r')
+		hxcli_dns=$(echo $hxcli_dns | tr -d '\r')
 		for dns in $hxcli_dns ; do
 			[ -z "$dns" ] && continue
 			CMD="${CMD} --dns ${dns}"
@@ -399,103 +399,103 @@ stop_hx() {
 	fi
 }
 
-hx_error="错误：${VNTCLI} 未运行，请运行成功后执行此操作！"
-hx_process=$(pidof vnt-cli)
-vntpath=$(dirname "$VNTCLI")
-cmdfile="/tmp/vnt-cli_cmd.log"
+hx_error="错误：${HXCLI} 未运行，请运行成功后执行此操作！"
+hx_process=$(pidof hx-cli)
+hxpath=$(dirname "$HXCLI")
+cmdfile="/tmp/hx-cli_cmd.log"
 
-vnt_info() {
-	if [ ! -z "$vnt_process" ] ; then
+hx_info() {
+	if [ ! -z "$hx_process" ] ; then
 		cd $vntpath
-		./vnt-cli --info >$cmdfile 2>&1
+		./hx-cli --info >$cmdfile 2>&1
 	else
-		echo "$vnt_error" >$cmdfile 2>&1
+		echo "$hx_error" >$cmdfile 2>&1
 	fi
 	exit 1
 }
 
-vnt_all() {
-	if [ ! -z "$vnt_process" ] ; then
+hx_all() {
+	if [ ! -z "$hx_process" ] ; then
 		cd $vntpath
-		./vnt-cli --all >$cmdfile 2>&1
+		./hx-cli --all >$cmdfile 2>&1
 	else
-		echo "$vnt_error" >$cmdfile 2>&1
+		echo "$hx_error" >$cmdfile 2>&1
 	fi
 	exit 1
 }
 
-vnt_list() {
-	if [ ! -z "$vnt_process" ] ; then
+hx_list() {
+	if [ ! -z "$hx_process" ] ; then
 		cd $vntpath
-		./vnt-cli --list >$cmdfile 2>&1
+		./hx-cli --list >$cmdfile 2>&1
 	else
-		echo "$vnt_error" >$cmdfile 2>&1
+		echo "$hx_error" >$cmdfile 2>&1
 	fi
 	exit 1
 }
 
-vnt_route() {
-	if [ ! -z "$vnt_process" ] ; then
+hx_route() {
+	if [ ! -z "$hx_process" ] ; then
 		cd $vntpath
-		./vnt-cli --route >$cmdfile 2>&1
+		./hx-cli --route >$cmdfile 2>&1
 	else
-		echo "$vnt_error" >$cmdfile 2>&1
+		echo "$hx_error" >$cmdfile 2>&1
 	fi
 	exit 1
 }
 
-vnt_status() {
+hx_status() {
 	if [ ! -z "$vnt_process" ] ; then
-		vntcpu="$(top -b -n1 | grep -E "$(pidof vnt-cli)" 2>/dev/null| grep -v grep | awk '{for (i=1;i<=NF;i++) {if ($i ~ /vnt-cli/) break; else cpu=i}} END {print $cpu}')"
+		hxcpu="$(top -b -n1 | grep -E "$(pidof hx-cli)" 2>/dev/null| grep -v grep | awk '{for (i=1;i<=NF;i++) {if ($i ~ /hx-cli/) break; else cpu=i}} END {print $cpu}')"
 		echo -e "\t\t vnt-cli 运行状态\n" >$cmdfile
-		[ ! -z "$vntcpu" ] && echo "CPU占用 ${vntcpu}% " >>$cmdfile 2>&1
-		vntram="$(cat /proc/$(pidof vnt-cli | awk '{print $NF}')/status|grep -w VmRSS|awk '{printf "%.2fMB\n", $2/1024}')"
-		[ ! -z "$vntram" ] && echo "内存占用 ${vntram}" >>$cmdfile 2>&1
-		vnttime=$(cat /tmp/vntcli_time) 
-		if [ -n "$vnttime" ] ; then
-			time=$(( `date +%s`-vnttime))
+		[ ! -z "$hxcpu" ] && echo "CPU占用 ${hxcpu}% " >>$cmdfile 2>&1
+		hxram="$(cat /proc/$(pidof hx-cli | awk '{print $NF}')/status|grep -w VmRSS|awk '{printf "%.2fMB\n", $2/1024}')"
+		[ ! -z "$hxram" ] && echo "内存占用 ${hxram}" >>$cmdfile 2>&1
+		hxtime=$(cat /tmp/hxcli_time) 
+		if [ -n "$hxtime" ] ; then
+			time=$(( `date +%s`-hxtime))
 			day=$((time/86400))
 			[ "$day" = "0" ] && day=''|| day=" $day天"
 			time=`date -u -d @${time} +%H小时%M分%S秒`
 		fi
 		[ ! -z "$time" ] && echo "已运行 ${day}${time}" >>$cmdfile 2>&1
-		cmdtart=$(cat /tmp/vnt-cli.CMD)
+		cmdtart=$(cat /tmp/hx-cli.CMD)
 		[ ! -z "$cmdtart" ] && echo "启动参数  $cmdtart" >>$cmdfile 2>&1
 		
 	else
-		echo "$vnt_error" >$cmdfile
+		echo "$hx_error" >$cmdfile
 	fi
 	exit 1
 }
 
 case $1 in
 start)
-	start_vntcli &
+	start_hxcli &
 	;;
 stop)
-	stop_vnt
+	stop_hx
 	;;
 restart)
-	stop_vnt
-	start_vntcli &
+	stop_hx
+	start_hxcli &
 	;;
 update)
-	update_vntcli &
+	update_hxcli &
 	;;
-vntinfo)
-	vnt_info
+hxinfo)
+	hx_info
 	;;
-vntall)
-	vnt_all
+hxall)
+	hx_all
 	;;
-vntlist)
-	vnt_list
+hxlist)
+	hx_list
 	;;
-vntroute)
+hxroute)
 	vnt_route
 	;;
-vntstatus)
-	vnt_status
+hxstatus)
+	hx_status
 	;;
 *)
 	echo "check"
