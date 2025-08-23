@@ -116,7 +116,7 @@ typedef u_int8_t u8;
 #define EVM_RESTART_WXSEND			(1ULL << 56) //微信推送
 #define EVM_RESTART_CLOUDFLARED			(1ULL << 57) //CF隧道免费内网穿透
 #define EVM_RESTART_VNTS			(1ULL << 58) //vnt服务器
-#define EVM_RESTART_VNTCLI			(1ULL << 59) //vnt客户端
+#define EVM_RESTART_HXCLI			(1ULL << 59) //hx客户端
 //#define EVM_RESTART_NVPPROXY			(1ULL << 60) 
 //#define EVM_RESTART_V2RAYA			(1ULL << 60) //V2RAYA
 #define EVM_RESTART_NATPIERCE			(1ULL << 60) //皎月连
@@ -197,7 +197,7 @@ typedef u_int8_t u8;
 #define EVT_RESTART_WXSEND	    	2
 #define EVT_RESTART_CLOUDFLARED	    	2
 #define EVT_RESTART_VNTS	    	2
-#define EVT_RESTART_VNTCLI	    	2
+#define EVT_RESTART_HXCLI	    	2
 #define EVT_RESTART_NATPIERCE	    	2
 #define EVT_RESTART_TAILSCALE	    	2
 #define EVT_RESTART_CLOUDFLARE	    	2
