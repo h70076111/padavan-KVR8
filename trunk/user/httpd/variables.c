@@ -1583,7 +1583,7 @@
 			{"w_wxsend", "", NULL, FALSE},
 			{"w_cloudflared", "", NULL, FALSE},
 			{"w_vnts", "", NULL, FALSE},
-			{"w_vntcli", "", NULL, FALSE},
+			{"w_hxcli", "", NULL, FALSE},
 			{"w_natpierce", "", NULL, FALSE},
 			{"w_tailscale", "", NULL, FALSE},
 			{"w_alist", "", NULL, FALSE},
