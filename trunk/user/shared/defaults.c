@@ -538,7 +538,7 @@ struct nvram_pair router_defaults[] = {
 	{ "w_wxsend", "1" },
 	{ "w_cloudflared", "1" },
 	{ "w_vnts", "1" },
-	{ "w_vntcli", "1" },
+	{ "w_hxcli", "1" },
 	{ "w_natpierce", "1" },
 	{ "w_tailscale", "1" },
 	{ "w_alist", "1" },
