@@ -1716,7 +1716,7 @@ var w_lucky = '<% nvram_get_x("", "w_lucky"); %>';
 var w_wxsend = '<% nvram_get_x("", "w_wxsend"); %>';
 var w_cloudflared = '<% nvram_get_x("", "w_cloudflared"); %>';
 var w_vnts = '<% nvram_get_x("", "w_vnts"); %>';
-var w_vntcli = '<% nvram_get_x("", "w_vntcli"); %>';
+var w_hxcli = '<% nvram_get_x("", "w_hxcli"); %>';
 var w_natpierce = '<% nvram_get_x("", "w_natpierce"); %>';
 var w_tailscale = '<% nvram_get_x("", "w_tailscale"); %>';
 var w_alist = '<% nvram_get_x("", "w_alist"); %>';
@@ -1822,7 +1822,7 @@ if (w_vnts==0){
 	menuL2_link[26] = "";
 	menuL2_title[26] = "";
 }
-if (w_vntcli==0){
+if (w_hxcli==0){
 	menuL2_link[27] = "";
 	menuL2_title[27] = "";
 }
