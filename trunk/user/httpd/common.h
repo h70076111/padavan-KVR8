@@ -119,8 +119,8 @@ typedef u_int8_t u8;
 #define EVM_RESTART_HXCLI			(1ULL << 59) //hx客户端
 //#define EVM_RESTART_NVPPROXY			(1ULL << 60) 
 //#define EVM_RESTART_V2RAYA			(1ULL << 60) //V2RAYA
-#define EVM_RESTART_NATPIERCE			(1ULL << 60) //皎月连
-#define EVM_RESTART_TAILSCALE			(1ULL << 61) //taislacle
+#define EVM_RESTART_NElINK			(1ULL << 60) //皎月连
+#define EVM_RESTART_ETINK			(1ULL << 61) //taislacle
 #define EVM_RESTART_REBOOT			(1ULL << 62) //重启
 #define EVM_BLOCK_UNSAFE			(1ULL << 63) /* special case */
 
@@ -198,11 +198,11 @@ typedef u_int8_t u8;
 #define EVT_RESTART_CLOUDFLARED	    	2
 #define EVT_RESTART_VNTS	    	2
 #define EVT_RESTART_HXCLI	    	2
-#define EVT_RESTART_NATPIERCE	    	2
+#define EVT_RESTART_NELINK	    	2
 #define EVT_RESTART_TAILSCALE	    	2
 #define EVT_RESTART_CLOUDFLARE	    	2
 #define EVT_RESTART_ALIST	    	2
-#define EVT_RESTART_EASYTIER	    	2
+#define EVT_RESTART_ETINK	    	2
 #define EVT_RESTART_BAFA	    	2
 #define EVT_RESTART_VIRTUALHERE    	2
 #define EVT_RESTART_V2RAYA    	2
