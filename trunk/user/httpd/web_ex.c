@@ -2356,6 +2356,24 @@ static int hxcli_status_hook(int eid, webs_t wp, int argc, char **argv)
 }
 #endif
 
+#if defined (APP_NELINK)
+static int nelink_status_hook(int eid, webs_t wp, int argc, char **argv)
+{
+	int nelink_status_code = pids("netlink");
+	websWrite(wp, "function nelink_status() { return %d;}\n", nelink_status_code);
+	return 0;
+}
+#endif
+
+#if defined (APP_ETINK)
+static int etink_status_hook(int eid, webs_t wp, int argc, char **argv)
+{
+	int etink_status_code = pids("easytier-core");
+	websWrite(wp, "function etink_status() { return %d;}\n", etink_status_code);
+	return 0;
+}
+#endif
+
 /*#if defined (APP_NPC)
 static int npc_status_hook(int eid, webs_t wp, int argc, char **argv)
 {
@@ -2760,6 +2778,16 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 #else
 	int found_app_hxcli = 0;
 #endif
+#if defined(APP_NELINK)
+	int found_app_nelink = 1;
+#else
+	int found_app_nelink = 0;
+#endif
+#if defined(APP_ETINK)
+	int found_app_etink = 1;
+#else
+	int found_app_etink = 0;
+#endif
 #if defined(APP_NVPPROXY)
 	int found_app_nvpproxy = 1;
 #else
@@ -3044,9 +3072,9 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function found_app_aldriver() { return %d;}\n"
 		"function found_app_aliddns() { return %d;}\n"
 		"function found_app_wireguard() { return %d;}\n"
-		"function found_app_natpierce() { return %d;}\n"
+		"function found_app_nelink() { return %d;}\n"
 		"function found_app_tailscale() { return %d;}\n"
-		"function found_app_easytier() { return %d;}\n"
+		"function found_app_etink() { return %d;}\n"
 		"function found_app_bafa() { return %d;}\n"
 		"function found_app_virtualhere() { return %d;}\n"
 		"function found_app_v2raya() { return %d;}\n"
@@ -3094,9 +3122,9 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		found_app_aldriver,
 		found_app_aliddns,
 		found_app_wireguard,
-		found_app_natpierce,
+		found_app_nelink,
 		found_app_tailscale,
-		found_app_easytier,
+		found_app_etink,
 		found_app_bafa,
 		found_app_virtualhere,
 		found_app_v2raya,
@@ -3948,10 +3976,10 @@ apply_cgi(const char *url, webs_t wp)
 		websRedirect(wp, current_url);
 		return 0;
 	}
-	else if (!strcmp(value, " CleareasytierLog "))
+	else if (!strcmp(value, " ClearetinkLog "))
 	{
-#if defined(APP_EASYTIER)
-		unlink("/tmp/easytier.log");
+#if defined(APP_ETINK)
+		unlink("/tmp/etink.log");
 #endif
 		websRedirect(wp, current_url);
 		return 0;
@@ -4239,80 +4267,87 @@ apply_cgi(const char *url, webs_t wp)
 #endif
 		return 0;
 	}
-	else if (!strcmp(value, " Restarteasytier "))
+	else if (!strcmp(value, " Restartnelink "))
 	{
-#if defined(APP_EASYTIER)
-		system("/usr/bin/easytier.sh restart &");
+#if defined(APP_NELINK)
+		system("/usr/bin/ne.sh restart &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " Restartetink "))
+	{
+#if defined(APP_ETINK)
+		system("/usr/bin/et.sh restart &");
 #endif
 		return 0;
 	}
 	else if (!strcmp(value, " Updateeasytier "))
 	{
-#if defined(APP_EASYTIER)
+#if defined(APP_ETINK)
 		system("/usr/bin/easytier.sh update &");
 #endif
 		return 0;
 	}
 	else if (!strcmp(value, " CMDetpeer "))
 	{
-#if defined(APP_EASYTIER)
+#if defined(APP_ETINK)
 		system("/usr/bin/easytier.sh peer &");
 #endif
 		return 0;
 	}
 	else if (!strcmp(value, " CMDetconnector "))
 	{
-#if defined(APP_EASYTIER)
+#if defined(APP_ETINK)
 		system("/usr/bin/easytier.sh connector &");
 #endif
 		return 0;
 	}
 	else if (!strcmp(value, " CMDetstun "))
 	{
-#if defined(APP_EASYTIER)
+#if defined(APP_ETINK)
 		system("/usr/bin/easytier.sh stun &");
 #endif
 		return 0;
 	}
 	else if (!strcmp(value, " CMDetroute "))
 	{
-#if defined(APP_EASYTIER)
+#if defined(APP_ETINK)
 		system("/usr/bin/easytier.sh route &");
 #endif
 		return 0;
 	}
 	else if (!strcmp(value, " CMDetpeer_center "))
 	{
-#if defined(APP_EASYTIER)
+#if defined(APP_ETINK)
 		system("/usr/bin/easytier.sh peer-center &");
 #endif
 		return 0;
 	}
 	else if (!strcmp(value, " CMDetvpn_portal "))
 	{
-#if defined(APP_EASYTIER)
+#if defined(APP_ETINK)
 		system("/usr/bin/easytier.sh vpn-portal &");
 #endif
 		return 0;
 	}
 	else if (!strcmp(value, " CMDetnode "))
 	{
-#if defined(APP_EASYTIER)
+#if defined(APP_ETINK)
 		system("/usr/bin/easytier.sh node &");
 #endif
 		return 0;
 	}
 	else if (!strcmp(value, " CMDetproxy "))
 	{
-#if defined(APP_EASYTIER)
+#if defined(APP_ETINK)
 		system("/usr/bin/easytier.sh proxy &");
 #endif
 		return 0;
 	}
 	else if (!strcmp(value, " CMDetstatus "))
 	{
-#if defined(APP_EASYTIER)
-		system("/usr/bin/easytier.sh status &");
+#if defined(APP_ETINK)
+		system("/usr/bin/et.sh status &");
 #endif
 		return 0;
 	}
@@ -5069,17 +5104,32 @@ static char vnts_log_txt[] =
 
 #endif
 
-#if defined (APP_EASYTIER)
+#if defined (APP_NELINK)
 static void
-do_et_log_file(const char *url, FILE *stream)
+do_nelink_log_file(const char *url, FILE *stream)
 {
-	dump_file(stream, "/tmp/easytier.log");
+	dump_file(stream, "/tmp/nelink.log");
 	fputs("\r\n", stream);
 }
 
-static char et_log_txt[] =
+static char nelink_log_txt[] =
 "Content-Disposition: attachment;\r\n"
-"filename=easytier.log"
+"filename=nelink.log"
+;
+
+#endif
+
+#if defined (APP_ETINK)
+static void
+do_etink_log_file(const char *url, FILE *stream)
+{
+	dump_file(stream, "/tmp/etink.log");
+	fputs("\r\n", stream);
+}
+
+static char etink_log_txt[] =
+"Content-Disposition: attachment;\r\n"
+"filename=etink.log"
 ;
 
 #endif
@@ -5149,8 +5199,11 @@ struct mime_handler mime_handlers[] = {
 #if defined(APP_VNTS)
 	{ "vnts.log", "application/force-download", vnts_log_txt, NULL, do_vnts_log_file, 1 },
 #endif
-#if defined(APP_EASYTIER)
-	{ "easytier.log", "application/force-download", et_log_txt, NULL, do_et_log_file, 1 },
+#if defined(APP_NELINK)
+	{ "nelink.log", "application/force-download", nelink_log_txt, NULL, do_nelink_log_file, 1 },
+#endif
+#if defined(APP_ETINK)
+	{ "etink.log", "application/force-download", etink_log_txt, NULL, do_etink_log_file, 1 },
 #endif
 #if defined(APP_OPENVPN)
 	{ "client.ovpn", "application/force-download", NULL, NULL, do_export_ovpn_client, 1 },
@@ -5516,9 +5569,11 @@ struct ej_handler ej_handlers[] =
 	{ "tailscale_status", tailscale_status_hook},
 	{ "tailscaled_status", tailscaled_status_hook},
 #endif
-#if defined (APP_EASYTIER)
-	{ "easytier_status", easytier_status_hook},
-	{ "easytier_web_status", easytier_web_status_hook},
+#if defined (APP_NELINK)
+	{ "nelink_status", nelink_status_hook},
+#endif
+#if defined (APP_ETINK)
+	{ "etink_status", etink_status_hook},
 #endif
 #if defined (APP_CLOUDFLARED)
 	{ "cloudflared_status", cloudflared_status_hook},
