@@ -266,8 +266,8 @@ endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_HXCLI),y)
 	rm -f $(INSTALLDIR)/www/Advanced_hx.asp
 endif
-ifneq ($(CONFIG_FIRMWARE_INCLUDE_NATPIERCE),y)
-	rm -f $(INSTALLDIR)/www/Advanced_natpierce.asp
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_NELINK),y)
+	rm -f $(INSTALLDIR)/www/Advanced_nelink.asp
 endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_TAILSCALE),y)
 	rm -f $(INSTALLDIR)/www/Advanced_tailscale.asp
@@ -278,8 +278,8 @@ endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_CLOUDFLARE),y)
 	rm -f $(INSTALLDIR)/www/Advanced_cloudflare.asp
 endif
-ifneq ($(CONFIG_FIRMWARE_INCLUDE_EASYTIER),y)
-	rm -f $(INSTALLDIR)/www/Advanced_easytier.asp
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_ETINK),y)
+	rm -f $(INSTALLDIR)/www/Advanced_etink.asp
 endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_BAFA),y)
 	rm -f $(INSTALLDIR)/www/Advanced_bafa.asp
