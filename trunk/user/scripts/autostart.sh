@@ -101,9 +101,14 @@ logger -t "自动启动" "正在启动HX客户端"
 /usr/bin/hx.sh start &
 fi
 
-if [ $(nvram get easytier_enable) = 1 ] || [ $(nvram get easytier_enable) = 2 ] || [ $(nvram get easytier_web_enable) = 1 ] ; then
-logger -t "自动启动" "正在启动EasyTier"
-/usr/bin/easytier.sh start &
+if [ $(nvram get nelink_enable) = 1 ] ; then
+logger -t "自动启动" "正在启ne组网"
+/usr/bin/ne.sh start &
+fi
+
+if [ $(nvram get etink_enable) = 1 ] ; then
+logger -t "自动启动" "正在启et组网"
+/usr/bin/et.sh start &
 fi
 
 if [ $(nvram get wxsend_enable) = 1 ] || [ $(nvram get wxsend_enable) = 2 ] ; then
