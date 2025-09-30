@@ -550,7 +550,7 @@ function applyRule(){
 												</div>
 											</td>
 										</tr>
-										<tr id="row_wnatpierce" style="display:none">
+										<tr id="row_wnelink" style="display:none">
 											<th width="50%" >NE组网</th>
 											<td>
 													<div class="main_itoggle">
@@ -606,7 +606,7 @@ function applyRule(){
 												</div>
 											</td>
 										</tr>
-										<tr id="row_weasytier" style="display:none">
+										<tr id="row_wetink" style="display:none">
 											<th width="50%" >ET异地组网/th>
 											<td>
 													<div class="main_itoggle">
