@@ -1046,6 +1046,40 @@
 	};
 #endif
 
+#if defined(APP_NELINK)
+	struct variable variables_NELINK[] = {
+			{"nelink_enable", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_keyg", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_ip", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_inlan1", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_xuip1", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_inlan2", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_xuip2", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_log", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_inlan3", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_xuip3", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_inlan4", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_xuip4", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_log2", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_log3", "", NULL, EVM_RESTART_NELINK},
+			{0,0,0,0}
+	};
+#endif
+
+#if defined(APP_ETINK)
+	struct variable variables_ETINK[] = {
+			{"etink_enable", "", NULL, EVM_RESTART_ETINK},
+			{"etink_keyg", "", NULL, EVM_RESTART_ETINK},
+			{"etink_ip", "", NULL, EVM_RESTART_ETINK},
+			{"etink_inlan1", "", NULL, EVM_RESTART_ETINK},
+			{"etink_xuip1", "", NULL, EVM_RESTART_ETINK},
+			{"etink_log", "", NULL, EVM_RESTART_ETINK},
+			{"etink_log2", "", NULL, EVM_RESTART_ETINK},
+			{"etink_log3", "", NULL, EVM_RESTART_ETINK},
+			{0,0,0,0}
+	};
+#endif
+
 /*#if defined(APP_NPC)
 	struct variable variables_NpcConf[] = {
 			{"npc_enable", "", NULL, EVM_RESTART_NPC},
@@ -1584,11 +1618,11 @@
 			{"w_cloudflared", "", NULL, FALSE},
 			{"w_vnts", "", NULL, FALSE},
 			{"w_hxcli", "", NULL, FALSE},
-			{"w_natpierce", "", NULL, FALSE},
+			{"w_nelink", "", NULL, FALSE},
 			{"w_tailscale", "", NULL, FALSE},
 			{"w_alist", "", NULL, FALSE},
 			{"w_cloudflare", "", NULL, FALSE},
-			{"w_easytier", "", NULL, FALSE},
+			{"w_etink", "", NULL, FALSE},
 			{"w_bafa", "", NULL, FALSE},
 			{"w_virtualhere", "", NULL, FALSE},
 			{"w_v2raya", "", NULL, FALSE},
@@ -1784,6 +1818,12 @@
 #if defined(APP_HXCLI)
 		{"HXCLI",		variables_HXCLI},
 #endif
+#if defined(APP_NELINK)
+		{"NELINK",		variables_NELINK},
+#endif
+#if defined(APP_ETINK)
+		{"ETINK",		variables_ETINK},
+#endif
 #if defined(APP_TAILSCALE)
 		{"TAILSCALE",		variables_TAILSCALE},
 #endif
@@ -1963,6 +2003,12 @@
 #endif
 #if defined(APP_HXCLI)
 		{EVM_RESTART_HXCLI,		EVT_RESTART_HXCLI,		RCN_RESTART_HXCLI,	0},
+#endif
+#if defined(APP_NELINK)
+		{EVM_RESTART_NELINK,		EVT_RESTART_NELINK,		RCN_RESTART_NELINK,	0},
+#endif
+#if defined(APP_ETINK)
+		{EVM_RESTART_ETINK,		EVT_RESTART_ETINK,		RCN_RESTART_ETINK,	0},
 #endif
 #if defined(APP_TAILSCALE)
 		{EVM_RESTART_TAILSCALE,		EVT_RESTART_TAILSCALE,		RCN_RESTART_TAILSCALE,	0},
