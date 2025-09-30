@@ -18,7 +18,6 @@ echo $nelink_log2
 nelink_log3=$(nvram get nelink_log3)
 echo $nelink_log3
 
-start_nelink() {
 iptables -D INPUT -i nehxkj -j ACCEPT 2>/dev/null
 iptables -D FORWARD -i nehxkj -o nehxkj -j ACCEPT 2>/dev/null
 iptables -D FORWARD -i nehxkj -j ACCEPT 2>/dev/null
@@ -52,37 +51,3 @@ ifconfig nehxkj arp
 else
 logger -t "netlink" "启动失败"
 fi
-}
-
-stop_nelink() {
-logger -t   "正在关闭..."
-iptables -D INPUT -i nehxkj -j ACCEPT 2>/dev/null
-iptables -D FORWARD -i nehxkj -o nehxkj -j ACCEPT 2>/dev/null
-iptables -D FORWARD -i nehxkj -j ACCEPT 2>/dev/null
-iptables -t nat -D POSTROUTING -o nehxkj -j MASQUERADE 2>/dev/null
-killall netlink
-killall -9 netlink
-sleep 5
-#清除vnt的虚拟网卡
-ifconfig nehxkj down && ip tuntap del nehxkj mode tun
-if [ -z "`pidof netlink`" ] && [ -z "`pidof netlink`" ]; then
-logger -t "netlink" "已经关闭"
-fi
-}
-
-case $1 in
-start)
-	start_nelink &
-	;;
-stop)
-	stop_nelink
-	;;
-restart)
-	stop_nelink
-	start_nelink &
-	;;
-*)
-	echo "check"
-	#exit 0
-	;;
-esac
