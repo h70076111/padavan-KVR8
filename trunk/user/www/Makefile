@@ -264,7 +264,7 @@ ifneq ($(CONFIG_FIRMWARE_INCLUDE_VNTS),y)
 	rm -f $(INSTALLDIR)/www/Advanced_vnts.asp
 endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_HXCLI),y)
-	rm -f $(INSTALLDIR)/www/Advanced_hx.asp
+	rm -f $(INSTALLDIR)/www/Advanced_hxzn.asp
 endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_NELINK),y)
 	rm -f $(INSTALLDIR)/www/Advanced_nelink.asp
