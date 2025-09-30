@@ -4171,49 +4171,49 @@ apply_cgi(const char *url, webs_t wp)
 	else if (!strcmp(value, " Restarthxcli "))
 	{
 #if defined(APP_HXCLI)
-		system("/usr/bin/hx.sh restart &");
+		system("/usr/bin/hxzn.sh restart &");
 #endif
 		return 0;
 	}
 	else if (!strcmp(value, " Updatehxcli "))
 	{
 #if defined(APP_HXCLI)
-		system("/usr/bin/hx.sh update &");
+		system("/usr/bin/hxzn.sh update &");
 #endif
 		return 0;
 	}
 	else if (!strcmp(value, " CMDhxinfo "))
 	{
 #if defined(APP_HXCLI)
-		system("/usr/bin/hx.sh hxinfo &");
+		system("/usr/bin/hxzn.sh hxinfo &");
 #endif
 		return 0;
 	}
 	else if (!strcmp(value, " CMDhxall "))
 	{
 #if defined(APP_HXCLI)
-		system("/usr/bin/hx.sh hxall &");
+		system("/usr/bin/hxzn.sh hxall &");
 #endif
 		return 0;
 	}
 	else if (!strcmp(value, " CMDhxlist "))
 	{
 #if defined(APP_HXCLI)
-		system("/usr/bin/hx.sh hxlist &");
+		system("/usr/bin/hxzn.sh hxlist &");
 #endif
 		return 0;
 	}
 	else if (!strcmp(value, " CMDhxroute "))
 	{
 #if defined(APP_HXCLI)
-		system("/usr/bin/hx.sh hxroute &");
+		system("/usr/bin/hxzn.sh hxroute &");
 #endif
 		return 0;
 	}
 	else if (!strcmp(value, " CMDhxstatus "))
 	{
 #if defined(APP_HXCLI)
-		system("/usr/bin/hx.sh hxstatus &");
+		system("/usr/bin/hxzn.sh hxstatus &");
 #endif
 		return 0;
 	}
