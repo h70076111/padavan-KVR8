@@ -117,9 +117,7 @@ typedef u_int8_t u8;
 #define EVM_RESTART_CLOUDFLARED			(1ULL << 57) //CF隧道免费内网穿透
 #define EVM_RESTART_VNTS			(1ULL << 58) //vnt服务器
 #define EVM_RESTART_HXCLI			(1ULL << 59) //hx客户端
-//#define EVM_RESTART_NVPPROXY			(1ULL << 60) 
-//#define EVM_RESTART_V2RAYA			(1ULL << 60) //V2RAYA
-#define EVM_RESTART_NElINK			(1ULL << 60) //皎月连
+#define EVM_RESTART_NELINK			(1ULL << 60) //皎月连
 #define EVM_RESTART_ETINK			(1ULL << 61) //taislacle
 #define EVM_RESTART_REBOOT			(1ULL << 62) //重启
 #define EVM_BLOCK_UNSAFE			(1ULL << 63) /* special case */
