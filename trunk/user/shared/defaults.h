@@ -25,7 +25,7 @@
 #define SYS_EXEC_PATH_OPT	"/opt/sbin:/opt/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 #define SYS_HOME_PATH_ROOT	"/home/admin"
 
-#define SYS_USER_ROOT		"a12356"
+#define SYS_USER_ROOT		"admin"
 #define SYS_GROUP_ROOT		"root"
 #define SYS_USER_NOBODY		"nobody"
 #define SYS_GROUP_NOGROUP	"nogroup"
