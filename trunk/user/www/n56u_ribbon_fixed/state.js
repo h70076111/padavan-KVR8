@@ -577,7 +577,7 @@ if (found_app_vnts()){
 	tablink[25] = (vnts_array);
 }
 if (found_app_hxcli()){
-	hxcli_array = new Array("","Advanced_hx.asp");
+	hxcli_array = new Array("","Advanced_hxzn.asp");
 	tablink[26] = (hxcli_array);
 }
 if (found_app_nelink()){
