@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<!--Copyright by hiboy-->
+<html>
+<head>
+<title><#Web_Title#> - NE组网</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="icon" href="images/favicon.png">
+<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/bootstrap/css/main.css">
+<link rel="stylesheet" type="text/css" href="/bootstrap/css/engage.itoggle.css">
+
+<script type="text/javascript" src="/jquery.js"></script>
+<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/bootstrap/js/engage.itoggle.min.js"></script>
+<script type="text/javascript" src="/state.js"></script>
+<script type="text/javascript" src="/general.js"></script>
+<script type="text/javascript" src="/client_function.js"></script>
+<script type="text/javascript" src="/itoggle.js"></script>
+<script type="text/javascript" src="/popup.js"></script>
+<script type="text/javascript" src="/help.js"></script>
+<script>
+var $j = jQuery.noConflict();
+<% nelink_status(); %>
+<% login_state_hook(); %>
+$j(document).ready(function() {
+	
+	init_itoggle('nelink_enable');
+	$j("#tab_nelink_cfg, #tab_nelink_web, #tab_nelink_sta, #tab_nelink_log").click(
+	function () {
+		var newHash = $j(this).attr('href').toLowerCase();
+		showTab(newHash);
+		return false;
+	});
+});
+</script>
+<script>
+function initial(){
+	show_banner(2);
+	show_menu(5,33,0);
+	show_footer();
+	fill_status(nelink_status());
+}
+function fill_status(status_code){
+	var stext = "Unknown";
+	if (status_code == 0)
+		stext = "<#Stopped#>";
+	else if (status_code == 1)
+		stext = "<#Running#>";
+	$("nelink_status").innerHTML = '<span class="label label-' + (status_code != 0 ? 'success' : 'warning') + '">' + stext + '</span>';
+}
+var arrHashes = ["cfg","web","sta","log"];
+function showTab(curHash) {
+	var obj = $('tab_nelink_' + curHash.slice(1));
+	if (obj == null || obj.style.display == 'none')
+	curHash = '#cfg';
+	for (var i = 0; i < arrHashes.length; i++) {
+		if (curHash == ('#' + arrHashes[i])) {
+			$j('#tab_nelink_' + arrHashes[i]).parents('li').addClass('active');
+			$j('#wnd_nelink_' + arrHashes[i]).show();
+		} else {
+			$j('#wnd_nelink_' + arrHashes[i]).hide();
+			$j('#tab_nelink_' + arrHashes[i]).parents('li').removeClass('active');
+			}
+		}
+	window.location.hash = curHash;
+}
+function applyRule(){
+	showLoading();
+	
+	document.form.action_mode.value = " Apply ";
+	document.form.current_page.value = "/Advanced_nelink.asp";
+	document.form.next_page.value = "";
+	
+	document.form.submit();
+}
+function  button_restarnelink(){
+    	var $j = jQuery.noConflict();
+    	$j.post('/apply.cgi',
+    	{
+        		'action_mode': ' Restarnelink ',
+    	});
+}
+function done_validating(action){
+	refreshpage();
+}
+function button_nelink_web(){
+	var port = '23336';
+	var url = window.location.protocol + "//" + window.location.hostname + ":" + port;
+	window.open(url);
+}
+</script>
+</head>
+
+<body onload="initial();" onunLoad="return unload_body();">
+
+<div class="wrapper">
+	<div class="container-fluid" style="padding-right: 0px">
+		<div class="row-fluid">
+			<div class="span3"><center><div id="logo"></div></center></div>
+			<div class="span9" >
+				<div id="TopBanner"></div>
+			</div>
+		</div>
+	</div>
+
+	<div id="Loading" class="popup_bg"></div>
+
+	<iframe name="hidden_frame" id="hidden_frame" src="" width="0" height="0" frameborder="0"></iframe>
+
+	<form method="post" name="form" id="ruleForm" action="/start_apply.htm" target="hidden_frame">
+
+	<input type="hidden" name="current_page" value="Advanced_nelink.asp">
+	<input type="hidden" name="next_page" value="">
+	<input type="hidden" name="next_host" value="">
+	<input type="hidden" name="sid_list" value="NELINK;">
+	<input type="hidden" name="group_id" value="">
+	<input type="hidden" name="action_mode" value="">
+	<input type="hidden" name="action_script" value="">
+
+
+	<div class="container-fluid">
+	<div class="row-fluid">
+	<div class="span3">
+	<!--Sidebar content-->
+	<!--=====Beginning of Main Menu=====-->
+	<div class="well sidebar-nav side_nav" style="padding: 0px;">
+	<ul id="mainMenu" class="clearfix"></ul>
+	<ul class="clearfix">
+	<li>
+	<div id="subMenu" class="accordion"></div>
+	</li>
+	</ul>
+	</div>
+	</div>
+	<div class="span9">
+	<!--Body content-->
+	<div class="row-fluid">
+	<div class="span12">
+	<div class="box well grad_colour_dark_blue">
+	<h2 class="box_head round_top">NE智能组网</h2>
+	<div class="round_bottom">
+	<div>
+	<ul class="nav nav-tabs" style="margin-bottom: 10px;">
+	<li class="active"><a id="tab_nelink_cfg" href="#cfg">基本设置</a></li>
+	<li><a id="tab_nelink_log" href="#log">运行日志</a></li>
+	</th>
+	</tr>
+	<tr>
+	</div>
+	<div class="row-fluid">
+									<div id="tabMenu" class="submenuBlock"></div>
+									<div class="alert alert-info" style="margin: 10px;">
+									<p>NE智能组网是一个易于配置异地组网 直连技术支持IPV6<br>
+									</p>
+									</div>
+										<table width="100%" align="center" cellpadding="4" cellspacing="0" class="table">
+									<tr> <th><#running_status#></th>
+                                            <td id="nelink_status" colspan="3"></td>
+                                        </tr><td></td><td></td><td></td>
+										<tr>
+										<tr>
+										<th width="30%" style="border-top: 0 none;">启用组网客户端</th>
+											<td style="border-top: 0 none;">
+													<div class="main_itoggle">
+													<div id="nelink_enable_on_of">
+														<input type="checkbox" id="nelink_enable_fake" <% nvram_match_x("", "nelink_enable", "1", "value=1 checked"); %><% nvram_match_x("", "nelink_enable", "0", "value=0"); %>  />
+													</div>
+												</div>
+												<div style="position: absolute; margin-left: -10000px;">
+													<input type="radio" value="1" name="nelink_enable" id="nelink_enable_1" class="input" value="1" <% nvram_match_x("", "nelink_enable", "1", "checked"); %> /><#checkbox_Yes#>
+													<input type="radio" value="0" name="nelink_enable" id="nelink_enable_0" class="input" value="0" <% nvram_match_x("", "nelink_enable", "0", "checked"); %> /><#checkbox_No#>
+												</div>
+											</td>
+
+										</tr>
+
+										<tr>
+										<th>本机识别码(不要改动) </th>
+				<td>
+					<input type="text" class="input" readonly name="nelink_keyg" id="nelink_keyg" style="width: 200px" value="<% nvram_get_x("","nelink_keyg"); %>" />
+				</td>
+
+										</tr>
+
+										<tr>
+										<th>本机虚拟ip（格式 20）</th>
+				<td>
+					<input type="text" class="input" name="nelink_ip" id="nelink_ip" style="width: 30px" value="<% nvram_get_x("","nelink_ip"); %>" />
+				</td>
+
+										</tr>
+									
+										<tr>
+										<th>对端的IP（格式 192.168.x.0） </th>
+				<td>
+					<input type="text" class="input" name="nelink_inlan1" id="nelink_inlan1" style="width: 120px" value="<% nvram_get_x("","nelink_inlan1"); %>" />
+				</td>
+
+										</tr>
+										<tr>
+										<th>对端的虚拟ip（格式 10.26.2.x)</th>
+				<td>
+					<input type="text" class="input" name="nelink_xuip1" id="nelink_xuip1" style="width: 100px" value="<% nvram_get_x("","nelink_xuip1"); %>" />
+				</td>
+
+										</tr>
+										<tr>
+										<th>节点地址</th>
+				<td>
+					<input type="text" class="input" readonly name="nelink_log" id="nelink_log" style="width: 240px" value="<% nvram_get_x("","nelink_log"); %>" />
+				</td>
+
+
+										</tr>
+										<tr>
+										<th>开起第2个设备(不用留空）</th>
+				<td>
+					<input type="text" class="input" name="nelink_log2" id="nelink_log2" style="width: 240px" value="<% nvram_get_x("","nelink_log2"); %>" />
+				</td>
+
+										</tr>
+										<tr>
+										<th>开起第3个设备(route add -net inip/24 gw xuip）</th>
+				<td>
+					<input type="text" class="input" name="nelink_log3" id="nelink_log3" style="width: 240px" value="<% nvram_get_x("","nelink_log3"); %>" />
+				</td>
+
+										</tr>
+										<tr>
+
+									<td style="border-top: 0 none;">
+						&nbsp;<input class="btn btn-success" style="" type="button" value="打开管理页面" onclick="button_nelink_web()" />
+												</div>
+										</td>
+										<td colspan="4" style="border-top: 0 none;">
+												<br />
+												<center><input class="btn btn-primary" style="width: 219px" type="button" value="<#CTL_apply#>" onclick="applyRule()" /></center>
+										</tr>
+										<tr>
+													
+	</table>
+
+	<!-- 日志 -->
+	<div id="wnd_nelink_log" style="display:none">
+	<table width="100%" cellpadding="4" cellspacing="0" class="table">
+	<tr>
+	<td colspan="3" style="border-top: 0 none; padding-bottom: 0px;">
+	<textarea rows="21" class="span12" style="height:377px; font-family:'Courier New', Courier, mono; font-size:13px;" readonly="readonly" wrap="off" id="textarea"><% nvram_dump("nelink.log",""); %></textarea>
+	</td>
+	</tr>
+	<tr>
+	<td width="15%" style="text-align: left; padding-bottom: 0px;">
+	<input type="button" onClick="location.reload()" value="刷新日志" class="btn btn-primary" style="width: 200px">
+	</td>
+	<td width="15%" style="text-align: left; padding-bottom: 0px;">
+	<input type="button" onClick="location.href='nelink.log'" value="<#CTL_onlysave#>" class="btn btn-success" style="width: 200px">
+	</td>
+	<td width="75%" style="text-align: right; padding-bottom: 0px;">
+	<input type="button" onClick="clearLog();" value="清除日志" class="btn btn-info" style="width: 200px">
+	</td>
+	</tr>
+	<br><td colspan="5" style="border-top: 0 none; text-align: center; padding-top: 4px;">
+	<span style="color:#888;">🚫注意：日志可能包含一些隐私信息，切勿随意分享！</span>
+	</td>
+	</table>
+	</div>
+
+	</table>
+	</div>
+	
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</form>
+	<div id="footer"></div>
+	</div>
+</body>
+
+</html>
+Footer
+© 2025 GitHub, In
