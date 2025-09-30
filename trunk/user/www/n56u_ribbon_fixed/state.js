@@ -460,8 +460,8 @@ if (found_app_vnts()){
 if (found_app_hxcli()){
 	tabtitle[26] = new Array("", "宏兴智能组网");
 }
-if (found_app_natpierce()){
-	tabtitle[27] = new Array("", "皎月连");
+if (found_app_nelink()){
+	tabtitle[27] = new Array("", "NE组网");
 }
 if (found_app_tailscale()){
 	tabtitle[28] = new Array("", "Tailscale");
@@ -472,8 +472,8 @@ if (found_app_alist()){
 if (found_app_cloudflare()){
 	tabtitle[30] = new Array("", "CF域名解析");
 }
-if (found_app_easytier()){
-	tabtitle[31] = new Array("", "EasyTier");
+if (found_app_etink()){
+	tabtitle[31] = new Array("", "ET异地组网");
 }
 if (found_app_bafa()){
 	tabtitle[32] = new Array("", "巴法云");
@@ -580,9 +580,9 @@ if (found_app_hxcli()){
 	hxcli_array = new Array("","Advanced_hx.asp");
 	tablink[26] = (hxcli_array);
 }
-if (found_app_natpierce()){
-	natpierce_array = new Array("","Advanced_natpierce.asp");
-	tablink[27] = (natpierce_array);
+if (found_app_nelink()){
+	nelink_array = new Array("","Advanced_nelink.asp");
+	tablink[27] = (nelink_array);
 }
 if (found_app_tailscale()){
 	tailscale_array = new Array("","Advanced_tailscale.asp");
@@ -596,9 +596,9 @@ if (found_app_cloudflare()){
 	cloudflare_array = new Array("","Advanced_cloudflare.asp");
 	tablink[30] = (cloudflare_array);
 }
-if (found_app_easytier()){
-	easytier_array = new Array("","Advanced_easytier.asp");
-	tablink[31] = (easytier_array);
+if (found_app_etink()){
+	etink_array = new Array("","Advanced_etink.asp");
+	tablink[31] = (etink_array);
 }
 if (found_app_bafa()){
 	bafa_array = new Array("","Advanced_bafa.asp");
@@ -694,8 +694,8 @@ if (found_app_hxcli()){
 	menuL2_title.push("宏兴智能组网");
 } else menuL2_title.push("");
 
-if (found_app_natpierce()){
-	menuL2_title.push("皎月连");
+if (found_app_nelink()){
+	menuL2_title.push("NE组网");
 } else menuL2_title.push("");
 
 if (found_app_tailscale()){
@@ -710,8 +710,8 @@ if (found_app_cloudflare()){
 	menuL2_title.push("CF域名解析");
 } else menuL2_title.push("");
 
-if (found_app_easytier()){
-	menuL2_title.push("EasyTier");
+if (found_app_etink()){
+	menuL2_title.push("ET异地组网");
 } else menuL2_title.push("");
 
 if (found_app_bafa()){
@@ -791,8 +791,8 @@ if (found_app_vnts()){
 if (found_app_hxcli()){
 	menuL2_link.push(hxcli_array[1]);
 } else menuL2_link.push("");
-if (found_app_natpierce()){
-	menuL2_link.push(natpierce_array[1]);
+if (found_app_nelink()){
+	menuL2_link.push(nelink_array[1]);
 } else menuL2_link.push("");
 if (found_app_tailscale()){
 	menuL2_link.push(tailscale_array[1]);
@@ -803,8 +803,8 @@ if (found_app_alist()){
 if (found_app_cloudflare()){
 	menuL2_link.push(cloudflare_array[1]);
 } else menuL2_link.push("");
-if (found_app_easytier()){
-	menuL2_link.push(easytier_array[1]);
+if (found_app_etink()){
+	menuL2_link.push(etink_array[1]);
 } else menuL2_link.push("");
 if (found_app_bafa()){
 	menuL2_link.push(bafa_array[1]);
@@ -1717,11 +1717,11 @@ var w_wxsend = '<% nvram_get_x("", "w_wxsend"); %>';
 var w_cloudflared = '<% nvram_get_x("", "w_cloudflared"); %>';
 var w_vnts = '<% nvram_get_x("", "w_vnts"); %>';
 var w_hxcli = '<% nvram_get_x("", "w_hxcli"); %>';
-var w_natpierce = '<% nvram_get_x("", "w_natpierce"); %>';
+var w_nelink = '<% nvram_get_x("", "w_nelink"); %>';
 var w_tailscale = '<% nvram_get_x("", "w_tailscale"); %>';
 var w_alist = '<% nvram_get_x("", "w_alist"); %>';
 var w_cloudflare = '<% nvram_get_x("", "w_cloudflare"); %>';
-var w_easytier = '<% nvram_get_x("", "w_easytier"); %>';
+var w_etink = '<% nvram_get_x("", "w_etink"); %>';
 var w_bafa = '<% nvram_get_x("", "w_bafa"); %>';
 var w_virtualhere = '<% nvram_get_x("", "w_virtualhere"); %>';
 var w_v2raya = '<% nvram_get_x("", "w_v2raya"); %>';
@@ -1826,7 +1826,7 @@ if (w_hxcli==0){
 	menuL2_link[27] = "";
 	menuL2_title[27] = "";
 }
-if (w_natpierce==0){
+if (w_nelink==0){
 	menuL2_link[28] = "";
 	menuL2_title[28] = "";
 }
@@ -1842,7 +1842,7 @@ if (w_cloudflare==0){
 	menuL2_link[31] = "";
 	menuL2_title[31] = "";
 }
-if (w_easytier==0){
+if (w_etink==0){
 	menuL2_link[32] = "";
 	menuL2_title[32] = "";
 }
