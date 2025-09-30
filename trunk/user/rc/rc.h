@@ -582,10 +582,15 @@ void stop_frp(void);
 void start_frp(void);
 void restart_frp(void);
 #endif
-#if defined(APP_EASYTIER)
-void stop_easytier(void);
-void start_easytier(void);
-void restart_easytier(void);
+#if defined(APP_NELINK)
+void stop_nelink(void);
+void start_nelink(void);
+void restart_nelink(void);
+#endif
+#if defined(APP_ETINK)
+void stop_etink(void);
+void start_etink(void);
+void restart_etink(void);
 #endif
 #if defined(APP_BAFA)
 void stop_bafa(void);
