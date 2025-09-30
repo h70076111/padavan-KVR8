@@ -1438,12 +1438,18 @@ handle_notifications(void)
 			restart_tailscale();
 		}
 #endif
-#if defined(APP_EASYTIER)
-		else if (strcmp(entry->d_name, RCN_RESTART_EASYTIER) == 0)
+#if defined(APP_NELINK)
+		else if (strcmp(entry->d_name, RCN_RESTART_NELINK) == 0)
 		{
-			restart_easytier();
+			restart_nelink();
 		}
-#endif
+#endif		
+#if defined(APP_ETINK)
+		else if (strcmp(entry->d_name, RCN_RESTART_ETINK) == 0)
+		{
+			restart_etink();
+		}
+#endif		
 #if defined(APP_CLOUDFLARED)
 		else if (strcmp(entry->d_name, RCN_RESTART_CLOUDFLARED) == 0)
 		{
