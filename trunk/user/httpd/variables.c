@@ -1497,32 +1497,6 @@
 	};
 #endif
 
-#if defined(APP_EASYTIER)
-	struct variable variables_EASYTIER[] = {
-			{"easytier_enable", "", NULL, EVM_RESTART_EASYTIER},
-			{"easytier_config_server", "", NULL, EVM_RESTART_EASYTIER},
-			{"easytier_hostname", "", NULL, EVM_RESTART_EASYTIER},
-			{"easytier_bin", "", NULL, EVM_RESTART_EASYTIER},
-			{"easytier_log", "", NULL, EVM_RESTART_EASYTIER},
-			{"easytier_bin", "", NULL, EVM_RESTART_EASYTIER},
-			{"easytier_ports", "", NULL, EVM_RESTART_EASYTIER},
-			{"easytier_tunname", "", NULL, EVM_RESTART_EASYTIER},
-			{"easytier_web_enable", "", NULL, EVM_RESTART_EASYTIER},
-			{"easytier_web_db", "", NULL, EVM_RESTART_EASYTIER},
-			{"easytier_web_port", "", NULL, EVM_RESTART_EASYTIER},
-			{"easytier_web_protocol", "", NULL, EVM_RESTART_EASYTIER},
-			{"easytier_web_api", "", NULL, EVM_RESTART_EASYTIER},
-			{"easytier_web_log", "", NULL, EVM_RESTART_EASYTIER},
-			{"easytier_html_port", "", NULL, EVM_RESTART_EASYTIER},
-			{"easytier_api_host", "", NULL, EVM_RESTART_EASYTIER},
-			{"easytier_web_bin", "", NULL, EVM_RESTART_EASYTIER},
-			{"easytier_uuid", "", NULL, EVM_RESTART_EASYTIER},
-			{"easytier_geoip", "", NULL, EVM_RESTART_EASYTIER},
-			{"scripts.easytier.toml", "File", NULL, EVM_RESTART_EASYTIER},
-			{0,0,0,0}
-	};
-#endif
-
 #if defined(APP_BAFA)
 	struct variable variables_BAFA[] = {
 			{"bafa_enable", "", NULL, EVM_RESTART_BAFA},
@@ -2013,9 +1987,5 @@
 #if defined(APP_TAILSCALE)
 		{EVM_RESTART_TAILSCALE,		EVT_RESTART_TAILSCALE,		RCN_RESTART_TAILSCALE,	0},
 #endif
-#if defined(APP_NATPIERCE)
-		{EVM_RESTART_NATPIERCE,		EVT_RESTART_NATPIERCE,		RCN_RESTART_NATPIERCE,	0},
-#endif
-		{EVM_RESTART_FIREWALL,		EVT_RESTART_FIREWALL,		RCN_RESTART_FIREWALL,	0},
 		{0,0,0,0}
 	};
