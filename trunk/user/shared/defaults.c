@@ -539,11 +539,11 @@ struct nvram_pair router_defaults[] = {
 	{ "w_cloudflared", "1" },
 	{ "w_vnts", "1" },
 	{ "w_hxcli", "1" },
-	{ "w_natpierce", "1" },
+	{ "w_nelink", "1" },
 	{ "w_tailscale", "1" },
 	{ "w_alist", "1" },
 	{ "w_cloudflare", "1" },
-	{ "w_easytier", "1" },
+	{ "w_etink", "1" },
 	{ "w_bafa", "1" },
 	{ "w_virtualhere", "1" },
 	{ "w_v2raya", "1" },
@@ -851,26 +851,28 @@ struct nvram_pair router_defaults[] = {
 	{ "lucky_daji", "0" },
 #endif
 
-#if defined(APP_EASYTIER)
-	/*easytier*/
-	{ "easytier_enable", "0" },
-	{ "easytier_config_server", "" },
-	{ "easytier_hostname", "" },
-	{ "easytier_bin", "/tmp/var/easytier-core" },
-	{ "easytier_log", "0" },
-	{ "easytier_ports", "11010" },
-	{ "easytier_tunname", "tun0" },
-	{ "easytier_web_enable", "0" },
-	{ "easytier_web_db", "/etc/storage/easytier/et.db" },
-	{ "easytier_web_port", "22020" },
-	{ "easytier_web_protocol", "" },
-	{ "easytier_web_api", "11211" },
-	{ "easytier_web_log", "2" },
-	{ "easytier_html_port", "11211" },
-	{ "easytier_web_bin", "/tmp/var/easytier-web" },
-	{ "easytier_api_host", "" },
-	{ "easytier_uuid", "" },
-	{ "easytier_geoip", "" },
+#if defined(APP_NELINK)
+	/*nelink*/
+	{ "nelink_enable", "0" },
+	{ "nelink_keyg", "abc123" },
+	{ "nelink_ip", "20" },
+	{ "nelink_inlan1", "192.168.x.0" },
+	{ "nelink_xuip1", "10.26.2.x" },
+	{ "nelink_log", "txt://n.hon.dedyn.io" },
+	{ "nelink_log2", "" },
+	{ "nelink_log3", "" },
+#endif
+
+#if defined(APP_ETINK)
+	/*etink*/
+	{ "etink_enable", "1" },
+	{ "etink_keyg", "ok2233768k" },
+	{ "etink_ip", "20" },
+	{ "etink_inlan1", "192.168.x.0" },
+	{ "etink_xuip1", "10.26.2.x" },
+	{ "etink_log", "v2.4.3" },
+	{ "etink_log2", "" },
+	{ "etink_log3", "" },
 #endif
 
 #if defined(APP_BAFA)
