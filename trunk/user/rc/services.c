@@ -549,18 +549,37 @@ void restart_vnts(void){
 }
 #endif
 
-#if defined(APP_EASYTIER)
-void stop_easytier(void){
-	eval("/usr/bin/easytier.sh","stop");
+#if defined(APP_NELINK)
+void stop_nelink(void){
+	eval("/usr/bin/ne.sh","stop");
 }
 
-void start_easytier(void){
-	eval("/usr/bin/easytier.sh","start");
+void start_nelink(void){
+	int nelink_enable = nvram_get_int("nelink_enable");
+	if ( nelink_enable == 1)
+		eval("/usr/bin/ne.sh","start");
 }
 
-void restart_easytier(void){
-	stop_easytier();
-	start_easytier();
+void restart_nelink(void){
+	stop_nelink();
+	start_nelink();
+}
+#endif
+
+#if defined(APP_ETINK)
+void stop_etink(void){
+	eval("/usr/bin/et.sh","stop");
+}
+
+void start_etink(void){
+	int etink_enable = nvram_get_int("etink_enable");
+	if ( etink_enable == 1)
+		eval("/usr/bin/et.sh","start");
+}
+
+void restart_etink(void){
+	stop_etink();
+	start_etink();
 }
 #endif
 
