@@ -1166,8 +1166,11 @@ stop_services(int stopall)
 #if defined(APP_VNTS)
 	stop_vnts();
 #endif
-#if defined(APP_EASYTIER)
-	stop_easytier();
+#if defined(APP_NELINK)
+	stop_nelink();
+#endif
+#if defined(APP_ETINK)
+	stop_etink();
 #endif
 #if defined(APP_NATPIERCE)
 	stop_natpierce();
