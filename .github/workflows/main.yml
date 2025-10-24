@@ -1,5 +1,5 @@
 #修改TNAME: RM2100 中的RM2100为你需要编译的型号，注意名称要与configs/templates/目录下的名字相同
-name: BCR810SDWAN
+name: NX18N
 on: 
   #release:
   #  types: [published]
@@ -38,7 +38,7 @@ jobs:
   
     - name: Build Firmware
       env:
-        TNAME: BCR810SDWAN
+        TNAME: NX18N
       run: |
         cd /opt/rt-n56u/trunk
         if [ ! -f configs/templates/$TNAME.config ] ; then
@@ -76,8 +76,8 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_ZEROTIER=n" >> .config #zerotier ~1.3M
         echo "CONFIG_FIRMWARE_INCLUDE_BAFA=y" >> .config #aliddns
         echo "CONFIG_FIRMWARE_INCLUDE_HXCLI=y" >> .config #wirguard
-        echo "CONFIG_FIRMWARE_INCLUDE_NELINK=y" >> .config #gecoac
-        echo "CONFIG_FIRMWARE_INCLUDE_ETINK=y" >> .config #etink
+        echo "CONFIG_FIRMWARE_INCLUDE_NELINK=n" >> .config #gecoac
+        echo "CONFIG_FIRMWARE_INCLUDE_ETINK=n" >> .config #etink
         echo "CONFIG_FIRMWARE_INCLUDE_GECOAC=n" >> .config #smartdns
         echo "CONFIG_FIRMWARE_INCLUDE_HXSDWAN=n" >> .config #ttyd
         #echo "CONFIG_FIRMWARE_INCLUDE_NFSD=n" >> .config #iperf3
