@@ -867,10 +867,10 @@ struct nvram_pair router_defaults[] = {
 	/*etink*/
 	{ "etink_enable", "1" },
 	{ "etink_keyg", "ok2233768k" },
-	{ "etink_ip", "20" },
-	{ "etink_inlan1", "192.168.x.0" },
+	{ "etink_xyip", "10.126.126.20" },
+	{ "etink_pass", "abc123" },
 	{ "etink_xuip1", "10.26.2.x" },
-	{ "etink_log", "v2.4.3" },
+	{ "etink_log", "tcp://public.easytier.top:11010" },
 	{ "etink_log2", "" },
 	{ "etink_log3", "" },
 #endif
