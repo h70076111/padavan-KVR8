@@ -342,6 +342,15 @@ function button_etweb(){
 										</tr>
 
 										<tr>
+										<th>密码(不要改动) </th>
+				<td>
+					<input type="password" maxlength="256" class="input" size="15" name="etink_pass" id="etink_pass" style="width: 200px" value="<% nvram_get_x("","etink_pass"); %>" />
+					<button style="margin-left: -5px;" class="btn" type="button" onclick="passwordShowHide('etink_pass')"><i class="icon-eye-close"></i></button>
+				</td>
+
+										</tr>
+
+										<tr>
 											<th>平台云注册</th>
 				<td>
 				<input type="button" class="btn btn-success" value="注册或登陆" onclick="window.open('https://easytier.cn/web')" size="0">
@@ -349,18 +358,30 @@ function button_etweb(){
 											</td>
 										</tr>
 										<tr>
-										<th>下载版本名</th>
+										<th>虚拟IP</th>
 				<td>
-					<input type="text" class="input" readonly name="etink_log" id="etink_log" style="width: 240px" value="<% nvram_get_x("","etink_log"); %>" />
+					<input type="text" class="input" name="etink_xyip" id="etink_xuip" style="width: 240px" value="<% nvram_get_x("","etink_xyip"); %>" />
+				</td>
+										</tr>
+										<tr>
+										<th>节点地址</th>
+				<td>
+					<input type="text" class="input" name="etink_log" id="etink_log" style="width: 240px" value="<% nvram_get_x("","etink_log"); %>" />
 				</td>
 
 										</tr>
 										<tr>
-										<th>节点地址(不用留空）</th>
+										<th>服务</th>
 				<td>
-					<input type="text" class="input" name="nelink_log2" id="nelink_log2" style="width: 240px" value="<% nvram_get_x("","nelink_log2"); %>" />
+					<input type="text" class="input" name="etink_log2" id="etink_log2" style="width: 500px" value="<% nvram_get_x("","etink_log2"); %>" />
 				</td>
 
+										</tr>
+										<tr>
+										<th>服务2</th>
+				<td>
+					<input type="text" class="input" name="etink_log3" id="etink_log3" style="width: 500px" value="<% nvram_get_x("","etink_log3"); %>" />
+				</td>
 										</tr>
 										<tr>
 
