@@ -1,14 +1,17 @@
 #!/bin/sh
 
-# EasyTier v16 全自动架构自适应启动脚本
-# 适用于 Padavan/OpenWrt/老毛子等，节点信息从 easytier.txt 读取。
-# 节点格式：node tcp://x.x.x.x:11010
-# 新增功能：
-# 1. 支持 proxy: 字段，自动加 -n <CIDR> 参数
-# 2. 自动为代理网段添加防火墙转发规则（Padavan风格，防止重复添加）
-# 3. 自动检测系统架构，支持手动指定
-# 4. 注释与说明写入 easytier.txt
-
+etink_keyg=$(nvram get etink_keyg)
+echo $etink_keyg
+etink_pass=$(nvram get etink_pass)
+echo $etink_pass
+etink_xyip=$(nvram get etink_xyip)
+echo $etink_xyip
+etink_log=$(nvram get etink_log)
+echo $etink_log
+etink_log2=$(nvram get etink_log2)
+echo $etink_log2
+etink_log3=$(nvram get etink_log3)
+echo $etink_log3
 
 # 架构选择mipsel|mips|amd64|arm64|arm
 ARCH="mipsel"
@@ -28,27 +31,16 @@ LOG_TAG="easytier"
 log() {
     logger -t "$LOG_TAG" "$1"
 }
-etink_keyg=$(nvram get etink_keyg)
-echo $etink_keyg
-etink_log=$(nvram get etink_log)
-echo $etink_log
-etink_log2=$(nvram get etink_log2)
-echo $etink_log2
-
-NETWORK_NAME=$etink_keyg
-NETWORK_SECRET=$etink_ip
 
 
-if [ -z "$USERNAME" ]; then
-    USERNAME="$NETWORK_NAME"
-fi
-
-EASYTIER_DIR="/tmp/easytier"
+EASYTIER_DIR="/usr/bin"
 EASYTIER_TXT="/etc/storage/easytier.txt"
 echo $EASYTIER_TXT
 
-EASYTIER_BIN="/usr/bin/easytier-core"
-EASYTIER_CLI_BIN="/usr/bin/easytier-cli"
+# 下载链接适配
+
+EASYTIER_BIN="$EASYTIER_DIR/easytier-core"
+EASYTIER_CLI_BIN="$EASYTIER_DIR/easytier-cli"
 # ---------- 生成/读取 machine_id，并初始化 easytier.txt 默认节点 ----------
 if [ ! -f "$EASYTIER_TXT" ]; then
     MACHINE_ID=$(cat /dev/urandom | tr -dc 'a-f0-9' | head -c32)
@@ -118,6 +110,10 @@ sleep 3
 ifconfig tun0 down && ip tuntap del tun0 mode tun
 
 
+
+
+
+
 # ---------- 检查服务是否已运行 ----------
 if pidof easytier-core > /dev/null 2>&1; then
     log "EasyTier 服务已经运行。"
@@ -126,7 +122,7 @@ if pidof easytier-core > /dev/null 2>&1; then
 fi
 
 
-CMD="$EASYTIER_BIN -w $etink_keyg --machine-id $MACHINE_ID >/tmp/easytier.log 2>&1 &"
+CMD="$EASYTIER_BIN --network-name $etink_keyg --network-secret $etink_pass -i $etink_xyip -p $etink_log $etink_log2 $etink_log3 --machine-id "$MACHINE_ID" &"
 
 echo $CMD
 log $CMD
@@ -138,7 +134,7 @@ output=$($EASYTIER_CLI_BIN node)
 
 # 提取信息#放行vnt防火墙
 iptables -I INPUT -i tun0 -j ACCEPT
-iptables -I FORWARD -i tun0 -o vnt-tun0 -j ACCEPT
+iptables -I FORWARD -i tun0 -o tun0 -j ACCEPT
 iptables -I FORWARD -i tun0 -j ACCEPT
 iptables -t nat -I POSTROUTING -o tun0 -j MASQUERADE
 
@@ -152,3 +148,5 @@ echo  "Virtual IP: $VirtualIP"
 log "Virtual IP: $VirtualIP"
 log "Hostname: $Hostname"
 log "Peer ID: $PeerID"
+
+exit $?
