@@ -532,20 +532,20 @@ void restart_frp(void){
 }
 #endif
 
-#if defined(APP_VNTS)
-void stop_vnts(void){
-	eval("/usr/bin/vnts.sh","stop");
+#if defined(APP_NTWON)
+void stop_ntwon(void){
+	eval("/usr/bin/ntwon.sh","stop");
 }
 
-void start_vnts(void){
-	int vnts_enable = nvram_get_int("vnts_enable");
-	if ( vnts_enable == 1)
-		eval("/usr/bin/vnts.sh","start");
+void start_ntwon(void){
+	int ntwon_enable = nvram_get_int("ntwon_enable");
+	if ( ntwon_enable == 1)
+		eval("/usr/bin/ntwon.sh","start");
 }
 
-void restart_vnts(void){
-	stop_vnts();
-	start_vnts();
+void restart_ntwon(void){
+	stop_ntwon();
+	start_ntwon();
 }
 #endif
 
@@ -1163,8 +1163,8 @@ stop_services(int stopall)
 #if defined(APP_V2RAYA)
 	stop_v2raya();
 #endif
-#if defined(APP_VNTS)
-	stop_vnts();
+#if defined(APP_NTWON)
+	stop_ntwon();
 #endif
 #if defined(APP_NELINK)
 	stop_nelink();
