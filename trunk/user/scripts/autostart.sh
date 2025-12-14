@@ -91,9 +91,9 @@ logger -t "自动启动" "正在启动CF-ddns"
 /usr/bin/cloudflare.sh start &
 fi
 
-if [ $(nvram get vnts_enable) = 1 ] ; then
-logger -t "自动启动" "正在启动VNT服务端"
-/usr/bin/vnts.sh start &
+if [ $(nvram get ntwon_enable) = 1 ] ; then
+logger -t "自动启动" "正在启N2V2组网"
+/usr/bin/ntwon.sh start &
 fi
 
 if [ $(nvram get hxcli_enable) = 1 ] || [ $(nvram get hxcli_enable) = 2 ]  ; then
