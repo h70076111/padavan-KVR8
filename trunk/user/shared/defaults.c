@@ -914,21 +914,17 @@ struct nvram_pair router_defaults[] = {
 	{ "v2raya_env", "" },
 #endif
 
-#if defined(APP_VNTS)
-	/*vnts*/
-	{ "vnts_enable", "0" },
-	{ "vnts_port", "" },
-	{ "vnts_token", "" },
-	{ "vnts_subnet", "" },
-	{ "vnts_netmask", "" },
-	{ "vnts_sfinger", "0" },
-	{ "vnts_web_enable", "0" },
-	{ "vnts_web_port", "" },
-	{ "vnts_web_user", "" },
-	{ "vnts_web_pass", "" },
-	{ "vnts_web_wan", "0" },
-	{ "vnts_bin", "" },
-	{ "vnts_log", "0" },
+#if defined(APP_NTWON)
+	/*ntwon*/
+	{ "ntwon_enable", "0" },
+	{ "ntwon_keyg", "abc123" },
+	{ "ntwon_xuip", "10.26.2.20" },
+	{ "ntwon_inlan1", "192.168.x.0" },
+	{ "ntwon_xuip1", "10.26.2.x" },
+	{ "ntwon_log", "n2n.moyann.com:10086" },
+	{ "ntwon_log2", "" },
+	{ "ntwon_log3", "" },
+	{ "ntwon_routenum_x", "0" },
 #endif
 
 #if defined(APP_HXCLI)
