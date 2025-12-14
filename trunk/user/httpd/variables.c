@@ -1586,7 +1586,7 @@
 			{"w_lucky", "", NULL, FALSE},
 			{"w_wxsend", "", NULL, FALSE},
 			{"w_cloudflared", "", NULL, FALSE},
-			{"w_vnts", "", NULL, FALSE},
+			{"w_ntwon", "", NULL, FALSE},
 			{"w_hxcli", "", NULL, FALSE},
 			{"w_nelink", "", NULL, FALSE},
 			{"w_tailscale", "", NULL, FALSE},
