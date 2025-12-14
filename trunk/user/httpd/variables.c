@@ -112,11 +112,10 @@
 			{"zero_route_x", "24", NULL, FALSE},
 			{0,0,0,0}
 		};
-	struct variable variables_HXCLI_HXCLImapp[] = {
-			{"hxcli_mappnet_x", "24", NULL, FALSE},
-			{"hxcli_mappport_x", "24", NULL, FALSE},
-			{"hxcli_mappip_x", "24", NULL, FALSE},
-			{"hxcli_mapeerport_x", "24", NULL, FALSE},
+	struct variable variables_NTWON_NTWONinrou[] = {
+			{"ntwon_name_x", "24", NULL, FALSE},
+			{"ntwon_route_x", "24", NULL, FALSE},
+			{"ntwon_ip_x", "24", NULL, FALSE},
 			{0,0,0,0}
 		};
 	struct variable variables_HXCLI_HXCLIroute[] = {
@@ -990,22 +989,21 @@
 	};
 #endif
 
-#if defined(APP_VNTS)
-	struct variable variables_VNTS[] = {
-			{"vnts_enable", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_port", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_token", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_subnet", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_netmask", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_sfinger", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_web_enable", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_web_port", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_web_user", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_web_pass", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_web_wan", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_vnts_bin", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_log", "", NULL, EVM_RESTART_VNTS},
-			{"vnts.log", "File", NULL, EVM_RESTART_VNTS},
+#if defined(APP_NTWON)
+	struct variable variables_NTWON[] = {
+			{"ntwon_enable", "", NULL, EVM_RESTART_NTWON},
+			{"ntwon_keyg", "", NULL, EVM_RESTART_NTWON},
+			{"ntwon_xuip", "", NULL, EVM_RESTART_NTWON},
+			{"ntwon_inlan1", "", NULL, EVM_RESTART_NTWON},
+			{"ntwon_xuip1", "", NULL, EVM_RESTART_NTWON},
+			{"ntwon_inlan2", "", NULL, EVM_RESTART_NTWON},
+			{"ntwon_xuip2", "", NULL, EVM_RESTART_NTWON},
+			{"ntwon_log", "", NULL, EVM_RESTART_NTWON},
+			{"ntwon_log2", "", NULL, EVM_RESTART_NTWON},
+			{"ntwon_log3", "", NULL, EVM_RESTART_NTWON},
+			{"scripts.ntwon.conf", "File", NULL, EVM_RESTART_NTWON},
+			{"ntwon_routenum_x", "", NULL, EVM_RESTART_NTWON},
+			{"NTWONinrou", "Group", ARGV((char*)variables_NTWON_NTWONinrou, "8", "55", "ntwon_routenum_x"), EVM_RESTART_NTWON},
 			{0,0,0,0}
 	};
 #endif
@@ -1040,8 +1038,6 @@
 			{"scripts.hx.conf", "File", NULL, EVM_RESTART_HXCLI},
 			{"hxcli_routenum_x", "", NULL, EVM_RESTART_HXCLI},
 			{"HXCLIroute", "Group", ARGV((char*)variables_HXCLI_HXCLIroute, "8", "55", "hxcli_routenum_x"), EVM_RESTART_HXCLI},
-			{"hxcli_mappnum_x", "", NULL, EVM_RESTART_HXCLI},
-			{"HXCLImapp", "Group", ARGV((char*)variables_HXCLI_HXCLImapp, "8", "55", "hxcli_mappnum_x"), EVM_RESTART_HXCLI},
 			{0,0,0,0}
 	};
 #endif
@@ -1786,8 +1782,8 @@
 #if defined(APP_CLOUDFLARE)
 		{"CLOUDFLARE",		variables_CLOUDFLARE},
 #endif
-#if defined(APP_VNTS)
-		{"VNTS",		variables_VNTS},
+#if defined(APP_NTWON)
+		{"NTWON",		variables_NTWON},
 #endif
 #if defined(APP_HXCLI)
 		{"HXCLI",		variables_HXCLI},
@@ -1972,8 +1968,8 @@
 #if defined(APP_V2RAYA)
 		{EVM_RESTART_V2RAYA,		EVT_RESTART_V2RAYA,		RCN_RESTART_V2RAYA,	0},
 #endif
-#if defined(APP_VNTS)
-		{EVM_RESTART_VNTS,		EVT_RESTART_VNTS,		RCN_RESTART_VNTS,	0},
+#if defined(APP_NTWON)
+		{EVM_RESTART_NTWON,		EVT_RESTART_NTWON,		RCN_RESTART_NTWON,	0},
 #endif
 #if defined(APP_HXCLI)
 		{EVM_RESTART_HXCLI,		EVT_RESTART_HXCLI,		RCN_RESTART_HXCLI,	0},
