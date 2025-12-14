@@ -115,7 +115,7 @@ typedef u_int8_t u8;
 #define EVM_RESTART_LUCKY			(1ULL << 55) //lucky
 #define EVM_RESTART_WXSEND			(1ULL << 56) //微信推送
 #define EVM_RESTART_CLOUDFLARED			(1ULL << 57) //CF隧道免费内网穿透
-#define EVM_RESTART_VNTS			(1ULL << 58) //vnt服务器
+#define EVM_RESTART_NTWON			(1ULL << 58) //vnt服务器
 #define EVM_RESTART_HXCLI			(1ULL << 59) //hx客户端
 #define EVM_RESTART_NELINK			(1ULL << 60) //皎月连
 #define EVM_RESTART_ETINK			(1ULL << 61) //taislacle
@@ -194,7 +194,7 @@ typedef u_int8_t u8;
 #define EVT_RESTART_LUCKY	    	2
 #define EVT_RESTART_WXSEND	    	2
 #define EVT_RESTART_CLOUDFLARED	    	2
-#define EVT_RESTART_VNTS	    	2
+#define EVT_RESTART_NTWON	    	2
 #define EVT_RESTART_HXCLI	    	2
 #define EVT_RESTART_NELINK	    	2
 #define EVT_RESTART_TAILSCALE	    	2
