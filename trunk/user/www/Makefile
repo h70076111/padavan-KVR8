@@ -260,8 +260,8 @@ endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_CLOUDFLARED),y)
 	rm -f $(INSTALLDIR)/www/Advanced_cloudflared.asp
 endif
-ifneq ($(CONFIG_FIRMWARE_INCLUDE_VNTS),y)
-	rm -f $(INSTALLDIR)/www/Advanced_vnts.asp
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_NTWON),y)
+	rm -f $(INSTALLDIR)/www/Advanced_ntwon.asp
 endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_HXCLI),y)
 	rm -f $(INSTALLDIR)/www/Advanced_hxzn.asp
