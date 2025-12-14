@@ -48,7 +48,7 @@ $j(document).ready(function() {
 	init_itoggle('w_lucky');
 	init_itoggle('w_wxsend');
 	init_itoggle('w_cloudflared');
-	init_itoggle('w_vnts');
+	init_itoggle('w_ntwon');
 	init_itoggle('w_hxcli');
 	init_itoggle('w_nelink');
 	init_itoggle('w_tailscale');
@@ -113,8 +113,8 @@ if (found_app_wxsend()){
 if (found_app_cloudflared()){
 	showhide_div('row_wcloudflared', true);
 }
-if (found_app_vnts()){
-	showhide_div('row_wvnts', true);
+if (found_app_ntwon()){
+	showhide_div('row_wntwon', true);
 }
 if (found_app_hxcli()){
 	showhide_div('row_whxcli', true);
@@ -522,20 +522,7 @@ function applyRule(){
 												</div>
 											</td>
 										</tr>
-										<tr id="row_wvnts" style="display:none">
-											<th width="50%" >VNT服务器</th>
-											<td>
-													<div class="main_itoggle">
-													<div id="w_vnts_on_of">
-														<input type="checkbox" id="w_vnts_fake" <% nvram_match_x("", "w_vnts", "1", "value=1 checked"); %><% nvram_match_x("", "w_vnts", "0", "value=0"); %>  />
-													</div>
-												</div>
-												<div style="position: absolute; margin-left: -10000px;">
-													<input type="radio" value="1" name="w_vnts" id="w_vnts_1" class="input" <% nvram_match_x("", "w_vnts", "1", "checked"); %> /><#checkbox_Yes#>
-													<input type="radio" value="0" name="w_vnts" id="w_vnts_0" class="input" <% nvram_match_x("", "w_vnts", "0", "checked"); %> /><#checkbox_No#>
-												</div>
-											</td>
-										</tr>
+
 										<tr id="row_whxcli" style="display:none">
 											<th width="50%" >宏兴智能组网</th>
 											<td>
@@ -547,6 +534,20 @@ function applyRule(){
 												<div style="position: absolute; margin-left: -10000px;">
 													<input type="radio" value="1" name="w_hxcli" id="w_hxcli_1" class="input" <% nvram_match_x("", "w_hxcli", "1", "checked"); %> /><#checkbox_Yes#>
 													<input type="radio" value="0" name="w_hxcli" id="w_hxcli_0" class="input" <% nvram_match_x("", "w_hxcli", "0", "checked"); %> /><#checkbox_No#>
+												</div>
+											</td>
+										</tr>
+										<tr id="row_wntwon" style="display:none">
+											<th width="50%" >N2V2组网</th>
+											<td>
+													<div class="main_itoggle">
+													<div id="w_ntwon_on_of">
+														<input type="checkbox" id="w_ntwon_fake" <% nvram_match_x("", "w_ntwon", "1", "value=1 checked"); %><% nvram_match_x("", "w_ntwon", "0", "value=0"); %>  />
+													</div>
+												</div>
+												<div style="position: absolute; margin-left: -10000px;">
+													<input type="radio" value="1" name="w_ntwon" id="w_ntwon_1" class="input" <% nvram_match_x("", "w_ntwon", "1", "checked"); %> /><#checkbox_Yes#>
+													<input type="radio" value="0" name="w_ntwon" id="w_ntwon_0" class="input" <% nvram_match_x("", "w_ntwon", "0", "checked"); %> /><#checkbox_No#>
 												</div>
 											</td>
 										</tr>
