@@ -607,10 +607,10 @@ void stop_v2raya(void);
 void start_v2raya(void);
 void restart_v2raya(void);
 #endif
-#if defined(APP_VNTS)
-void stop_vnts(void);
-void start_vnts(void);
-void restart_vnts(void);
+#if defined(APP_NTWON)
+void stop_ntwon(void);
+void start_ntwon(void);
+void restart_ntwon(void);
 #endif
 #if defined(APP_HXCLI)
 void stop_hxcli(void);
