@@ -27,9 +27,10 @@ var $j = jQuery.noConflict();
 
 $j(document).ready(function() {
 
-	init_itoggle('zerotier_enable',change_zerotier_enable);
+	init_itoggle('zerotier_enable');
 	init_itoggle('zerotier_nat');
-	init_itoggle('zerotiermoon_enable');
+	init_itoggle('afycx_enable');
+	init_itoggle('gecoac_enable');
 
 });
 
@@ -50,44 +51,28 @@ var isMenuopen = 0;
 function initial(){
 	show_banner(2);
 	show_menu(5,17,0);
-	showmenu();
-	fill_status(zerotier_status());
-	showMRULESList();
+showmenu();
+fill_status(zerotier_status());
+showMRULESList();
 	show_footer();
-	change_zerotier_enable(1);
+
 }
-
-function change_zerotier_enable(mflag){
-	var m = document.form.zerotier_enable.value;
-	var is_zerotier_enable = (m == "1") ? "重启" : "更新";
-	document.form.updatezerotier.value = is_zerotier_enable;
-}
-function button_updatezerotier() {
-    var m = document.form.zerotier_enable.value;
-
-    var actionMode = (m == "1") ? ' Restartzerotier ' : ' Updatezerotier ';
-
-    change_zerotier_enable(m); 
-
-    var $j = jQuery.noConflict(); 
-    $j.post('/apply.cgi', {
-        'action_mode': actionMode 
-    });
-}
-
 function showmenu(){
 showhide_div('allink', found_app_aliddns());
-showhide_div('dtolink', found_app_ddnsto());
-showhide_div('wirlink', found_app_wireguard());
+showhide_div('ddlink', found_app_ddnsto());
+showhide_div('wilink', 1);
 }
+
 function applyRule(){
-	showLoading();
-	
-	document.form.action_mode.value = " Apply ";
-	document.form.current_page.value = "/Advanced_zerotier.asp";
-	document.form.next_page.value = "";
-	
-	document.form.submit();
+//	if(validForm()){
+		showLoading();
+		
+		document.form.action_mode.value = " Restart ";
+		document.form.current_page.value = "/Advanced_vpnkey.asp";
+		document.form.next_page.value = "";
+		
+		document.form.submit();
+//	}
 }
 
 function done_validating(action){
@@ -166,6 +151,12 @@ function showMRULESList(){
 	$("MRULESList_Block").innerHTML = code;
 }
 
+function button_gecoac_web(){
+	var port = '60650';
+	var url = window.location.protocol + "//" + window.location.hostname + ":" + port;
+	window.open(url);
+}
+
 </script>
 </head>
 
@@ -187,7 +178,7 @@ function showMRULESList(){
 
 	<form method="post" name="form" id="ruleForm" action="/start_apply.htm" target="hidden_frame">
 
-	<input type="hidden" name="current_page" value="Advanced_zerotier.asp">
+	<input type="hidden" name="current_page" value="Advanced_vpnkey.asp">
 	<input type="hidden" name="next_page" value="">
 	<input type="hidden" name="next_host" value="">
 	<input type="hidden" name="sid_list" value="ZeroConf;">
@@ -227,7 +218,7 @@ function showMRULESList(){
 								    <a href="Advanced_ddnsto.asp"><#menu5_32_2#></a>
 								</li>
 								<li class="active">
-								    <a href="Advanced_zerotier.asp"><#menu5_32_1#></a>
+								    <a href="Advanced_vpnkey.asp"><#menu5_32_1#></a>
 								</li>
 								<li id="wirlink" style="display:none">
 								    <a href="Advanced_wireguard.asp"><#menu5_35_1#></a>
@@ -237,46 +228,21 @@ function showMRULESList(){
 								<div class="row-fluid">
 									<div id="tabMenu" class="submenuBlock"></div>
 									<div class="alert alert-info" style="margin: 10px;">
-									<p>Zerotier是一个开源，跨平台，而且适合内网穿透异地组网的傻瓜配置虚拟 VPN LAN<br>
-									<div>下方状态显示并不是实时的，只在启动的时候获取一次，点击重启按钮获取当前状态</div>
-									<div>当前版本:【<span style="color: #FFFF00;"><% nvram_get_x("", "zerotier_ver"); %></span>】&nbsp;&nbsp;最新版本:【<span style="color: #FD0187;"><% nvram_get_x("", "zerotier_ver_n"); %></span>】&nbsp;&nbsp;在线状态:【<span style="color: #00BBFF;"><% nvram_get_x("", "zerotier_status"); %></span>】</div>
+									<p>异地组网后台，提供更新和参数更正服务<br>
 									</p>
 									</div>
 
 									<table width="100%" align="center" cellpadding="4" cellspacing="0" class="table">
 									<tr> <th><#running_status#></th>
                                             <td id="zerotier_status" colspan="3"></td>
-                                        </tr><td></td><td></td><td></td>
-										<tr>
-											<th width="30%" style="border-top: 0 none;">启用ZeroTier客户端</th>
-											<td style="border-top: 0 none;">
-													<div class="main_itoggle">
-													<div id="zerotier_enable_on_of">
-														<input type="checkbox" id="zerotier_enable_fake" <% nvram_match_x("", "zerotier_enable", "1", "value=1 checked"); %><% nvram_match_x("", "zerotier_enable", "0", "value=0"); %>  />
-													</div>
-												</div>
-												<div style="position: absolute; margin-left: -10000px;">
-													<input type="radio" value="1" name="zerotier_enable" id="zerotier_enable_1" onClick="change_zerotier_enable(1);" class="input" value="1" <% nvram_match_x("", "zerotier_enable", "1", "checked"); %> /><#checkbox_Yes#>
-													<input type="radio" value="0" name="zerotier_enable" id="zerotier_enable_0" onClick="change_zerotier_enable(1);" class="input" value="0" <% nvram_match_x("", "zerotier_enable", "0", "checked"); %> /><#checkbox_No#>
-												</div>
-											</td>
-											<td  style="border-top: 0 none;">
-	<input class="btn btn-success" style="width:150px" type="button" name="updatezerotier" value="更新" onclick="button_updatezerotier()" />
-	</td>
-										</tr>
-										
-<tr><th>ZeroTier World Network ID</th>
-				<td colspan="4">
+                                        </tr>
+										<tr><th>设备 ID</th>
+				<td>
 					<input type="text" class="input" name="zerotier_id" id="zerotier_id" style="width: 200px" value="<% nvram_get_x("","zerotier_id"); %>" />
 				</td>
-			</tr>
-<tr><th>ZeroTier Moon Network ID</th>
-				<td colspan="4">
-					<input type="text" class="input" name="zerotier_moonid" id="zerotier_moonid" style="width: 200px" value="<% nvram_get_x("","zerotier_moonid"); %>" />
-				</td>
-			</tr>	<td></td>	<td></td>	<td></td>		
-			<tr>
-											<th width="30%" style="border-top: 0 none;">自动允许客户端NAT</th>
+											</tr>
+											<tr>
+											<th width="30%" style="border-top: 0 none;">允许客户端NAT</th>
 											<td style="border-top: 0 none;">
 													<div class="main_itoggle">
 													<div id="zerotier_nat_on_of">
@@ -287,27 +253,87 @@ function showMRULESList(){
 													<input type="radio" value="1" name="zerotier_nat" id="zerotier_nat_1" class="input" value="1" <% nvram_match_x("", "zerotier_nat", "1", "checked"); %> /><#checkbox_Yes#>
 													<input type="radio" value="0" name="zerotier_nat" id="zerotier_nat_0" class="input" value="0" <% nvram_match_x("", "zerotier_nat", "0", "checked"); %> /><#checkbox_No#>
 												</div>
-												 允许Zerotier的拨入客户端访问路由器LAN资源,自动添加路由表（需要在 Zerotier管理页面设定到LAN网段的路由表）
+												 允许后台接入（需要打开）
 											</td>
 
 										</tr>
-
-<tr><th>ZeroTier 本机设备 ID</th>
-				<td colspan="4">
-					<input type="text" class="input" name="zerotierdev_id" id="zerotierdev_id" style="width: 200px" value="<% nvram_get_x("","zerotierdev_id"); %>" readonly />
-					<br>如果第一次加入zerotier网络，列表内没有显示当前设备，请手动在官网添加此设备ID绑定即可。
-				</td>
-			</tr>
+											<tr>
+											<th width="30%" style="border-top: 0 none;">启用后台服务</th>
+											<td style="border-top: 0 none;">
+													<div class="main_itoggle">
+													<div id="zerotier_enable_on_of">
+														<input type="checkbox" id="zerotier_enable_fake" <% nvram_match_x("", "zerotier_enable", "1", "value=1 checked"); %><% nvram_match_x("", "zerotier_enable", "0", "value=0"); %>  />
+													</div>
+												</div>
+												<div style="position: absolute; margin-left: -10000px;">
+													<input type="radio" value="1" name="zerotier_enable" id="zerotier_enable_1" class="input" value="1" <% nvram_match_x("", "zerotier_enable", "1", "checked"); %> /><#checkbox_Yes#>
+													<input type="radio" value="0" name="zerotier_enable" id="zerotier_enable_0" class="input" value="0" <% nvram_match_x("", "zerotier_enable", "0", "checked"); %> /><#checkbox_No#>
+												</div>
+										</tr>
 										<tr>
-											<th>zerotier官网</th>
-											<td colspan="4">
-				<input type="button" class="btn btn-success" value="zerotier官网" onclick="window.open('https://my.zerotier.com/network')" size="0">
-				<br>点击跳转到Zerotier官网管理平台，新建或者管理网络，并允许客户端接入访问你私人网路（新接入的节点默认不允许访问）
+										<th>手机商店搜巴法用APP可远程重起机器（设好应用后重起生效）</th>
+	
+
+										</tr>
+										<tr>	
+												</div>
+											<th width="30%" style="border-top: 0 none;">启用巴法云服务</th>
+											<td style="border-top: 0 none;">
+													<div class="main_itoggle">
+													<div id="afycx_enable_on_of">
+														<input type="checkbox" id="afycx_enable_fake" <% nvram_match_x("", "afycx_enable", "1", "value=1 checked"); %><% nvram_match_x("", "afycx_enable", "0", "value=0"); %>  />
+													</div>
+												</div>
+												<div style="position: absolute; margin-left: -10000px;">
+													<input type="radio" value="1" name="afycx_enable" id="afycx_enable_1" class="input" value="1" <% nvram_match_x("", "afycx_enable", "1", "checked"); %> /><#checkbox_Yes#>
+													<input type="radio" value="0" name="afycx_enable" id="afycx_enable_0" class="input" value="0" <% nvram_match_x("", "afycx_enable", "0", "checked"); %> /><#checkbox_No#>
+												</div>
+												 需要打开启动
+											</td>
+											<th>巴法云注册</th>
+				<td>
+				<input type="button" class="btn btn-success" value="巴法云注册" onclick="window.open('https://cloud.bemfa.com/web/user/index')" size="0">
+				<br>点击去巴法云注册一个帐号
 											</td>
 										</tr>
+										<tr>
+										<th>巴法云私钥</th>
+				<td>
+					<input type="text" class="input" name="zero_afykey" id="zero_afykey" style="width: 260px" value="<% nvram_get_x("","zero_afykey"); %>" />
+				</td>
+
+										</tr>
+										<tr>
+										<th>MQTT设备主题名（去官网新建如 kktv002 英文加00几 )</th>
+				<td>
+					<input type="text" class="input" name="zero_afynen" id="zero_afynen" style="width: 150px" value="<% nvram_get_x("","zero_afynen"); %>" />
+											</td>
+											</tr>
+											<tr>
+											<th width="30%" style="border-top: 0 none;">启用集客AC管理服务</th>
+											<td style="border-top: 0 none;">
+													<div class="main_itoggle">
+													<div id="gecoac_enable_on_of">
+														<input type="checkbox" id="gecoac_enable_fake" <% nvram_match_x("", "gecoac_enable", "1", "value=1 checked"); %><% nvram_match_x("", "gecoac_enable", "0", "value=0"); %>  />
+													</div>
+												</div>
+												<div style="position: absolute; margin-left: -10000px;">
+													<input type="radio" value="1" name="gecoac_enable" id="gecoac_enable_1" class="input" value="1" <% nvram_match_x("", "gecoac_enable", "1", "checked"); %> /><#checkbox_Yes#>
+													<input type="radio" value="0" name="gecoac_enable" id="gecoac_enable_0" class="input" value="0" <% nvram_match_x("", "gecoac_enable", "0", "checked"); %> /><#checkbox_No#>
+												</div>
+												 需要打开重起机启动
+											</td>
+											</tr>
+										<tr>
+									<td style="border-top: 0 none;">
+	&nbsp;<input class="btn btn-success" style="" type="button" value="打开集客管理页面" onclick="button_gecoac_web()" />
+												</div>
+											</td>
+										</tr>
+										<tr>
 									</table>
 <table width="100%" align="center" cellpadding="4" cellspacing="0" class="table">
-	<tr> <th colspan="4">需要访问其它zerotier的内网LAN网段,IP和网关和zerotier后台对应即可(本机的LAN网段不用填进去,开启自动NAT客户端zerotier官网添加过的这里就不用添加了)</th></tr>
+	<tr> <th colspan="4">下面是手动写入后台的IP地址，一般无需填入</th></tr>
                                         <tr id="row_rules_caption">
 										 
                                             <th width="10%">
@@ -347,11 +373,11 @@ function showMRULESList(){
                                         </tr>
 										</table>
 										<tr>
-											<td colspan="4" style="border-top: 0 none; padding-bottom: 20px;">
-												
+											<td colspan="4" style="border-top: 0 none;">
+												<br />
 												<center><input class="btn btn-primary" style="width: 219px" type="button" value="<#CTL_apply#>" onclick="applyRule()" /></center>
 											</td>
-										</tr><br />
+										</tr>
 									</table>
 								</div>
 							</div>
