@@ -1402,10 +1402,10 @@ handle_notifications(void)
 			restart_v2raya();
 		}
 #endif
-#if defined(APP_VNTS)
-		else if (strcmp(entry->d_name, RCN_RESTART_VNTS) == 0)
+#if defined(APP_NTWON)
+		else if (strcmp(entry->d_name, RCN_RESTART_NTWON) == 0)
 		{
-			restart_vnts();
+			restart_ntwon();
 		}
 #endif
 #if defined(APP_HXCLI)
