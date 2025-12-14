@@ -92,7 +92,7 @@
 #define RCN_RESTART_WXSEND	"restart_wxsend"
 #define RCN_RESTART_CLOUDFLARED	"restart_cloudflared"
 #define RCN_RESTART_WIREGUARD	"restart_wireguard"
-#define RCN_RESTART_VNTS	"restart_vnts"
+#define RCN_RESTART_NTWON	"restart_ntwon"
 #define RCN_RESTART_HXCLI	"restart_hxcli"
 #define RCN_RESTART_TAILSCALE	"restart_tailscale"
 #define RCN_RESTART_ETINK	"restart_etink"
