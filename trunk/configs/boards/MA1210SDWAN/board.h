@@ -3,9 +3,9 @@
 #define BOARD_PID		"MA1210SDWAN"
 #define BOARD_NAME		"MA1210SDWAN"
 #define BOARD_DESC		"MA1210SDWAN Wireless Router"
-#define BOARD_VENDOR_NAME	"PHICOMM"
-#define BOARD_VENDOR_URL	"http://www.phicomm.com/"
-#define BOARD_MODEL_URL		"http://www.phicomm.com/"
+#define BOARD_VENDOR_NAME	"RUIJIE"
+#define BOARD_VENDOR_URL	"http://www.ruijie.com/"
+#define BOARD_MODEL_URL		"http://www.ruijie.com/"
 #define BOARD_BOOT_TIME		20
 #define BOARD_FLASH_TIME	120
 #undef BOARD_GPIO_BTN_RESET
