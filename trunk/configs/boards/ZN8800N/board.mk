@@ -4,5 +4,5 @@
 # E8820V2   # ZTE E8820V2      # MT7621  #
 ##################################################################
 
-CFLAGS += -DBOARD_ZN8800N
+CFLAGS += -DBOARD_E8820V2
 BOARD_NUM_USB_PORTS=0
