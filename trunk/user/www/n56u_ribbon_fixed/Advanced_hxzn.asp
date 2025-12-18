@@ -509,7 +509,7 @@ function button_hxcli_status() {
 	</td>
 	</tr><tr id="hxcli_log_td"><td colspan="3"></td></tr>
 	<table id="hxcli_subnet_table" width="100%" align="center" cellpadding="4" cellspacing="0" class="table">
-	<tr> <th colspan="4" style="background-color: #fef0ff;">子网配置 (访问远端内网设备，还需远端配置到本地网段)</th></tr>
+	<tr> <th colspan="4" style="background-color: #fef0ff;">子网配置也就是接收对端的网关网段和上虚拟IP (如果作为发送点可以不填)</th></tr>
 	<tr id="row_rules_caption">
 	<th width="10%"> 备注名称 </th>
 	<th width="20%">远端目标网段 </th>
