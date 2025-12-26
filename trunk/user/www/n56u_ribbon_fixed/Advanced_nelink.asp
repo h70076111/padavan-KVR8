@@ -24,26 +24,46 @@
 <script type="text/javascript" src="/help.js"></script>
 <script>
 var $j = jQuery.noConflict();
+
 <% nelink_status(); %>
 <% login_state_hook(); %>
 $j(document).ready(function() {
 	
 	init_itoggle('nelink_enable');
-	$j("#tab_nelink_cfg, #tab_nelink_web, #tab_nelink_sta, #tab_nelink_log").click(
+
+	$j("#tab_nelink_cfg, #tab_nelink_log").click(
 	function () {
 		var newHash = $j(this).attr('href').toLowerCase();
 		showTab(newHash);
 		return false;
 	});
+
 });
+
+
 </script>
 <script>
+
+var m_toroulist = [<% get_nvram_list("NELINK", "NELINKtorou"); %>];
+var mtoroulist_ifield = 4;
+if(m_toroulist.length > 0){
+	var m_toroulist_ifield = m_toroulist[0].length;
+	for (var i = 0; i < m_toroulist.length; i++) {
+		m_toroulist[i][mtoroulist_ifield] = i;
+	}
+}
+
+var isMenuopen = 0;
 function initial(){
 	show_banner(2);
-	show_menu(5,33,0);
-	show_footer();
+	show_menu(5, 17, 0);
+	showTOROUList();
 	fill_status(nelink_status());
+	show_footer();
+
 }
+
+
 function fill_status(status_code){
 	var stext = "Unknown";
 	if (status_code == 0)
@@ -52,7 +72,8 @@ function fill_status(status_code){
 		stext = "<#Running#>";
 	$("nelink_status").innerHTML = '<span class="label label-' + (status_code != 0 ? 'success' : 'warning') + '">' + stext + '</span>';
 }
-var arrHashes = ["cfg","web","sta","log"];
+
+var arrHashes = ["cfg","log"];
 function showTab(curHash) {
 	var obj = $('tab_nelink_' + curHash.slice(1));
 	if (obj == null || obj.style.display == 'none')
@@ -68,6 +89,7 @@ function showTab(curHash) {
 		}
 	window.location.hash = curHash;
 }
+
 function applyRule(){
 	showLoading();
 	
@@ -77,6 +99,41 @@ function applyRule(){
 	
 	document.form.submit();
 }
+
+function textarea_scripts_enabled(v){
+    	inputCtrl(document.form['scripts.nelink.conf'], v);
+}
+
+function change_nelink_enable(mflag){
+	var m = document.form.nelink_enable.value;
+	var is_nelink_enable = (m == "1" || m == "2") ? "重启" : "更新";
+	document.form.restartntwon.value = is_nelink_enable;
+
+		if(m == "2"){
+		showhide_div("nelink_file_tr", 1);
+
+		showhide_div("nelink_ip_td", 0);
+	
+		showhide_div("nelink_mapping_table", 0);
+	} 
+	
+	if(m == "1"){	
+		showhide_div("nelink_file_tr", 0);
+		
+		showhide_div("nelink_ip_td", 1);
+	
+		showhide_div("nelink_mapping_table", 1);
+		o_mtu = document.form.nelink_mtu;
+		
+		if (o_mtu && parseInt(o_mtu.value) == 0)
+			o_mtu.value = "";
+			
+		if (o_mtu && parseInt(o_mtu.value) > 1500)
+			o_mru.value = "1500";
+	}
+	
+}
+
 function  button_restarnelink(){
     	var $j = jQuery.noConflict();
     	$j.post('/apply.cgi',
@@ -84,14 +141,75 @@ function  button_restarnelink(){
         		'action_mode': ' Restarnelink ',
     	});
 }
+
 function done_validating(action){
 	refreshpage();
 }
+
+function markrouteRULES(o, c, b) {
+	document.form.group_id.value = "NELINKtorou";
+	if(b == " Add "){
+		if (document.form.nelink_routenum_x_0.value >= c){
+			alert("<#JS_itemlimit1#> " + c + " <#JS_itemlimit2#>");
+			return false;
+		}else if (document.form.nelink_route_x_0.value==""){
+			alert("<#JS_fieldblank#>");
+			document.form.nelink_route_x_0.focus();
+			document.form.nelink_route_x_0.select();
+			return false;
+		}else if(document.form.nelink_ip_x_0.value==""){
+			alert("<#JS_fieldblank#>");
+			document.form.nelink_ip_x_0.focus();
+			document.form.nelink_ip_x_0.select();
+			return false;
+		}else{
+			for(i=0; i<m_toroulist.length; i++){
+				if(document.form.nelink_route_x_0.value==m_toroulist[i][1]) {
+				if(document.form.nelink_ip_x_0.value==m_toroulist[i][2]) {
+					alert('<#JS_duplicate#>' + ' (' + m_toroulist[i][1] + ')' );
+					document.form.nelink_route_x_0.focus();
+					document.form.nelink_ip_x_0.select();
+					return false;
+					}
+				}
+			}
+		}
+	}
+	pageChanged = 0;
+	document.form.action_mode.value = b;
+	return true;
+}
+
+function showTOROUList(){
+	var code = '<table width="100%" cellspacing="0" cellpadding="4" class="table table-list">';
+	if(m_toroulist.length == 0)
+		code +='<tr><td colspan="5" style="text-align: center;"><div class="alert alert-info"><#IPConnection_VSList_Norule#></div></td></tr>';
+	else{
+	    for(var i = 0; i < m_toroulist.length; i++){
+		code +='<tr id="rowrl' + i + '">';
+		code +='<td width="28%">&nbsp;' + m_toroulist[i][0] + '</td>';
+		code +='<td width="38%">&nbsp;' + m_toroulist[i][1] + '</td>';
+		code +='<td colspan="2" width="40%">' + m_toroulist[i][2] + '</td>';
+		code +='<td width="50%"></td>';
+		code +='<center><td width="20%" style="text-align: center;"><input type="checkbox" name="NELINKtorou_s" value="' + m_toroulist[i][mtoroulist_ifield] + '" onClick="changeBgColorrl(this,' + i + ');" id="check' + m_toroulist[i][mtoroulist_ifield] + '"></td></center>';
+		
+		code +='</tr>';
+	    }
+		code += '<tr>';
+		code += '<td colspan="5">&nbsp;</td>'
+		code += '<td><button class="btn btn-danger" type="submit" onclick="markrouteRULES(this, 64, \' Del \');" name="NELINKtorou"><i class="icon icon-minus icon-white"></i></button></td>';
+		code += '</tr>'
+	}
+	code +='</table>';
+	$("MrouteRULESList_Block").innerHTML = code;
+}
+
 function button_nelink_web(){
 	var port = '23336';
 	var url = window.location.protocol + "//" + window.location.hostname + ":" + port;
 	window.open(url);
 }
+
 </script>
 </head>
 
@@ -116,10 +234,11 @@ function button_nelink_web(){
 	<input type="hidden" name="current_page" value="Advanced_nelink.asp">
 	<input type="hidden" name="next_page" value="">
 	<input type="hidden" name="next_host" value="">
-	<input type="hidden" name="sid_list" value="NELINK;">
-	<input type="hidden" name="group_id" value="">
+	<input type="hidden" name="sid_list" value="NELINK;LANHostConfig;General;">
+	<input type="hidden" name="group_id" value="NELINKtorou;NELINKmapp">
 	<input type="hidden" name="action_mode" value="">
 	<input type="hidden" name="action_script" value="">
+	<input type="hidden" name="nelink_routenum_x_0" value="<% nvram_get_x("NELINKtorou", "nelink_routenum_x"); %>" readonly="1" />
 
 
 	<div class="container-fluid">
@@ -187,31 +306,17 @@ function button_nelink_web(){
 										</tr>
 
 										<tr>
-										<th>本机虚拟ip（格式 20）</th>
+										<th>本机虚拟ip（格式 10.26.3.X）</th>
 				<td>
-					<input type="text" class="input" name="nelink_ip" id="nelink_ip" style="width: 30px" value="<% nvram_get_x("","nelink_ip"); %>" />
+					<input type="text" class="input" name="nelink_ip" id="nelink_ip" style="width: 100px" value="<% nvram_get_x("","nelink_ip"); %>" />
 				</td>
 
 										</tr>
 									
 										<tr>
-										<th>对端的IP（格式 192.168.x.0） </th>
-				<td>
-					<input type="text" class="input" name="nelink_inlan1" id="nelink_inlan1" style="width: 120px" value="<% nvram_get_x("","nelink_inlan1"); %>" />
-				</td>
-
-										</tr>
-										<tr>
-										<th>对端的虚拟ip（格式 10.26.2.x)</th>
-				<td>
-					<input type="text" class="input" name="nelink_xuip1" id="nelink_xuip1" style="width: 100px" value="<% nvram_get_x("","nelink_xuip1"); %>" />
-				</td>
-
-										</tr>
-										<tr>
 										<th>节点地址</th>
 				<td>
-					<input type="text" class="input" readonly name="nelink_log" id="nelink_log" style="width: 240px" value="<% nvram_get_x("","nelink_log"); %>" />
+					<input type="text" class="input"  name="nelink_log" id="nelink_log" style="width: 240px" value="<% nvram_get_x("","nelink_log"); %>" />
 				</td>
 
 
@@ -236,11 +341,38 @@ function button_nelink_web(){
 						&nbsp;<input class="btn btn-success" style="" type="button" value="打开管理页面" onclick="button_nelink_web()" />
 												</div>
 										</td>
+										</tr>
+										<tr>
+	</div>
+	</td>
+	</tr><tr id="nelink_log_td"><td colspan="3"></td></tr>
+	<table id="nelink_subnet_table" width="100%" align="center" cellpadding="4" cellspacing="0" class="table">
+	<tr> <th colspan="4" style="background-color: #f47920;">子网配置 (访问远端内网设备，还需远端配置到本地网段)</th></tr>
+	<tr id="row_rules_caption">
+	<th width="10%"> 备注名称 </th>
+	<th width="20%">远端目标网段 </th>
+	<th width="20%">远端虚拟IP </th>
+	<th width="5%"><center><i class="icon-th-list"></i></center></th>
+	</tr>
+	<tr>
+	<th><input type="text" placeholder="如：家里" maxlength="128" class="span12" style="width: 100px" size="200" name="nelink_name_x_0" value="<% nvram_get_x("", "nelink_name_x_0"); %>"/></th>
+	<th><input type="text" placeholder="192.168.2.0/24" maxlength="255" class="span12" style="width: 150px" size="200" name="nelink_route_x_0" value="<% nvram_get_x("", "nelink_route_x_0"); %>"/></th>
+	<th><input type="text" placeholder="10.26.0.2" maxlength="255" class="span12" style="width: 150px" size="200" name="nelink_ip_x_0" value="<% nvram_get_x("", "nelink_ip_x_0"); %>" /></th>
+	<th><button class="btn" style="max-width: 219px" type="submit" onclick="return markrouteRULES(this, 64, ' Add ');" name="markrouteRULES2" value="<#CTL_add#>" size="12"><i class="icon icon-plus"></i></button></th>
+	</tr>
+	<tr id="row_rules_body" >
+	<td colspan="4" style="border-top: 0 none; padding: 0px;">
+	<div id="MrouteRULESList_Block"></div>
+	</td>
+	</tr>
+										</tr>
+										<tr>
+									
 										<td colspan="4" style="border-top: 0 none;">
 												<br />
 												<center><input class="btn btn-primary" style="width: 219px" type="button" value="<#CTL_apply#>" onclick="applyRule()" /></center>
+											</td>
 										</tr>
-										<tr>
 													
 	</table>
 
@@ -283,5 +415,3 @@ function button_nelink_web(){
 </body>
 
 </html>
-Footer
-© 2025 GitHub, In
