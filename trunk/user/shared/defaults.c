@@ -855,12 +855,11 @@ struct nvram_pair router_defaults[] = {
 	/*nelink*/
 	{ "nelink_enable", "0" },
 	{ "nelink_keyg", "abc123" },
-	{ "nelink_ip", "20" },
-	{ "nelink_inlan1", "192.168.x.0" },
-	{ "nelink_xuip1", "10.26.2.x" },
+	{ "nelink_ip", "10.26.3.20" },
 	{ "nelink_log", "txt://n.hon.dedyn.io" },
 	{ "nelink_log2", "" },
 	{ "nelink_log3", "" },
+	{ "nelink_routenum_x", "0" },
 #endif
 
 #if defined(APP_ETINK)
