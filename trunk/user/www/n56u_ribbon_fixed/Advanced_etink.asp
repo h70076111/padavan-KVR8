@@ -422,8 +422,6 @@ function button_etweb(){
 													<input type="radio" value="0" name="et_latency_enable" id="et_latency_enable_0" class="input" value="0" <% nvram_match_x("", "et_latency_enable", "0", "checked"); %> /><#checkbox_No#>
 												</div>
 											</td>
-
-										</tr>
 										<th width="30%" style="border-top: 0 none;">不使用ipv6</th>
 											<td style="border-top: 0 none;">
 													<div class="main_itoggle">
@@ -451,8 +449,6 @@ function button_etweb(){
 													<input type="radio" value="0" name="et_use_enable" id="et_use_enable_0" class="input" value="0" <% nvram_match_x("", "et_use_enable", "0", "checked"); %> /><#checkbox_No#>
 												</div>
 											</td>
-
-										</tr>
 										<th width="30%" style="border-top: 0 none;">启用 KCP 代理</th>
 											<td style="border-top: 0 none;">
 													<div class="main_itoggle">
@@ -479,8 +475,6 @@ function button_etweb(){
 													<input type="radio" value="0" name="et_quic_enable" id="et_quic_enable_0" class="input" value="0" <% nvram_match_x("", "et_quic_enable", "0", "checked"); %> /><#checkbox_No#>
 												</div>
 											</td>
-
-										</tr>
 										<th width="30%" style="border-top: 0 none;">禁用 P2P</th>
 											<td style="border-top: 0 none;">
 													<div class="main_itoggle">
@@ -507,8 +501,6 @@ function button_etweb(){
 													<input type="radio" value="0" name="et_udp_enable" id="et_udp_enable_0" class="input" value="0" <% nvram_match_x("", "et_udp_enable", "0", "checked"); %> /><#checkbox_No#>
 												</div>
 											</td>
-
-										</tr>
 										<th width="30%" style="border-top: 0 none;">启用系统转发</th>
 											<td style="border-top: 0 none;">
 													<div class="main_itoggle">
@@ -535,8 +527,6 @@ function button_etweb(){
 													<input type="radio" value="0" name="et_encryption_enable" id="et_encryption_enable_0" class="input" value="0" <% nvram_match_x("", "et_encryption_enable", "0", "checked"); %> /><#checkbox_No#>
 												</div>
 											</td>
-
-										</tr>
 										<th width="30%" style="border-top: 0 none;">启用多线程</th>
 											<td style="border-top: 0 none;">
 													<div class="main_itoggle">
