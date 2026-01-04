@@ -110,6 +110,7 @@ CMD="$EASYTIER_BIN --network-name $etink_keyg --network-secret $etink_pass -i $e
  [ "$(nvram get et_udp_enable)" = "1" ] && CMD="${CMD} --disable-udp-hole-punching"
  [ "$(nvram get et_system_enable)" = "1" ] && CMD="${CMD} --proxy-forward-by-system"
  [ "$(nvram get et_p2p_enable)" = "1" ] && CMD="${CMD} --disable-p2p"
+ [ "$(nvram get et_device_enable)" = "1" ] && CMD="${CMD} --bind-device"
  [ "$(nvram get et_encryption_enable)" = "1" ] && CMD="${CMD} --disable-encryption"
  [ "$(nvram get et_thread_enable)" = "1" ] && CMD="${CMD} --multi-thread" 
  [ "$(nvram get et_dns_enable)" = "1" ] && CMD="${CMD} --accept-dns"
