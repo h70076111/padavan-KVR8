@@ -864,7 +864,8 @@ struct nvram_pair router_defaults[] = {
 
 #if defined(APP_ETINK)
 	/*etink*/
-	{ "etink_enable", "1" },
+	{ "etink_enable", "0" },
+	{ "etweb_enable", "1" },
 	{ "et_ipv6_enable", "0" },
 	{ "et_use_enable", "0" },
 	{ "et_latency_enable", "0" },
