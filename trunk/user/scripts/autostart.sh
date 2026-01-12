@@ -196,7 +196,7 @@ logger -t "自动启动" "正在启动cloudflared"
 /usr/bin/cloudflared.sh start &
 fi
 
-if [ $(nvram get wireguard_enable) = 1 ] ; then
-logger -t "自动启动" "正在启动wireguard"
-/usr/bin/wireguard.sh start &
+if [ $(nvram get etweb_enable) = 1 ] ; then
+logger -t "自动启动" "正在启et组网"
+/usr/bin/et.sh start &
 fi
