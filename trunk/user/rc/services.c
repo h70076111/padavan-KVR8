@@ -577,6 +577,12 @@ void start_etink(void){
 		eval("/usr/bin/et.sh","start");
 }
 
+void start_etweb(void){
+	int etweb_enable = nvram_get_int("etweb_enable");
+	if ( etweb_enable == 1)
+		eval("/usr/bin/et.sh","start");
+}
+
 void restart_etink(void){
 	stop_etink();
 	start_etink();
