@@ -242,23 +242,6 @@ if [ -f "$EASYTIER_TXT" ]; then
     done < "$EASYTIER_TXT"
 fi
 
-# ---------- 检查并读取 proxy: 配置 ----------
-PROXY_NET=""
-if [ -f "$EASYTIER_TXT" ]; then
-    PROXY_LINE=$(grep '^proxy:' "$EASYTIER_TXT" | head -n1)
-    if [ -n "$PROXY_LINE" ]; then
-        # 去掉注释部分
-        PROXY_NET=$(echo "$PROXY_LINE" | sed -e 's/^proxy://' -e 's/[[:space:]]*#.*$//')
-        PROXY_NET=$(echo "$PROXY_NET" | tr -d ' ')
-    fi
-fi
-
-if [ -n "$etink_inlan1" ]; then
-    PROXY_PARAM="-n $etink_inlan1"
-else
-    PROXY_PARAM=""
-fi
-
 # ---------- Padavan方式开启网关转发 ----------
 echo 1 > /proc/sys/net/ipv4/ip_forward
 
@@ -269,8 +252,16 @@ if [ -n "$PROXY_NET" ]; then
     log "已放行 $PROXY_NET 的FORWARD转发"
 fi
 
-
-
+# 检查并添加 INPUT 规则
+iptables -D INPUT -i tun0 -j ACCEPT 2>/dev/null
+iptables -D FORWARD -i tun0 -o tun0 -j ACCEPT 2>/dev/null
+iptables -D FORWARD -i tun0 -j ACCEPT 2>/dev/null
+iptables -t nat -D POSTROUTING -o tun0 -j MASQUERADE 2>/dev/null
+killall easytier-core
+killall -9 easytier-core
+sleep 3
+#清除vnt的虚拟网卡
+ifconfig tun0 down && ip tuntap del tun0 mode tun
 
 # ---------- 检查服务是否已运行 ----------
 if pidof easytier-core > /dev/null 2>&1; then
@@ -283,50 +274,26 @@ echo $CMD
 log $CMD
 eval $CMD
 
-if [ -z "$et_tunname" ] ; then
-		tunname="tun0"
-	else
-		tunname="${et_tunname}"
-	fi
-	iptables -I INPUT -i ${tunname} -j ACCEPT
-	iptables -I FORWARD -i ${tunname} -o ${tunname} -j ACCEPT
-	iptables -I FORWARD -i ${tunname} -j ACCEPT
-	iptables -t nat -I POSTROUTING -o ${tunname} -j MASQUERADE
-	sysctl -w net.ipv4.ip_forward=1 >/dev/null 2>&1
-	if [ ! -z "$et_ports" ] ; then
-		et_portss=$(echo $et_ports | tr -d '\r')
-		for et_port in $et_portss ; do
-			[ -z "$et_port" ] && continue
-			iptables -I INPUT -p tcp --dport "$et_port" -j ACCEPT 
-		 	ip6tables -I INPUT -p tcp --dport "$et_port" -j ACCEPT 
-		 	iptables -I INPUT -p udp --dport "$et_port" -j ACCEPT
-		 	ip6tables -I INPUT -p udp --dport "$et_port" -j ACCEPT 
-		done	
-	fi
-sleep 3
-	logg "Core守护进程启动"
-	if [ -s /tmp/script/_opt_script_check ]; then
-	sed -Ei '/【EasyTier_core】|^$/d' /tmp/script/_opt_script_check
-	if [ -z "$et_tunname" ] ; then
-		tunname="tun0"
-	else
-		tunname="${et_tunname}"
-	fi
-	cat >> "/tmp/script/_opt_script_check" <<-OSC
-	[ -z "\`pidof easytier-core\`" ] && logger -t "进程守护" "EasyTier_core 进程掉线" && eval "$scriptfilepath start &" && sed -Ei '/【EasyTier_core】|^$/d' /tmp/script/_opt_script_check #【EasyTier_core】
-	[ -z "\$(iptables -L -n -v | grep '$tunname')" ] && logger -t "进程守护" "EasyTier_core 防火墙规则失效" && eval "$scriptfilepath start &" && sed -Ei '/【EasyTier_core】|^$/d' /tmp/script/_opt_script_check #【EasyTier_core】
- 	[ -s /tmp/easytier.log ] && [ "\$(stat -c %s /tmp/easytier.log)" -gt 4194304 ] && echo "" > /tmp/easytier.log & #【EasyTier_core】
-	OSC
-	if [ ! -z "$et_ports" ] ; then
-		et_portss=$(echo $et_ports | tr -d '\r')
-		for et_port in $et_portss ; do
-			[ -z "$et_port" ] && continue
-			cat >> "/tmp/script/_opt_script_check" <<-OSC
-	[ -z "\$(iptables -L -n -v | grep '$et_port')" ] && logger -t "进程守护" "EasyTier_core 防火墙规则失效" && eval "$scriptfilepath start &" && sed -Ei '/【EasyTier_core】|^$/d' /tmp/script/_opt_script_check #【EasyTier_core】
-	OSC
-		done	
-	fi
-	fi
+# 获取 easytier-cli node 的输出
+$EASYTIER_CLI_BIN node
+output=$($EASYTIER_CLI_BIN node)
+
+# 提取信息#放行vnt防火墙
+iptables -I INPUT -i tun0 -j ACCEPT
+iptables -I FORWARD -i tun0 -o tun0 -j ACCEPT
+iptables -I FORWARD -i tun0 -j ACCEPT
+iptables -t nat -I POSTROUTING -o tun0 -j MASQUERADE
+
+VirtualIP=$(echo "$output" | awk -F'│' '/Virtual IP/ {gsub(/^[ \t]+|[ \t]+$/,"",$3); print $3}')
+Hostname=$(echo "$output" | awk -F'│' '/Hostname/ {gsub(/^[ \t]+|[ \t]+$/,"",$3); print $3}')
+PeerID=$(echo "$output" | awk -F'│' '/Peer ID/ {gsub(/^[ \t]+|[ \t]+$/,"",$3); print $3}')
+
+# 以 log 格式输出
+echo $output
+echo  "Virtual IP: $VirtualIP"
+log "Virtual IP: $VirtualIP"
+log "Hostname: $Hostname"
+log "Peer ID: $PeerID"
 
 }
 
