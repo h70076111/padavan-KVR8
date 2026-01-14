@@ -15,7 +15,7 @@ echo $etink_enable
 etweb_enable=$(nvram get etweb_enable)
 echo $etweb_enable
 
-et_core() {
+start_etink() {
 	[ "$etink_enable" = "0" ] && return 1
 	[ "$etweb_enable" = "1" ] && return 1
 	logg "正在启动easytier-core"
@@ -183,7 +183,7 @@ sleep 3
 
 }
 
-et_web() {
+start_etweb() {
 	[ "$etweb_enable" = "0" ] && return 1
 	[ "$etink_enable" = "1" ] && return 1
 	logg "正在启动easytier-core"
@@ -297,11 +297,6 @@ log "Peer ID: $PeerID"
 
 }
 
-start_etink() {
-	et_core
-	et_web
-}
-
 stop_et() {
 	logg  "正在关闭..."
 	scriptname=$(basename $0)
@@ -348,6 +343,7 @@ stop_et() {
 
 case $1 in
 start)
+	start_etweb
 	start_etink &
 	;;
 stop)
@@ -355,6 +351,7 @@ stop)
 	;;
 restart)
 	stop_et
+	start_etweb
 	start_etink &
 	;;
 *)
