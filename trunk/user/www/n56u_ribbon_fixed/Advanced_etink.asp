@@ -65,6 +65,7 @@ function initial(){
 	fill_status(etink_status());
 	show_footer();
 	change_etink_enable(1);
+	change_etweb_enable(1);
 	if (!login_safe())
         		textarea_scripts_enabled(0);
 
