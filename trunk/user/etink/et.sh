@@ -33,7 +33,7 @@ killall -9 easytier-core
 sleep 3
 #清除vnt的虚拟网卡
 ifconfig tun0 down && ip tuntap del tun0 mode tun
-fi
+
 }
 
 start_etink() {
