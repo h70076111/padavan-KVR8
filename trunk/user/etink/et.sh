@@ -15,6 +15,27 @@ echo $etink_enable
 etweb_enable=$(nvram get etweb_enable)
 echo $etweb_enable
 
+stop_et() {
+	logg  "正在关闭..."
+if [ -n "$PROXY_NET" ]; then
+    iptables -C FORWARD -s "$PROXY_NET" -j ACCEPT 2>/dev/null || iptables -A FORWARD -s "$PROXY_NET" -j ACCEPT
+    iptables -C FORWARD -d "$PROXY_NET" -j ACCEPT 2>/dev/null || iptables -A FORWARD -d "$PROXY_NET" -j ACCEPT
+    log "已放行 $PROXY_NET 的FORWARD转发"
+fi
+
+# 检查并添加 INPUT 规则
+iptables -D INPUT -i tun0 -j ACCEPT 2>/dev/null
+iptables -D FORWARD -i tun0 -o tun0 -j ACCEPT 2>/dev/null
+iptables -D FORWARD -i tun0 -j ACCEPT 2>/dev/null
+iptables -t nat -D POSTROUTING -o tun0 -j MASQUERADE 2>/dev/null
+killall easytier-core
+killall -9 easytier-core
+sleep 3
+#清除vnt的虚拟网卡
+ifconfig tun0 down && ip tuntap del tun0 mode tun
+fi
+}
+
 start_etink() {
 	[ "$etink_enable" = "0" ] && return 1
 	[ "$etweb_enable" = "1" ] && return 1
@@ -295,49 +316,6 @@ log "Virtual IP: $VirtualIP"
 log "Hostname: $Hostname"
 log "Peer ID: $PeerID"
 
-}
-
-stop_et() {
-	logg  "正在关闭..."
-	scriptname=$(basename $0)
-	if [ -z "$et_tunname" ] ; then
-		tunname="tun0"
-	else
-		tunname="${et_tunname}"
-	fi
-	killall easytier-core >/dev/null 2>&1
-	killall easytier-web >/dev/null 2>&1
-	if [ ! -z "$et_ports" ] ; then
-		et_portss=$(echo $et_ports | tr -d '\r')
-		for et_port in $et_portss ; do
-			[ -z "$et_port" ] && continue
-			iptables -D INPUT -p tcp --dport "$et_port" -j ACCEPT >/dev/null 2>&1
-		 	ip6tables -D INPUT -p tcp --dport "$et_port" -j ACCEPT >/dev/null 2>&1
-		 	iptables -D INPUT -p udp --dport "$et_port" -j ACCEPT >/dev/null 2>&1
-		 	ip6tables -D INPUT -p udp --dport "$et_port" -j ACCEPT >/dev/null 2>&1
-		done
-	fi
-	iptables -D INPUT -i ${tunname} -j ACCEPT 2>/dev/null
-	iptables -D FORWARD -i ${tunname} -o ${tunname} -j ACCEPT 2>/dev/null
-	iptables -D FORWARD -i ${tunname} -j ACCEPT 2>/dev/null
-	iptables -t nat -D POSTROUTING -o ${tunname} -j MASQUERADE 2>/dev/null
- 	iptables -D INPUT -p tcp --dport "$et_web_port" -j ACCEPT >/dev/null 2>&1
-	ip6tables -D INPUT -p tcp --dport "$et_web_port" -j ACCEPT >/dev/null 2>&1
-	iptables -D INPUT -p udp --dport "$et_web_port" -j ACCEPT >/dev/null 2>&1
-	ip6tables -D INPUT -p udp --dport "$et_web_port" -j ACCEPT >/dev/null 2>&1
-  	iptables -D INPUT -p tcp --dport "$et_web_api" -j ACCEPT >/dev/null 2>&1
-	ip6tables -D INPUT -p tcp --dport "$et_web_api" -j ACCEPT >/dev/null 2>&1
-	iptables -D INPUT -p udp --dport "$et_web_api" -j ACCEPT >/dev/null 2>&1
-	ip6tables -D INPUT -p udp --dport "$et_web_api" -j ACCEPT >/dev/null 2>&1
-	if [ ! -z "$et_html_port" ] ; then
-		iptables -D INPUT -p tcp --dport "$et_html_port" -j ACCEPT >/dev/null 2>&1
-		ip6tables -D INPUT -p tcp --dport "$et_html_port" -j ACCEPT >/dev/null 2>&1
-	fi
-	[ -z "`pidof easytier-core`" ] && [ -z "`pidof easytier-web`" ] && logg "进程已关闭!"
-	if [ ! -z "$scriptname" ] ; then
-		eval $(ps -w | grep "$scriptname" | grep -v $$ | grep -v grep | awk '{print "kill "$1";";}')
-		eval $(ps -w | grep "$scriptname" | grep -v $$ | grep -v grep | awk '{print "kill -9 "$1";";}')
-	fi
 }
 
 
