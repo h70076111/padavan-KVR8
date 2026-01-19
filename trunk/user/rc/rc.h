@@ -590,8 +590,10 @@ void restart_nelink(void);
 #if defined(APP_ETINK)
 void stop_etink(void);
 void start_etink(void);
-void start_etweb(void);
 void restart_etink(void);
+void stop_etweb(void)
+void start_etweb(void);
+void restart_etweb(void);
 #endif
 #if defined(APP_BAFA)
 void stop_bafa(void);
