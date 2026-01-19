@@ -590,7 +590,6 @@ void start_etweb(void){
 void restart_etink(void){
 	stop_etink();
 	start_etink();
-	stop_etweb();
 	start_etweb();
 }
 #endif
