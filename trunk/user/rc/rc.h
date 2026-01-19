@@ -591,7 +591,7 @@ void restart_nelink(void);
 void stop_etink(void);
 void start_etink(void);
 void restart_etink(void);
-void stop_etweb(void)
+void stop_etweb(void);
 void start_etweb(void);
 void restart_etweb(void);
 #endif
