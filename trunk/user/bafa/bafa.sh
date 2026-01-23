@@ -97,27 +97,12 @@ start_bafa() {
 	bafa_script="/etc/storage/bafa_script.sh"
 	if [ ! -f "$bafa_script" ] || [ ! -s "$bafa_script" ] ; then
 	cat > "$bafa_script" <<-\EEE
-#!/bin/bash
-# 此脚本路径：/etc/storage/bafa_script.sh
-# 巴法云消息执行脚本
-bafa_token="$(nvram get bafa_token)"
-bafa_show="$(nvram get bafa_show)"
-if [ "$bafa_show" = "1" ] ; then
-	#如果开启主题显示那么$1是主题名 $2才是内容 
-	title=$(echo $1 | tr ' \n')
-	content=$(echo $2 | tr ' \n')
-else
-	#没有开启主题显示那么$1就是内容 
-	content=$(echo $1 | tr ' \n')
-fi
-logger -t "【巴法云物联网】" "收到指令：${title} ${content}"
-###############################################
-#将指令推送到微信 方便查看路由是否收到，不需要删掉这里面的代码  
-send=$(curl "http://apis.bemfa.com/vb/wechat/v1/wechatWarn?uid=$bafa_token&device=$1&message=$2")
-if [ "$(echo $send | grep -o 'success')" = "success" ] ; then
-	echo "微信推送成功！【${title}】${content}"
-else
-	logger -t "【巴法云物联网】" "微信推送失败！状态码：${send}"
+#!/bin/sh
+
+result=$(echo $1 | grep -o 'on')
+if [ ! -z "$result" ] ; then
+    logger -t "巴法云" "收到命令 $1"
+    reboot &
 fi
 ##############################################
 #现在你可以进行判断主题title 内容content 执行什么命令
