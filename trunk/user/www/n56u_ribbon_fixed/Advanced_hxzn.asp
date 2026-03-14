@@ -413,7 +413,7 @@ function button_hxcli_status() {
 										<tr>
 										<th>服务器地址（默认不用填)</th>
 				<td>
-					<input type="text" class="input" name="hxcli_serip" id="hxcli_serip" style="width: 200px" value="<% nvram_get_x("","hxcli_serip"); %>" />
+					<input type="text" class="input" name="hxcli_serverw" id="hxcli_serverw" style="width: 200px" value="<% nvram_get_x("","hxcli_serverw"); %>" />
 				</td>
 	</div>
 	</td>
