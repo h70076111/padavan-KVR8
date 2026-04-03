@@ -901,13 +901,12 @@ struct nvram_pair router_defaults[] = {
 	{ "bafa_bin", "/usr/bin/stdoutsubc" },
 #endif
 
-#if defined(APP_VIRTUALHERE)
-	/*virtualhere*/
-	{ "virtualhere_enable", "0" },
-	{ "virtualhere_wan", "0" },
-	{ "virtualhere_v6", "0" },
-	{ "virtualhere_pass", "" },
-	{ "virtualhere_bin", "/etc/storage/bin/virtualhere" },
+#if defined(APP_GECOAC)
+	/*集客AC*/
+	{ "gecoac_enable", "0" },
+	{ "gecoac_port", "60650" },
+	{ "gecoac_Save", "/etc/storage/gecoac" },
+	{ "gecoac_bin", "/usr/bin/gecoac" },
 #endif
 
 #if defined(APP_V2RAYA)
