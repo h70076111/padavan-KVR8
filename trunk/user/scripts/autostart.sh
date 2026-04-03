@@ -161,9 +161,9 @@ logger -t "自动启动" "正在启动阿里云盘"
 /usr/bin/aliyundrive-webdav.sh start &
 fi
 
-if [ $(nvram get virtualhere_enable) = 1 ] ; then
-logger -t "自动启动" "正在启动Virtualhere"
-/usr/bin/virtualhere.sh start &
+if [ $(nvram get gecoac_enable) = 1 ] ; then
+logger -t "自动启动" "集客AC服务"
+/usr/bin/gecoac.sh start &
 fi
 
 if [ $(nvram get uu_enable) = 1 ] ; then
