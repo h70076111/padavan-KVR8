@@ -598,10 +598,10 @@ void stop_bafa(void);
 void start_bafa(void);
 void restart_bafa(void);
 #endif
-#if defined(APP_VIRTUALHERE)
-void stop_virtualhere(void);
-void start_virtualhere(void);
-void restart_virtualhere(void);
+#if defined(APP_GECOAC)
+void stop_gecoac(void);
+void start_gecoac(void);
+void restart_gecoac(void);
 #endif
 #if defined(APP_V2RAYA)
 void stop_v2raya(void);
