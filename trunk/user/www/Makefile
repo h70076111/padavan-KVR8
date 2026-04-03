@@ -269,6 +269,9 @@ endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_NELINK),y)
 	rm -f $(INSTALLDIR)/www/Advanced_nelink.asp
 endif
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_GECOAC),y)
+	rm -f $(INSTALLDIR)/www/Advanced_gecoac.asp
+endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_TAILSCALE),y)
 	rm -f $(INSTALLDIR)/www/Advanced_tailscale.asp
 endif
