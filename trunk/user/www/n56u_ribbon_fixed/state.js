@@ -455,7 +455,7 @@ if (found_app_cloudflared()){
 	tabtitle[24] = new Array("", "CloudFlared");
 }
 if (found_app_hxcli()){
-	tabtitle[25] = new Array("", "智能组网");
+	tabtitle[25] = new Array("", "宏兴智能组网");
 }
 if (found_app_ntwon()){
 	tabtitle[26] = new Array("", "N2V2组网");
@@ -478,8 +478,8 @@ if (found_app_etink()){
 if (found_app_bafa()){
 	tabtitle[32] = new Array("", "巴法云");
 }
-if (found_app_virtualhere()){
-	tabtitle[33] = new Array("", "VirtualHere");
+if (found_app_gecoac()){
+	tabtitle[33] = new Array("", "集客AC控制台");
 }
 if (found_app_v2raya()){
 	tabtitle[34] = new Array("", "V2RayA");
@@ -604,9 +604,9 @@ if (found_app_bafa()){
 	bafa_array = new Array("","Advanced_bafa.asp");
 	tablink[32] = (bafa_array);
 }
-if (found_app_virtualhere()){
-	virtualhere_array = new Array("","Advanced_virtualhere.asp");
-	tablink[33] = (virtualhere_array);
+if (found_app_gecoac()){
+	gecoac_array = new Array("","Advanced_gecoac.asp");
+	tablink[33] = (gecoac_array);
 }
 if (found_app_v2raya()){
 	v2raya_array = new Array("","Advanced_v2raya.asp");
@@ -687,7 +687,7 @@ if (found_app_cloudflared()){
 } else menuL2_title.push("");
 
 if (found_app_hxcli()){
-	menuL2_title.push("智能组网");
+	menuL2_title.push("宏兴智能组网");
 } else menuL2_title.push("");
 
 if (found_app_ntwon){
@@ -718,8 +718,8 @@ if (found_app_bafa()){
 	menuL2_title.push("巴法云");
 } else menuL2_title.push("");
 
-if (found_app_virtualhere()){
-	menuL2_title.push("VirtualHere");
+if (found_app_gecoac()){
+	menuL2_title.push("集客AC控制台");
 } else menuL2_title.push("");
 
 if (found_app_v2raya()){
@@ -809,8 +809,8 @@ if (found_app_etink()){
 if (found_app_bafa()){
 	menuL2_link.push(bafa_array[1]);
 } else menuL2_link.push("");
-if (found_app_virtualhere()){
-	menuL2_link.push(virtualhere_array[1]);
+if (found_app_gecoac()){
+	menuL2_link.push(gecoac_array[1]);
 } else menuL2_link.push("");
 if (found_app_v2raya()){
 	menuL2_link.push(v2raya_array[1]);
