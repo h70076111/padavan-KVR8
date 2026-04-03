@@ -2439,11 +2439,11 @@ static int bafa_status_hook(int eid, webs_t wp, int argc, char **argv)
 }
 #endif
 
-#if defined (APP_VIRTUALHERE)
-static int virtualhere_status_hook(int eid, webs_t wp, int argc, char **argv)
+#if defined (APP_GECOAC)
+static int gecoac_status_hook(int eid, webs_t wp, int argc, char **argv)
 {
-	int virtualhere_status_code = pids("virtualhere") || pids("vhusbd") || pids("vhusbdmipsel1004Kc");
-	websWrite(wp, "function virtualhere_status() { return %d;}\n", virtualhere_status_code);
+	int gecoac_status_code = pids("gecoac");
+	websWrite(wp, "function gecoac_status() { return %d;}\n", gecoac_status_code);
 	return 0;
 }
 #endif
@@ -2818,10 +2818,10 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 #else
 	int found_app_bafa = 0;
 #endif
-#if defined(APP_VIRTUALHERE)
-	int found_app_virtualhere = 1;
+#if defined(APP_GECOAC)
+	int found_app_gecoac = 1;
 #else
-	int found_app_virtualhere = 0;
+	int found_app_gecoac = 0;
 #endif
 #if defined(APP_V2RAYA)
 	int found_app_v2raya = 1;
@@ -3076,7 +3076,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function found_app_tailscale() { return %d;}\n"
 		"function found_app_etink() { return %d;}\n"
 		"function found_app_bafa() { return %d;}\n"
-		"function found_app_virtualhere() { return %d;}\n"
+		"function found_app_gecoac() { return %d;}\n"
 		"function found_app_v2raya() { return %d;}\n"
 		"function found_app_cloudflared() { return %d;}\n"
 		"function found_app_cloudflare() { return %d;}\n"
@@ -3126,7 +3126,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		found_app_tailscale,
 		found_app_etink,
 		found_app_bafa,
-		found_app_virtualhere,
+		found_app_gecoac,
 		found_app_v2raya,
 		found_app_cloudflared,
 		found_app_cloudflare,
@@ -3996,6 +3996,13 @@ apply_cgi(const char *url, webs_t wp)
 	{
 #if defined(APP_CADDY)
 		system("/usr/bin/caddy.sh start &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " RestartGECOAC "))
+	{
+#if defined(APP_GECOAC)
+		system("/usr/bin/gecoac.sh restart &");
 #endif
 		return 0;
 	}
@@ -5544,8 +5551,8 @@ struct ej_handler ej_handlers[] =
 #if defined (APP_BAFA)
 	{ "bafa_status", bafa_status_hook},
 #endif
-#if defined (APP_VIRTUALHERE)
-	{ "virtualhere_status", virtualhere_status_hook},
+#if defined (APP_GECOAC)
+	{ "gecoac_status", gecoac_status_hook},
 #endif
 #if defined (APP_V2RAYA)
 	{ "v2raya_status", v2raya_status_hook},
