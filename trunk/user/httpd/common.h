@@ -110,12 +110,12 @@ typedef u_int8_t u8;
 #define EVM_RESTART_WIREGUARD			(1ULL << 52) //wg异地组网
 #define EVM_RESTART_ALDRIVER			(1ULL << 53) //阿里云盘挂载
 //#define EVM_RESTART_VIRTUALHERE		(1ULL << 53) //virtualhere
-#define EVM_RESTART_UUPLUGIN			(1ULL << 54) //UU加速器
+#define EVM_RESTART_GECOAC		    (1ULL << 54)
 //#define EVM_RESTART_KOOLPROXY			(1ULL << 55) //kp去广告
 #define EVM_RESTART_LUCKY			(1ULL << 55) //lucky
 #define EVM_RESTART_WXSEND			(1ULL << 56) //微信推送
 #define EVM_RESTART_CLOUDFLARED			(1ULL << 57) //CF隧道免费内网穿透
-#define EVM_RESTART_NTWON			(1ULL << 58) //vnt服务器
+#define EVM_RESTART_NTWON			(1ULL << 58) 
 #define EVM_RESTART_HXCLI			(1ULL << 59) //hx客户端
 #define EVM_RESTART_NELINK			(1ULL << 60) //皎月连
 #define EVM_RESTART_ETINK			(1ULL << 61) //taislacle
@@ -202,7 +202,7 @@ typedef u_int8_t u8;
 #define EVT_RESTART_ALIST	    	2
 #define EVT_RESTART_ETINK	    	2
 #define EVT_RESTART_BAFA	    	2
-#define EVT_RESTART_VIRTUALHERE    	2
+#define EVT_RESTART_GECOAC	    	2
 #define EVT_RESTART_V2RAYA    	2
 #define EVT_RESTART_REBOOT			40
 
