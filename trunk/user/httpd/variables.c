@@ -1519,14 +1519,12 @@
 	};
 #endif
 
-#if defined(APP_VIRTUALHERE)
-	struct variable variables_VIRTUALHERE[] = {
-			{"virtualhere_enable", "", NULL, EVM_RESTART_VIRTUALHERE},
-			{"virtualhere_wan", "", NULL, EVM_RESTART_VIRTUALHERE},
-			{"virtualhere_v6", "", NULL, EVM_RESTART_VIRTUALHERE},
-			{"virtualhere_pass", "", NULL, EVM_RESTART_VIRTUALHERE},
-			{"virtualhere_bin", "", NULL, EVM_RESTART_VIRTUALHERE},
-			{"scripts.virtualhere.ini", "File", NULL, EVM_RESTART_VIRTUALHERE},
+#if defined(APP_GECOAC)
+	struct variable variables_GECOAC[] = {
+			{"gecoac_enable", "", NULL, EVM_RESTART_GECOAC},
+			{"gecoac_Save", "", NULL, EVM_RESTART_GECOAC},
+			{"gecoac_port", "", NULL, EVM_RESTART_GECOAC},
+			{"gecoac_bin", "", NULL, EVM_RESTART_GECOAC},
 			{0,0,0,0}
 	};
 #endif
@@ -1811,8 +1809,8 @@
 #if defined(APP_BAFA)
 		{"BAFA",		variables_BAFA},
 #endif
-#if defined(APP_VIRTUALHERE)
-		{"VIRTUALHERE",		variables_VIRTUALHERE},
+#if defined(APP_GECOAC)
+		{"GECOAC",		variables_GECOAC},
 #endif
 #if defined(APP_V2RAYA)
 		{"V2RAYA",		variables_V2RAYA},
@@ -1973,8 +1971,8 @@
 #if defined(APP_BAFA)
 		{EVM_RESTART_BAFA,		EVT_RESTART_BAFA,		RCN_RESTART_BAFA,	0},
 #endif
-#if defined(APP_VIRTUALHERE)
-		{EVM_RESTART_VIRTUALHERE,		EVT_RESTART_VIRTUALHERE,		RCN_RESTART_VIRTUALHERE,	0},
+#if defined(APP_GECOAC)
+		{EVM_RESTART_GECOAC,		EVT_RESTART_GECOAC,		RCN_RESTART_GECOAC,	0},
 #endif
 #if defined(APP_V2RAYA)
 		{EVM_RESTART_V2RAYA,		EVT_RESTART_V2RAYA,		RCN_RESTART_V2RAYA,	0},
