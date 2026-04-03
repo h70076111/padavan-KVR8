@@ -97,7 +97,7 @@
 #define RCN_RESTART_TAILSCALE	"restart_tailscale"
 #define RCN_RESTART_ETINK	"restart_etink"
 #define RCN_RESTART_BAFA	"restart_bafa"
-#define RCN_RESTART_VIRTUALHERE	"restart_virtualhere"
+#define RCN_RESTART_GECOAC		"restart_gecoac"
 #define RCN_RESTART_V2RAYA	"restart_v2raya"
 #define RCN_RESTART_NELINK	"restart_nelink"
 #define RCN_RESTART_ALIST	"restart_alist"
