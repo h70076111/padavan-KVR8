@@ -1390,10 +1390,10 @@ handle_notifications(void)
 			restart_bafa();
 		}
 #endif
-#if defined(APP_VIRTUALHERE)
-		else if (strcmp(entry->d_name, RCN_RESTART_VIRTUALHERE) == 0)
+#if defined(APP_GECOAC)
+		else if (strcmp(entry->d_name, RCN_RESTART_GECOAC) == 0)
 		{
-			restart_virtualhere();
+			restart_gecoac();
 		}
 #endif
 #if defined(APP_V2RAYA)
