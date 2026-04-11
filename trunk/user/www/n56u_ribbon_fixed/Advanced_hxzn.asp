@@ -27,9 +27,9 @@ var $j = jQuery.noConflict();
 <% login_state_hook(); %>
 $j(document).ready(function() {
 	init_itoggle('hxcli_enable');
+	init_itoggle('hxcli_ipv6_enable');
 	init_itoggle('hxcli_log');
 	init_itoggle('hxcli_proxy');
-	init_itoggle('hxcli_wg');
 	init_itoggle('hxcli_first');
 	init_itoggle('hxcli_finger');
 	init_itoggle('hxcli_serverw');
@@ -408,6 +408,18 @@ function button_hxcli_status() {
 				<td>
 					<input type="text" class="input" name="hxcli_ip" id="hxcli_ip" style="width: 200px" value="<% nvram_get_x("","hxcli_ip"); %>" />
 				</td>
+										<tr>
+										<th width="30%" style="border-top: 0 none;">仅使用IPV6连接（必须都有IPV6)</th>
+											<td style="border-top: 0 none;">
+													<div class="main_itoggle">
+													<div id="hxcli_ipv6_enable_on_of">
+														<input type="checkbox" id="hxcli_ipv6_enable_fake" <% nvram_match_x("", "hxcli_ipv6_enable", "1", "value=1 checked"); %><% nvram_match_x("", "hxcli_ipv6_enable", "0", "value=0"); %>  />
+													</div>
+												</div>
+												<div style="position: absolute; margin-left: -10000px;">
+													<input type="radio" value="1" name="hxcli_ipv6_enable" id="hxcli_ipv6_enable_1" class="input" value="1" <% nvram_match_x("", "hxcli_ipv6_enable", "1", "checked"); %> /><#checkbox_Yes#>
+													<input type="radio" value="0" name="hxcli_ipv6_enable" id="hxcli_ipv6_enable_0" class="input" value="0" <% nvram_match_x("", "hxcli_ipv6_enable", "0", "checked"); %> /><#checkbox_No#>
+												</div>
 
 										</tr>
 										<tr>
