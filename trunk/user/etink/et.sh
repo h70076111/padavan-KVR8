@@ -209,7 +209,7 @@ if pidof easytier-core > /dev/null 2>&1; then
     exit 0
 fi
 
-CMD="$EASYTIER_BIN -w $etink_keyg --machine-id "$MACHINE_ID" &"
+CMD="$EASYTIER_BIN -w $etink_webul$etink_keyg --machine-id "$MACHINE_ID" &"
 
 echo $CMD
 log $CMD
