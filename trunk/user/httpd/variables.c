@@ -1077,6 +1077,7 @@
 			{"et_device_enable", "", NULL, EVM_RESTART_ETINK},
 			{"et_rpc_enable", "", NULL, EVM_RESTART_ETINK},
 			{"etink_keyg", "", NULL, EVM_RESTART_ETINK},
+			{"etink_webul", "", NULL, EVM_RESTART_ETINK},
 			{"etink_xyip", "", NULL, EVM_RESTART_ETINK},
 			{"etink_pass", "", NULL, EVM_RESTART_ETINK},
 			{"etink_xuip1", "", NULL, EVM_RESTART_ETINK},
