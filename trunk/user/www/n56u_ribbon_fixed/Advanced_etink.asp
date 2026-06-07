@@ -415,6 +415,12 @@ function button_etweb(){
 											</td>
 										</tr>
 										<tr>
+										<th>WEB控制台地址</th>
+				<td>
+					<input type="text" class="input" name="etink_webul" id="etink_webul" style="width: 240px" value="<% nvram_get_x("","etink_webul"); %>" />
+				</td>
+										</tr>
+										<tr>
 										<th>虚拟IP</th>
 				<td>
 					<input type="text" class="input" name="etink_xyip" id="etink_xuip" style="width: 240px" value="<% nvram_get_x("","etink_xyip"); %>" />
