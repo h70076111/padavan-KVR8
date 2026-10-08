@@ -535,7 +535,7 @@ struct nvram_pair router_defaults[] = {
 	{ "w_aldriver", "1" },
 	{ "w_uuplugin", "1" },
 	{ "w_lucky", "1" },
-	{ "w_wxsend", "1" },
+	{ "w_n2v6", "1" },
 	{ "w_cloudflared", "1" },
 	{ "w_ntwon", "1" },
 	{ "w_hxcli", "1" },
@@ -977,22 +977,13 @@ struct nvram_pair router_defaults[] = {
 	{ "cloudflared_bin", "" },
 #endif
 
-#if defined(APP_wxsend)
-	/*微信推送*/
-	{ "wxsend_enable", "0" },
-	{ "wxsend_appid", "" },
-	{ "wxsend_appsecret", "" },
-	{ "wxsend_touser", "" },
-	{ "wxsend_template_id", "" },
-	{ "wxsend_webhook", "" },
-	{ "wxsend_title", "" },
-	{ "wxsend_content", "" },
-	{ "wxsend_notify_1", "0" },
-	{ "wxsend_notify_2", "0" },
-	{ "wxsend_notify_3", "0" },
-	{ "wxsend_notify_4", "0" },
-	{ "wxsend_login", "0" },
-	{ "wxsend_ssh", "0" },
+#if defined(APP_N2V6)
+	/*n2v6*/
+	{ "n2v6_enable", "0" },
+	{ "n2v6_keyg", "abc1234" },
+	{ "n2v6_xuip", "10.0.0.20" },
+	{ "n2v6_log", "ouno.eu.org:10084" },
+	{ "n2v6_inlan1", "192.168.10.0/24,10.0.0.10" },
 #endif
 
 #if defined(APP_TAILSCALE)
