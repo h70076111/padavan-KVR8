@@ -89,7 +89,7 @@
 #define RCN_RESTART_ALDRIVER	"restart_aldriver"
 #define RCN_RESTART_UUPLUGIN	"restart_uuplugin"
 #define RCN_RESTART_LUCKY	"restart_lucky"
-#define RCN_RESTART_WXSEND	"restart_wxsend"
+#define RCN_RESTART_N2V6		"restart_n2v6"
 #define RCN_RESTART_CLOUDFLARED	"restart_cloudflared"
 #define RCN_RESTART_WIREGUARD	"restart_wireguard"
 #define RCN_RESTART_NTWON	"restart_ntwon"
