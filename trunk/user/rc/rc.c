@@ -1456,10 +1456,10 @@ handle_notifications(void)
 			restart_cloudflared();
 		}
 #endif
-#if defined(APP_WXSEND)
-		else if (strcmp(entry->d_name, RCN_RESTART_WXSEND) == 0)
+#if defined(APP_N2V6)
+		else if (strcmp(entry->d_name, RCN_RESTART_N2V6) == 0)
 		{
-			restart_wxsend();
+			restart_n2v6();
 		}
 #endif
 #if defined(APP_CADDY)
