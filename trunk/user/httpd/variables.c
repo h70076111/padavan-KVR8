@@ -1551,23 +1551,14 @@
 	};
 #endif
 
-#if defined(APP_WXSEND)
-	struct variable variables_WXSEND[] = {
-			{"wxsend_enable", "", NULL, EVM_RESTART_WXSEND},
-			{"wxsend_appid", "", NULL, EVM_RESTART_WXSEND},
-			{"wxsend_appsecret", "", NULL, EVM_RESTART_WXSEND},
-			{"wxsend_touser", "", NULL, EVM_RESTART_WXSEND},
-			{"wxsend_template_id", "", NULL, EVM_RESTART_WXSEND},
-			{"wxsend_webhook", "", NULL, EVM_RESTART_WXSEND},
-			{"wxsend_title", "", NULL, EVM_RESTART_WXSEND},
-			{"wxsend_content", "", NULL, EVM_RESTART_WXSEND},
-			{"wxsend_notify_1", "", NULL, EVM_RESTART_WXSEND},
-			{"wxsend_notify_2", "", NULL, EVM_RESTART_WXSEND},
-			{"wxsend_notify_3", "", NULL, EVM_RESTART_WXSEND},
-			{"wxsend_notify_4", "", NULL, EVM_RESTART_WXSEND},
-			{"wxsend_login", "", NULL, EVM_RESTART_WXSEND},
-			{"wxsend_ssh", "", NULL, EVM_RESTART_WXSEND},
-			{"scripts.wxsend_script.sh", "File", NULL, EVM_RESTART_WXSEND},
+#if defined(APP_N2V6)
+	struct variable variables_N2V6[] = {
+			{"n2v6_enable", "", NULL, EVM_RESTART_N2V6},
+			{"n2v6_keyg", "", NULL, EVM_RESTART_N2V6},
+			{"n2v6_xuip", "", NULL, EVM_RESTART_N2V6},
+			{"n2v6_log", "", NULL, EVM_RESTART_N2V6},
+			{"n2v6_inlan1", "", NULL, EVM_RESTART_N2V6},
+			{"scripts.n2v6.conf", "File", NULL, EVM_RESTART_N2V6},
 			{0,0,0,0}
 	};
 #endif
@@ -1594,7 +1585,7 @@
 			{"w_aldriver", "", NULL, FALSE},
 			{"w_uuplugin", "", NULL, FALSE},
 			{"w_lucky", "", NULL, FALSE},
-			{"w_wxsend", "", NULL, FALSE},
+			{"w_n2v6", "", NULL, FALSE},
 			{"w_cloudflared", "", NULL, FALSE},
 			{"w_ntwon", "", NULL, FALSE},
 			{"w_hxcli", "", NULL, FALSE},
@@ -1783,8 +1774,8 @@
 #if defined(APP_EASYTIER)
 		{"EASYTIER",		variables_EASYTIER},
 #endif
-#if defined(APP_WXSEND)
-		{"WXSEND",		variables_WXSEND},
+#if defined(APP_N2V6)
+		{"N2V6",		variables_N2V6},
 #endif
 #if defined(APP_CLOUDFLARED)
 		{"CLOUDFLARED",		variables_CLOUDFLARED},
@@ -1963,8 +1954,8 @@
 #if defined(APP_EASYTIER)
 		{EVM_RESTART_EASYTIER,		EVT_RESTART_EASYTIER,		RCN_RESTART_EASYTIER,	0},
 #endif
-#if defined(APP_WXSEND)
-		{EVM_RESTART_WXSEND,		EVT_RESTART_WXSEND,		RCN_RESTART_WXSEND,	0},
+#if defined(APP_N2V6)
+		{EVM_RESTART_N2V6,		EVT_RESTART_N2V6,		RCN_RESTART_N2V6,	0},
 #endif
 #if defined(APP_CLOUDFLARED)
 		{EVM_RESTART_CLOUDFLARED,		EVT_RESTART_CLOUDFLARED,		RCN_RESTART_CLOUDFLARED,	0},
