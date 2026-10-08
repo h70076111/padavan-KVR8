@@ -780,7 +780,7 @@ if (found_app_lucky()){
 	menuL2_link.push(lucky_array[1]);
 } else menuL2_link.push("");
 if (found_app_n2v6()){
-	menuL2_link.push(wxsend_array[1]);
+	menuL2_link.push(n2v6_array[1]);
 } else menuL2_link.push("");
 if (found_app_cloudflared()){
 	menuL2_link.push(cloudflared_array[1]);
