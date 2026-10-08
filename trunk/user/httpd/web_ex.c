@@ -2475,11 +2475,11 @@ static int cloudflared_status_hook(int eid, webs_t wp, int argc, char **argv)
 }
 #endif
 
-#if defined (APP_WXSEND)
-static int wxsend_status_hook(int eid, webs_t wp, int argc, char **argv)
+#if defined (APP_N2V6)
+static int n2v6_status_hook(int eid, webs_t wp, int argc, char **argv)
 {
-	int wxsend_status_code = pids("wxsend_script.sh");
-	websWrite(wp, "function wxsend_status() { return %d;}\n", wxsend_status_code);
+	int n2v6_status_code = pids("edge6");
+	websWrite(wp, "function n2v6_status() { return %d;}\n", n2v6_status_code);
 	return 0;
 }
 #endif
@@ -2838,10 +2838,10 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 #else
 	int found_app_cloudflared = 0;
 #endif
-#if defined(APP_WXSEND)
-	int found_app_wxsend = 1;
+#if defined(APP_N2V6)
+	int found_app_n2v6 = 1;
 #else
-	int found_app_wxsend = 0;
+	int found_app_n2v6 = 0;
 #endif
 /*#if defined(APP_NPC)
 	int found_app_npc = 1;
@@ -3086,7 +3086,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function found_app_hxcli() { return %d;}\n"
 		"function found_app_uuplugin() { return %d;}\n"
 		"function found_app_lucky() { return %d;}\n"
-		"function found_app_wxsend() { return %d;}\n"
+		"function found_app_n2v6() { return %d;}\n"
 		"function found_app_mentohust() { return %d;}\n",
 		found_utl_hdparm,
 		found_app_ovpn,
@@ -3136,7 +3136,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		found_app_hxcli,
 		found_app_uuplugin,
 		found_app_lucky,
-		found_app_wxsend,
+		found_app_n2v6,
 		found_app_mentohust
 	);
 
@@ -4125,10 +4125,10 @@ apply_cgi(const char *url, webs_t wp)
 #endif
 		return 0;
 	}
-	else if (!strcmp(value, " Restartwxsend "))
+	else if (!strcmp(value, " Restartn2v6 "))
 	{
-#if defined(APP_WXSEND)
-		system("/usr/bin/wxsend.sh restart &");
+#if defined(APP_N2V6)
+		system("/usr/bin/nv6.sh restart &");
 #endif
 		return 0;
 	}
@@ -5081,6 +5081,21 @@ static char hxcli_log_txt[] =
 
 #endif
 
+#if defined (APP_N2V6)
+static void
+do_n2v6_log_file(const char *url, FILE *stream)
+{
+	dump_file(stream, "/tmp/n2v6.log");
+	fputs("\r\n", stream);
+}
+
+static char n2v6_log_txt[] =
+"Content-Disposition: attachment;\r\n"
+"filename=n2v6.log"
+;
+
+#endif
+
 #if defined (APP_NTWON)
 static void
 do_ntwon_log_file(const char *url, FILE *stream)
@@ -5576,8 +5591,8 @@ struct ej_handler ej_handlers[] =
 #if defined (APP_ZEROTIER)
 	{ "zerotier_status", zerotier_status_hook},
 #endif
-#if defined (APP_WXSEND)
-	{ "wxsend_status", wxsend_status_hook},
+#if defined (APP_N2V6)
+	{ "n2v6_status", n2v6_status_hook},
 #endif
 #if defined (APP_DDNSTO)
 	{ "ddnsto_status", ddnsto_status_hook},
