@@ -638,10 +638,10 @@ void stop_tailscale(void);
 void start_tailscale(void);
 void restart_tailscale(void);
 #endif
-#if defined(APP_WXSEND)
-void stop_wxsend(void);
-void start_wxsend(void);
-void restart_wxsend(void);
+#if defined(APP_N2V6)
+void stop_n2v6(void);
+void start_n2v6(void);
+void restart_n2v6(void);
 #endif
 #if defined(APP_CLOUDFLARED)
 void stop_cloudflared(void);
