@@ -448,8 +448,8 @@ if (found_app_uuplugin()){
 if (found_app_lucky()){
 	tabtitle[22] = new Array("", "Lucky");
 }
-if (found_app_wxsend()){
-	tabtitle[23] = new Array("", "微信推送");
+if (found_app_n2v6()){
+	tabtitle[23] = new Array("", "NV6智能组网");
 }
 if (found_app_cloudflared()){
 	tabtitle[24] = new Array("", "CloudFlared");
@@ -564,9 +564,9 @@ if (found_app_lucky()){
 	lucky_array = new Array("","Advanced_lucky.asp");
 	tablink[22] = (lucky_array);
 }
-if (found_app_wxsend()){
-	wxsend_array = new Array("","Advanced_wxsend.asp");
-	tablink[23] = (wxsend_array);
+if (found_app_n2v6()){
+	n2v6_array = new Array("","Advanced_n2v6.asp");
+	tablink[23] = (n2v6_array);
 }
 if (found_app_cloudflared()){
 	cloudflared_array = new Array("","Advanced_cloudflared.asp");
@@ -678,8 +678,8 @@ if (found_app_lucky()){
 	menuL2_title.push("Lucky");
 } else menuL2_title.push("");
 
-if (found_app_wxsend()){
-	menuL2_title.push("微信推送");
+if (found_app_n2v6()){
+	menuL2_title.push("NV6智能组网");
 } else menuL2_title.push("");
 
 if (found_app_cloudflared()){
@@ -779,7 +779,7 @@ if (found_app_uuplugin()){
 if (found_app_lucky()){
 	menuL2_link.push(lucky_array[1]);
 } else menuL2_link.push("");
-if (found_app_wxsend()){
+if (found_app_n2v6()){
 	menuL2_link.push(wxsend_array[1]);
 } else menuL2_link.push("");
 if (found_app_cloudflared()){
@@ -1713,7 +1713,7 @@ var w_wyy = '<% nvram_get_x("", "w_wyy"); %>';
 var w_aldriver = '<% nvram_get_x("", "w_aldriver"); %>';
 var w_uuplugin = '<% nvram_get_x("", "w_uuplugin"); %>';
 var w_lucky = '<% nvram_get_x("", "w_lucky"); %>';
-var w_wxsend = '<% nvram_get_x("", "w_wxsend"); %>';
+var w_n2v6 = '<% nvram_get_x("", "w_n2v6"); %>';
 var w_cloudflared = '<% nvram_get_x("", "w_cloudflared"); %>';
 var w_ntwon = '<% nvram_get_x("", "w_ntwon"); %>';
 var w_hxcli = '<% nvram_get_x("", "w_hxcli"); %>';
@@ -1810,7 +1810,7 @@ if (w_lucky==0){
 	menuL2_link[23] = "";
 	menuL2_title[23] = "";
 }
-if (w_wxsend==0){
+if (w_n2v6==0){
 	menuL2_link[24] = "";
 	menuL2_title[24] = "";
 }
