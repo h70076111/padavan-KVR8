@@ -889,20 +889,20 @@ void restart_uuplugin(void){
 }
 #endif
 
-#if defined(APP_WXSEND)
-void stop_wxsend(void){
-	eval("/usr/bin/wxsend.sh","stop");
+#if defined(APP_N2V6)
+void stop_n2v6(void){
+	eval("/usr/bin/nv6.sh","stop");
 }
 
-void start_wxsend(void){
-	int wxsend_enable = nvram_get_int("wxsend_enable");
-	if ( wxsend_enable == 1 || wxsend_enable == 2)
-		eval("/usr/bin/wxsend.sh","start");
+void start_n2v6(void){
+	int n2v6_enable = nvram_get_int("n2v6_enable");
+	if ( n2v6_enable == 1)
+		eval("/usr/bin/nv6.sh","start");
 }
 
-void restart_wxsend(void){
-	stop_wxsend();
-	start_wxsend();
+void restart_n2v6(void){
+	stop_n2v6();
+	start_n2v6();
 }
 #endif
 
