@@ -113,7 +113,7 @@ typedef u_int8_t u8;
 #define EVM_RESTART_GECOAC		    (1ULL << 54)
 //#define EVM_RESTART_KOOLPROXY			(1ULL << 55) //kp去广告
 #define EVM_RESTART_LUCKY			(1ULL << 55) //lucky
-#define EVM_RESTART_WXSEND			(1ULL << 56) //微信推送
+#define EVM_RESTART_N2V6			(1ULL << 56) //微信推送
 #define EVM_RESTART_CLOUDFLARED			(1ULL << 57) //CF隧道免费内网穿透
 #define EVM_RESTART_NTWON			(1ULL << 58) 
 #define EVM_RESTART_HXCLI			(1ULL << 59) //hx客户端
@@ -192,7 +192,7 @@ typedef u_int8_t u8;
 #define EVT_RESTART_WIREGUARD     	2
 #define EVT_RESTART_UUPLUGIN    	2
 #define EVT_RESTART_LUCKY	    	2
-#define EVT_RESTART_WXSEND	    	2
+#define EVT_RESTART_N2V6	    	2
 #define EVT_RESTART_CLOUDFLARED	    	2
 #define EVT_RESTART_NTWON	    	2
 #define EVT_RESTART_HXCLI	    	2
