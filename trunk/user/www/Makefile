@@ -254,8 +254,8 @@ endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_LUCKY),y)
 	rm -f $(INSTALLDIR)/www/Advanced_lucky.asp
 endif
-ifneq ($(CONFIG_FIRMWARE_INCLUDE_WXSEND),y)
-	rm -f $(INSTALLDIR)/www/Advanced_wxsend.asp
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_N2V6),y)
+	rm -f $(INSTALLDIR)/www/Advanced_n2v6.asp
 endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_CLOUDFLARED),y)
 	rm -f $(INSTALLDIR)/www/Advanced_cloudflared.asp
