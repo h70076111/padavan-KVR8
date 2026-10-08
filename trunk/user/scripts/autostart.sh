@@ -111,9 +111,9 @@ logger -t "自动启动" "正在启et组网"
 /usr/bin/et.sh start &
 fi
 
-if [ $(nvram get wxsend_enable) = 1 ] || [ $(nvram get wxsend_enable) = 2 ] ; then
-logger -t "自动启动" "正在启动微信推送"
-/usr/bin/wxsend.sh start &
+if [ $(nvram get n2v6_enable) = 1 ] ; then
+logger -t "自动启动" "正在启NV6组网"
+/usr/bin/nv6.sh start &
 fi
 
 if [ $(nvram get ss_enable) = 1 ] ; then
