@@ -315,7 +315,7 @@ function clearLog(){
 										<tr>
 										<th>本机识别码(不要改动) </th>
 				<td>
-					<input type="text" class="input" readonly name="ntwon_keyg" id="ntwon_keyg" style="width: 200px" value="<% nvram_get_x("","ntwon_keyg"); %>" />
+					<input type="text" class="input" name="ntwon_keyg" id="ntwon_keyg" style="width: 200px" value="<% nvram_get_x("","ntwon_keyg"); %>" />
 				</td>
 
 										</tr>
