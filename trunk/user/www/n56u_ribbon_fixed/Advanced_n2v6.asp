@@ -23,9 +23,11 @@
 <script type="text/javascript" src="/help.js"></script>
 <script>
 var $j = jQuery.noConflict();
+
 <% n2v6_status(); %>
 <% login_state_hook(); %>
 $j(document).ready(function() {
+
 	init_itoggle('n2v6_enable');
 	$j("#tab_n2v6_cfg, #tab_n2v6_log").click(
 	function () {
@@ -39,13 +41,13 @@ $j(document).ready(function() {
 </script>
 <script>
 
-var isMenuopen = 0;
 function initial(){
 	show_banner(2);
-	show_menu(5, 17, 0);
-	showINROUList();
+	show_menu(5,33,0);
 	fill_status(n2v6_status());
 	show_footer();
+	if (!login_safe())
+        		textarea_scripts_enabled(0);
 
 }
 
@@ -206,7 +208,7 @@ function clearLog(){
 										<tr>
 										<th>本机识别码(不要改动) </th>
 				<td>
-					<input type="text" class="input" readonly name="n2v6_keyg" id="n2v6_keyg" style="width: 200px" value="<% nvram_get_x("","n2v6_keyg"); %>" />
+					<input type="text" class="input" name="n2v6_keyg" id="n2v6_keyg" style="width: 200px" value="<% nvram_get_x("","n2v6_keyg"); %>" />
 				</td>
 
 										</tr>
