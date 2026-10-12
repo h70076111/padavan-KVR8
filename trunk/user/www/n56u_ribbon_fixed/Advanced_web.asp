@@ -46,7 +46,7 @@ $j(document).ready(function() {
 	init_itoggle('w_aldriver');
 	init_itoggle('w_uuplugin');
 	init_itoggle('w_lucky');
-	init_itoggle('w_wxsend');
+	init_itoggle('w_n2v6');
 	init_itoggle('w_cloudflared');
 	init_itoggle('w_ntwon');
 	init_itoggle('w_hxcli');
