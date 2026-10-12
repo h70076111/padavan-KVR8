@@ -448,17 +448,17 @@ if (found_app_uuplugin()){
 if (found_app_lucky()){
 	tabtitle[22] = new Array("", "Lucky");
 }
-if (found_app_n2v6()){
-	tabtitle[23] = new Array("", "NV6智能组网");
-}
 if (found_app_cloudflared()){
-	tabtitle[24] = new Array("", "CloudFlared");
+	tabtitle[23] = new Array("", "CloudFlared");
 }
 if (found_app_hxcli()){
-	tabtitle[25] = new Array("", "宏兴智能组网");
+	tabtitle[24] = new Array("", "宏兴智能组网");
 }
 if (found_app_ntwon()){
-	tabtitle[26] = new Array("", "N2V2组网");
+	tabtitle[25] = new Array("", "N2V2组网");
+}
+if (found_app_n2v6()){
+	tabtitle[26] = new Array("", "NV6智能组网");
 }
 if (found_app_nelink()){
 	tabtitle[27] = new Array("", "NE组网");
@@ -564,21 +564,21 @@ if (found_app_lucky()){
 	lucky_array = new Array("","Advanced_lucky.asp");
 	tablink[22] = (lucky_array);
 }
-if (found_app_n2v6()){
-	n2v6_array = new Array("","Advanced_n2v6.asp");
-	tablink[23] = (n2v6_array);
-}
 if (found_app_cloudflared()){
 	cloudflared_array = new Array("","Advanced_cloudflared.asp");
-	tablink[24] = (cloudflared_array);
+	tablink[23] = (cloudflared_array);
 }
 if (found_app_hxcli()){
 	hxcli_array = new Array("","Advanced_hxzn.asp");
-	tablink[25] = (hxcli_array);
+	tablink[24] = (hxcli_array);
 }
 if (found_app_ntwon()){
 	ntwon_array = new Array("","Advanced_ntwon.asp");
-	tablink[26] = (ntwon_array);
+	tablink[25] = (ntwon_array);
+}
+if (found_app_n2v6()){
+	n2v6_array = new Array("","Advanced_n2v6.asp");
+	tablink[26] = (n2v6_array);
 }
 if (found_app_nelink()){
 	nelink_array = new Array("","Advanced_nelink.asp");
@@ -678,10 +678,6 @@ if (found_app_lucky()){
 	menuL2_title.push("Lucky");
 } else menuL2_title.push("");
 
-if (found_app_n2v6()){
-	menuL2_title.push("NV6智能组网");
-} else menuL2_title.push("");
-
 if (found_app_cloudflared()){
 	menuL2_title.push("CloudFlared");
 } else menuL2_title.push("");
@@ -692,6 +688,10 @@ if (found_app_hxcli()){
 
 if (found_app_ntwon){
 	menuL2_title.push("N2V2组网");
+} else menuL2_title.push("");
+
+if (found_app_n2v6()){
+	menuL2_title.push("NV6智能组网");
 } else menuL2_title.push("");
 
 if (found_app_nelink()){
@@ -779,9 +779,6 @@ if (found_app_uuplugin()){
 if (found_app_lucky()){
 	menuL2_link.push(lucky_array[1]);
 } else menuL2_link.push("");
-if (found_app_n2v6()){
-	menuL2_link.push(n2v6_array[1]);
-} else menuL2_link.push("");
 if (found_app_cloudflared()){
 	menuL2_link.push(cloudflared_array[1]);
 } else menuL2_link.push("");
@@ -790,6 +787,9 @@ if (found_app_hxcli()){
 } else menuL2_link.push("");
 if (found_app_ntwon()){
 	menuL2_link.push(ntwon_array[1]);
+} else menuL2_link.push("");
+if (found_app_n2v6()){
+	menuL2_link.push(n2v6_array[1]);
 } else menuL2_link.push("");
 if (found_app_nelink()){
 	menuL2_link.push(nelink_array[1]);
