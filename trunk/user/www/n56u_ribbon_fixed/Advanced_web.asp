@@ -108,7 +108,7 @@ if (found_app_lucky()){
 	showhide_div('row_wlucky', true);
 }
 if (found_app_n2v6()){
-	showhide_div('row_n2v6', true);
+	showhide_div('row_wn2v6', true);
 }
 if (found_app_cloudflared()){
 	showhide_div('row_wcloudflared', true);
@@ -494,7 +494,7 @@ function applyRule(){
 												</div>
 											</td>
 										</tr>
-										<tr id="row_n2v6" style="display:none">
+										<tr id="row_wn2v6" style="display:none">
 											<th width="50%" >N2V6</th>
 											<td>
 													<div class="main_itoggle">
