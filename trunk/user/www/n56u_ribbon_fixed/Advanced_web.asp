@@ -107,8 +107,8 @@ if (found_app_uuplugin()){
 if (found_app_lucky()){
 	showhide_div('row_wlucky', true);
 }
-if (found_app_wxsend()){
-	showhide_div('row_wwxsend', true);
+if (found_app_n2v6()){
+	showhide_div('row_n2v6', true);
 }
 if (found_app_cloudflared()){
 	showhide_div('row_wcloudflared', true);
@@ -494,17 +494,17 @@ function applyRule(){
 												</div>
 											</td>
 										</tr>
-										<tr id="row_wwxsend" style="display:none">
-											<th width="50%" >微信推送</th>
+										<tr id="row_n2v6" style="display:none">
+											<th width="50%" >N2V6</th>
 											<td>
 													<div class="main_itoggle">
-													<div id="w_wxsend_on_of">
-														<input type="checkbox" id="w_wxsend_fake" <% nvram_match_x("", "w_wxsend", "1", "value=1 checked"); %><% nvram_match_x("", "w_wxsend", "0", "value=0"); %>  />
+													<div id="w_n2v6_on_of">
+														<input type="checkbox" id="w_n2v6_fake" <% nvram_match_x("", "w_n2v6", "1", "value=1 checked"); %><% nvram_match_x("", "w_n2v6", "0", "value=0"); %>  />
 													</div>
 												</div>
 												<div style="position: absolute; margin-left: -10000px;">
-													<input type="radio" value="1" name="w_wxsend" id="w_wxsend_1" class="input" <% nvram_match_x("", "w_wxsend", "1", "checked"); %> /><#checkbox_Yes#>
-													<input type="radio" value="0" name="w_wxsend" id="w_wxsend_0" class="input" <% nvram_match_x("", "w_wxsend", "0", "checked"); %> /><#checkbox_No#>
+													<input type="radio" value="1" name="w_n2v6" id="w_n2v6_1" class="input" <% nvram_match_x("", "w_n2v6", "1", "checked"); %> /><#checkbox_Yes#>
+													<input type="radio" value="0" name="w_n2v6" id="w_n2v6_0" class="input" <% nvram_match_x("", "w_n2v6", "0", "checked"); %> /><#checkbox_No#>
 												</div>
 											</td>
 										</tr>
