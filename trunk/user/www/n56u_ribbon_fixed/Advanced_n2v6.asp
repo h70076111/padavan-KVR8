@@ -220,9 +220,23 @@ function clearLog(){
 				</td>
 
 										<tr>
-										<th>对端面网段,虚拟ip（格式 192.168.x.0/24,10.0.0.x）</th>
+										<th>对端面网段1,虚拟ip1（格式 192.168.x.0/24,10.0.0.x）</th>
 				<td>
-					<input type="text" class="input" name="n2v6_inlan1" id="n2v6_inlan1" style="width: 400px" value="<% nvram_get_x("","n2v6_inlan1"); %>" />
+					<input type="text" class="input" name="n2v6_inlan1" id="n2v6_inlan1" style="width: 300px" value="<% nvram_get_x("","n2v6_inlan1"); %>" />
+				</td>
+
+										</tr>
+										<tr>
+										<th>对端面网段2,虚拟ip2（同上，如果不用则为空白）</th>
+				<td>
+					<input type="text" class="input" name="n2v6_inlan2" id="n2v6_inlan2" style="width: 300px" value="<% nvram_get_x("","n2v6_inlan2"); %>" />
+				</td>
+
+										</tr>
+										<tr>
+										<th>对端面网段3,虚拟ip3（同上，如果不用则为空白）</th>
+				<td>
+					<input type="text" class="input" name="n2v6_inlan3" id="n2v6_inlan3" style="width: 400px" value="<% nvram_get_x("","n2v6_inlan3"); %>" />
 				</td>
 
 										</tr>
