@@ -524,7 +524,7 @@ function applyRule(){
 										</tr>
 
 										<tr id="row_whxcli" style="display:none">
-											<th width="50%" >宏兴智能组网</th>
+											<th width="50%" >SD-WAN智能组网</th>
 											<td>
 													<div class="main_itoggle">
 													<div id="w_hxcli_on_of">
