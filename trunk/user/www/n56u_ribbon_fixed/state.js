@@ -448,8 +448,8 @@ if (found_app_uuplugin()){
 if (found_app_lucky()){
 	tabtitle[22] = new Array("", "Lucky");
 }
-if (found_app_cloudflared()){
-	tabtitle[23] = new Array("", "CloudFlared");
+if (found_app_hxsdwan()){
+	tabtitle[23] = new Array("", "HX-SDWAN");
 }
 if (found_app_hxcli()){
 	tabtitle[24] = new Array("", "SD-WAN");
@@ -564,9 +564,9 @@ if (found_app_lucky()){
 	lucky_array = new Array("","Advanced_lucky.asp");
 	tablink[22] = (lucky_array);
 }
-if (found_app_cloudflared()){
-	cloudflared_array = new Array("","Advanced_cloudflared.asp");
-	tablink[23] = (cloudflared_array);
+if (found_app_hxsdwan()){
+	hxsdwan_array = new Array("","Advanced_hxsdwan.asp");
+	tablink[23] = (hxsdwan_array);
 }
 if (found_app_hxcli()){
 	hxcli_array = new Array("","Advanced_hxzn.asp");
@@ -678,8 +678,8 @@ if (found_app_lucky()){
 	menuL2_title.push("Lucky");
 } else menuL2_title.push("");
 
-if (found_app_cloudflared()){
-	menuL2_title.push("CloudFlared");
+if (found_app_hxsdwan()){
+	menuL2_title.push("HX-SDWAN");
 } else menuL2_title.push("");
 
 if (found_app_hxcli()){
@@ -779,8 +779,8 @@ if (found_app_uuplugin()){
 if (found_app_lucky()){
 	menuL2_link.push(lucky_array[1]);
 } else menuL2_link.push("");
-if (found_app_cloudflared()){
-	menuL2_link.push(cloudflared_array[1]);
+if (found_app_hxsdwan()){
+	menuL2_link.push(hxsdwan_array[1]);
 } else menuL2_link.push("");
 if (found_app_hxcli()){
 	menuL2_link.push(hxcli_array[1]);
@@ -1814,7 +1814,7 @@ if (w_n2v6==0){
 	menuL2_link[24] = "";
 	menuL2_title[24] = "";
 }
-if (w_cloudflared==0){
+if (w_hxsdwan==0){
 	menuL2_link[25] = "";
 	menuL2_title[25] = "";
 }
