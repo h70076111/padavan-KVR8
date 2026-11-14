@@ -618,6 +618,11 @@ void stop_hxcli(void);
 void start_hxcli(void);
 void restart_hxcli(void);
 #endif
+#if defined(APP_HXSDWAN)
+void stop_hxwan(void);
+void start_hxwan(void);
+void restart_hxwan(void);
+#endif
 /*#if defined(APP_NPC)
 void stop_npc(void);
 void start_npc(void);
