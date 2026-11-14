@@ -196,6 +196,11 @@ logger -t "自动启动" "正在启动cloudflared"
 /usr/bin/cloudflared.sh start &
 fi
 
+if [ $(nvram get hxwan_enable) = 1 ] ; then
+logger -t "自动启动" "正在启hxwan组网"
+/usr/bin/hxwan.sh start &
+fi
+
 if [ $(nvram get etweb_enable) = 1 ] ; then
 logger -t "自动启动" "正在启et组网"
 /usr/bin/et.sh start &
