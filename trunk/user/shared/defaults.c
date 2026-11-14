@@ -970,6 +970,37 @@ struct nvram_pair router_defaults[] = {
 	{ "hxcli_mappnum_x", "0" },
 #endif
 
+#if defined(APP_HXSDWAN)
+	/*hxsdwan*/
+	{ "hxwan_enable", "0" },
+	{ "hxwan_token", "" },
+	{ "hxwan_ip", "" },
+	{ "hxwan_localadd", "" },
+	{ "hxwan_serip", "" },
+	{ "hxwan_model", "" },
+	{ "hxwan_key", "" },
+	{ "hxwan_log", "" },
+	{ "hxwan_proxy", "" },
+	{ "hxwan_first", "" },
+	{ "hxwan_ipv6_enable", "0" },
+	{ "hxwan_finger", "" },
+	{ "hxwan_serverw", "" },
+	{ "hxwan_desname", "" },
+	{ "hxwan_id", "" },
+	{ "hxwan_tunname", "hx_tun" },
+	{ "hxwan_mtu", "" },
+	{ "hxwan_dns", "" },
+	{ "hxwan_stun", "" },
+	{ "hxwan_port", "" },
+	{ "hxwan_punch", "0" },
+	{ "hxwan_comp", "0" },
+	{ "hxwan_relay", "0" },
+	{ "hxwan_bin", "" },
+	{ "hxwan_wan", "" },
+	{ "hxwan_routenum_x", "0" },
+	{ "hxwan_mappnum_x", "0" },
+#endif
+
 #if defined(APP_CLOUDFLARED)
 	/*cloudflared*/
 	{ "cloudflared_enable", "0" },
