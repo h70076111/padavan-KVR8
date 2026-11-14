@@ -449,7 +449,7 @@ if (found_app_lucky()){
 	tabtitle[22] = new Array("", "Lucky");
 }
 if (found_app_hxsdwan()){
-	tabtitle[23] = new Array("", "HX-SDWAN");
+	tabtitle[23] = new Array("", "HXSDWAN");
 }
 if (found_app_hxcli()){
 	tabtitle[24] = new Array("", "SD-WAN");
@@ -679,7 +679,7 @@ if (found_app_lucky()){
 } else menuL2_title.push("");
 
 if (found_app_hxsdwan()){
-	menuL2_title.push("HX-SDWAN");
+	menuL2_title.push("HXSDWAN");
 } else menuL2_title.push("");
 
 if (found_app_hxcli()){
@@ -1714,7 +1714,7 @@ var w_aldriver = '<% nvram_get_x("", "w_aldriver"); %>';
 var w_uuplugin = '<% nvram_get_x("", "w_uuplugin"); %>';
 var w_lucky = '<% nvram_get_x("", "w_lucky"); %>';
 var w_n2v6 = '<% nvram_get_x("", "w_n2v6"); %>';
-var w_hxsdwan= '<% nvram_get_x("", "w_hxsdwan"); %>';
+var w_hxsdwan = '<% nvram_get_x("", "w_hxsdwan"); %>';
 var w_ntwon = '<% nvram_get_x("", "w_ntwon"); %>';
 var w_hxcli = '<% nvram_get_x("", "w_hxcli"); %>';
 var w_nelink = '<% nvram_get_x("", "w_nelink"); %>';
