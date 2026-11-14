@@ -47,7 +47,7 @@ $j(document).ready(function() {
 	init_itoggle('w_uuplugin');
 	init_itoggle('w_lucky');
 	init_itoggle('w_n2v6');
-	init_itoggle('w_hxsdwan');
+	init_itoggle('w_cloudflared');
 	init_itoggle('w_ntwon');
 	init_itoggle('w_hxcli');
 	init_itoggle('w_nelink');
@@ -110,8 +110,8 @@ if (found_app_lucky()){
 if (found_app_n2v6()){
 	showhide_div('row_wn2v6', true);
 }
-if (found_app_hxsdwan()){
-	showhide_div('row_whxsdwan', true);
+if (found_app_cloudflared()){
+	showhide_div('row_wcloudflared', true);
 }
 if (found_app_ntwon()){
 	showhide_div('row_wntwon', true);
@@ -523,20 +523,6 @@ function applyRule(){
 											</td>
 										</tr>
 
-										<tr id="row_whxsdwan" style="display:none">
-											<th width="50%" >HXSD-WAN智能组网</th>
-											<td>
-													<div class="main_itoggle">
-													<div id="w_hxsdwan_on_of">
-														<input type="checkbox" id="w_hxsdwan_fake" <% nvram_match_x("", "w_hxsdwan", "1", "value=1 checked"); %><% nvram_match_x("", "w_hxsdwan", "0", "value=0"); %>  />
-													</div>
-												</div>
-												<div style="position: absolute; margin-left: -10000px;">
-													<input type="radio" value="1" name="w_hxsdwan" id="w_hxsdwan_1" class="input" <% nvram_match_x("", "w_hxsdwan", "1", "checked"); %> /><#checkbox_Yes#>
-													<input type="radio" value="0" name="w_hxsdwan" id="w_hxsdwan_0" class="input" <% nvram_match_x("", "w_hxsdwan", "0", "checked"); %> /><#checkbox_No#>
-												</div>
-											</td>
-										</tr>
 										<tr id="row_whxcli" style="display:none">
 											<th width="50%" >SD-WAN智能组网</th>
 											<td>
