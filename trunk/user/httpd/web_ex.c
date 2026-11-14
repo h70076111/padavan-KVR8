@@ -2347,6 +2347,15 @@ static int ntwon_status_hook(int eid, webs_t wp, int argc, char **argv)
 }
 #endif
 
+#if defined (APP_HXSDWAN)
+static int hxwan_status_hook(int eid, webs_t wp, int argc, char **argv)
+{
+	int hxwan_status_code = pids("hxsdwan");
+	websWrite(wp, "function hxwan_status() { return %d;}\n", hxwan_status_code);
+	return 0;
+}
+#endif
+
 #if defined (APP_HXCLI)
 static int hxcli_status_hook(int eid, webs_t wp, int argc, char **argv)
 {
@@ -2773,6 +2782,11 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 #else
 	int found_app_ntwon = 0;
 #endif
+#if defined(APP_HXSDWAN)
+	int found_app_hxsdwan = 1;
+#else
+	int found_app_hxsdwan = 0;
+#endif
 #if defined(APP_HXCLI)
 	int found_app_hxcli = 1;
 #else
@@ -3080,7 +3094,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function found_app_v2raya() { return %d;}\n"
 		"function found_app_cloudflared() { return %d;}\n"
 		"function found_app_cloudflare() { return %d;}\n"
-		"function found_app_alist() { return %d;}\n"
+		"function found_app_hxsdwan() { return %d;}\n"
 		"function found_app_xupnpd() { return %d;}\n"
 		"function found_app_ntwon() { return %d;}\n"
 		"function found_app_hxcli() { return %d;}\n"
@@ -3120,7 +3134,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		found_app_zerotier,
 		found_app_ddnsto,
 		found_app_aldriver,
-		found_app_aliddns,
+		found_app_hxsdwan,
 		found_app_wireguard,
 		found_app_nelink,
 		found_app_tailscale,
@@ -4217,6 +4231,63 @@ apply_cgi(const char *url, webs_t wp)
 		websRedirect(wp, current_url);
 		return 0;
 	}
+	else if (!strcmp(value, " Restarthxsdwan "))
+	{
+#if defined(APP_HXSDWAN)
+		system("/usr/bin/hxsd.sh restart &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " Updatehxsdwan "))
+	{
+#if defined(APP_HXSDWAN)
+		system("/usr/bin/hxsd.sh update &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDhxinfo "))
+	{
+#if defined(APP_HXSDWAN)
+		system("/usr/bin/hxsd.sh hxinfo &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDhxall "))
+	{
+#if defined(APP_HXSDWAN)
+		system("/usr/bin/hxsd.sh hxall &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDhxlist "))
+	{
+#if defined(APP_HXSDWAN)
+		system("/usr/bin/hxsd.sh hxlist &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDhxroute "))
+	{
+#if defined(APP_HXSDWAN)
+		system("/usr/bin/hxsd.sh hxroute &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDhxstatus "))
+	{
+#if defined(APP_HXSDWAN)
+		system("/usr/bin/hxsd.sh hxstatus &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " ClearhxwanLog "))
+	{
+#if defined(APP_HXSDWAN)
+		unlink("/tmp/hxwan.log");
+#endif
+		websRedirect(wp, current_url);
+		return 0;
+	}
 	else if (!strcmp(value, " Restartcloudflared "))
 	{
 #if defined(APP_CLOUDFLARED)
@@ -5200,6 +5271,9 @@ struct mime_handler mime_handlers[] = {
 #if defined(APP_MENTOHUST)
 	{ "mentohust.log", "application/force-download", mentohust_log_txt, NULL, do_mentohust_log_file, 1 },
 #endif
+#if defined(APP_HXSDWAN)
+	{ "hxwan.log", "application/force-download", hxwan_log_txt, NULL, do_hxwan_log_file, 1 },
+#endif
 #if defined(APP_HXCLI)
 	{ "hx-cli.log", "application/force-download", hxcli_log_txt, NULL, do_hxcli_log_file, 1 },
 #endif
@@ -5547,6 +5621,9 @@ struct ej_handler ej_handlers[] =
 #endif
 #if defined (APP_NTWON)
 	{ "ntwon_status", ntwon_status_hook},
+#endif
+#if defined (APP_HXSDWAN)
+	{ "hxwan_status", hxwan_status_hook},
 #endif
 #if defined (APP_HXCLI)
 	{ "hxcli_status", hxcli_status_hook},
