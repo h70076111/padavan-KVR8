@@ -108,7 +108,7 @@ typedef u_int8_t u8;
 #define EVM_RESTART_ZEROTIER			(1ULL << 51) //zeriter异地组网
 //#define EVM_RESTART_DDNSTO	    		(1ULL << 52) //ddnsto内网穿透
 #define EVM_RESTART_WIREGUARD			(1ULL << 52) //wg异地组网
-#define EVM_RESTART_ALDRIVER			(1ULL << 53) //阿里云盘挂载
+#define EVM_RESTART_HXSDWAN			(1ULL << 53) //异地组网
 //#define EVM_RESTART_VIRTUALHERE		(1ULL << 53) //virtualhere
 #define EVM_RESTART_GECOAC		    (1ULL << 54)
 //#define EVM_RESTART_KOOLPROXY			(1ULL << 55) //kp去广告
@@ -188,7 +188,7 @@ typedef u_int8_t u8;
 #define EVT_RESTART_ZEROTIER     	2
 #define EVT_RESTART_NVPPROXY     	2
 #define EVT_RESTART_DDNSTO      	2
-#define EVT_RESTART_ALDRIVER     	2
+#define EVT_RESTART_HXSDWAN     	2
 #define EVT_RESTART_WIREGUARD     	2
 #define EVT_RESTART_UUPLUGIN    	2
 #define EVT_RESTART_LUCKY	    	2
