@@ -449,10 +449,10 @@ if (found_app_lucky()){
 	tabtitle[22] = new Array("", "Lucky");
 }
 if (found_app_cloudflared()){
-	tabtitle[23] = new Array("", "cloudflared");
+	tabtitle[23] = new Array("", "CloudFlared");
 }
 if (found_app_hxcli()){
-	tabtitle[24] = new Array("", "SD-WAN");
+	tabtitle[24] = new Array("", "宏兴智能组网");
 }
 if (found_app_ntwon()){
 	tabtitle[25] = new Array("", "N2V2组网");
@@ -679,11 +679,11 @@ if (found_app_lucky()){
 } else menuL2_title.push("");
 
 if (found_app_cloudflared()){
-	menuL2_title.push("cloudflared");
+	menuL2_title.push("CloudFlared");
 } else menuL2_title.push("");
 
 if (found_app_hxcli()){
-	menuL2_title.push("SD-WAN");
+	menuL2_title.push("宏兴智能组网");
 } else menuL2_title.push("");
 
 if (found_app_ntwon){
@@ -1714,7 +1714,7 @@ var w_aldriver = '<% nvram_get_x("", "w_aldriver"); %>';
 var w_uuplugin = '<% nvram_get_x("", "w_uuplugin"); %>';
 var w_lucky = '<% nvram_get_x("", "w_lucky"); %>';
 var w_n2v6 = '<% nvram_get_x("", "w_n2v6"); %>';
-var w_hxsdwan = '<% nvram_get_x("", "w_hxsdwan"); %>';
+var w_cloudflared = '<% nvram_get_x("", "w_cloudflared"); %>';
 var w_ntwon = '<% nvram_get_x("", "w_ntwon"); %>';
 var w_hxcli = '<% nvram_get_x("", "w_hxcli"); %>';
 var w_nelink = '<% nvram_get_x("", "w_nelink"); %>';
@@ -1814,7 +1814,7 @@ if (w_n2v6==0){
 	menuL2_link[24] = "";
 	menuL2_title[24] = "";
 }
-if (w_hxsdwan==0){
+if (w_cloudflared==0){
 	menuL2_link[25] = "";
 	menuL2_title[25] = "";
 }
