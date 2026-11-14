@@ -1057,7 +1057,7 @@
 			{"hxwan_ip", "", NULL, EVM_RESTART_HXSDWAN},
 			{"hxwan_localadd", "", NULL, EVM_RESTART_HXSDWAN},
 			{"hxwan_serip", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_model", "", NULL, EVM_RESTART_HHXSDWAN},
+			{"hxwan_model", "", NULL, EVM_RESTART_HXSDWAN},
 			{"hxwan_key", "", NULL, EVM_RESTART_HXSDWAN},
 			{"hxwan_log", "", NULL, EVM_RESTART_HXSDWAN},
 			{"hxwan_proxy", "", NULL, EVM_RESTART_HXSDWAN},
