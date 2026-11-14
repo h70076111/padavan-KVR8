@@ -1828,6 +1828,9 @@
 #if defined(APP_NTWON)
 		{"NTWON",		variables_NTWON},
 #endif
+#if defined(APP_HXSDWAN)
+		{"HXSDWAN",		variables_HXSDWAN},
+#endif
 #if defined(APP_HXCLI)
 		{"HXCLI",		variables_HXCLI},
 #endif
