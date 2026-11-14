@@ -5150,7 +5150,7 @@ static char hxwan_log_txt[] =
 "filename=hxwan.log"
 ;
 
-#endi
+#endif
 
 #if defined (APP_HXCLI)
 static void
