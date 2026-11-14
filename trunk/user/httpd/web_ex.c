@@ -5137,6 +5137,21 @@ static char mentohust_log_txt[] =
 
 #endif
 
+#if defined (APP_HXSDWAN)
+static void
+do_hxwan_log_file(const char *url, FILE *stream)
+{
+	dump_file(stream, "/tmp/hxwan.log");
+	fputs("\r\n", stream);
+}
+
+static char hxwan_log_txt[] =
+"Content-Disposition: attachment;\r\n"
+"filename=hxwan.log"
+;
+
+#endi
+
 #if defined (APP_HXCLI)
 static void
 do_hxcli_log_file(const char *url, FILE *stream)
