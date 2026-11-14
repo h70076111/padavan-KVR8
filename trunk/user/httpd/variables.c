@@ -1628,7 +1628,7 @@
 			{"w_uuplugin", "", NULL, FALSE},
 			{"w_lucky", "", NULL, FALSE},
 			{"w_n2v6", "", NULL, FALSE},
-			{"w_cloudflared", "", NULL, FALSE},
+			{"w_hxsdwan", "", NULL, FALSE},
 			{"w_ntwon", "", NULL, FALSE},
 			{"w_hxcli", "", NULL, FALSE},
 			{"w_nelink", "", NULL, FALSE},
