@@ -257,8 +257,8 @@ endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_N2V6),y)
 	rm -f $(INSTALLDIR)/www/Advanced_n2v6.asp
 endif
-ifneq ($(CONFIG_FIRMWARE_INCLUDE_HXSDWAN),y)
-	rm -f $(INSTALLDIR)/www/Advanced_hxsdwan.asp
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_CLOUDFLARER),y)
+	rm -f $(INSTALLDIR)/www/Advanced_cloudflared.asp
 endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_NTWON),y)
 	rm -f $(INSTALLDIR)/www/Advanced_ntwon.asp
