@@ -2347,15 +2347,6 @@ static int ntwon_status_hook(int eid, webs_t wp, int argc, char **argv)
 }
 #endif
 
-#if defined (APP_HXSDWAN)
-static int hxwan_status_hook(int eid, webs_t wp, int argc, char **argv)
-{
-	int hxwan_status_code = pids("hxsdwan");
-	websWrite(wp, "function hxwan_status() { return %d;}\n", hxwan_status_code);
-	return 0;
-}
-#endif
-
 #if defined (APP_HXCLI)
 static int hxcli_status_hook(int eid, webs_t wp, int argc, char **argv)
 {
