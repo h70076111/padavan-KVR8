@@ -1050,40 +1050,6 @@
 	};
 #endif
 
-#if defined(APP_HXSDWAN)
-	struct variable variables_HXSDWAN[] = {
-			{"hxwan_enable", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_token", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_ip", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_localadd", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_serip", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_model", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_key", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_log", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_proxy", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_first", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_ipv6_enable", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_finger", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_serverw", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_desname", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_id", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_tunname", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_mtu", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_dns", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_stun", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_port", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_punch", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_comp", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_relay", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_wan", "", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_bin", "", NULL, EVM_RESTART_HXSDWAN},
-			{"scripts.hxwan.conf", "File", NULL, EVM_RESTART_HXSDWAN},
-			{"hxwan_routenum_x", "", NULL, EVM_RESTART_HXSDWAN},
-			{"HXSDWANroute", "Group", ARGV((char*)variables_HXSDWAN_HXSDWANroute, "8", "55", "hxwan_routenum_x"), EVM_RESTART_HXSDWAN},
-			{0,0,0,0}
-	};
-#endif
-
 #if defined(APP_NELINK)
 	struct variable variables_NELINK[] = {
 			{"nelink_enable", "", NULL, EVM_RESTART_NELINK},
@@ -1828,9 +1794,6 @@
 #if defined(APP_NTWON)
 		{"NTWON",		variables_NTWON},
 #endif
-#if defined(APP_HXSDWAN)
-		{"HXSDWAN",		variables_HXSDWAN},
-#endif
 #if defined(APP_HXCLI)
 		{"HXCLI",		variables_HXCLI},
 #endif
@@ -2016,9 +1979,6 @@
 #endif
 #if defined(APP_NTWON)
 		{EVM_RESTART_NTWON,		EVT_RESTART_NTWON,		RCN_RESTART_NTWON,	0},
-#endif
-#if defined(APP_HXSDWAN)
-		{EVM_RESTART_HXSDWAN,		EVT_RESTART_HXSDWAN,		RCN_RESTART_HXSDWAN,	0},
 #endif
 #if defined(APP_HXCLI)
 		{EVM_RESTART_HXCLI,		EVT_RESTART_HXCLI,		RCN_RESTART_HXCLI,	0},
