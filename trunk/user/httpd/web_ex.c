@@ -2773,11 +2773,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 #else
 	int found_app_ntwon = 0;
 #endif
-#if defined(APP_HXSDWAN)
-	int found_app_hxsdwan = 1;
-#else
-	int found_app_hxsdwan = 0;
-#endif
 #if defined(APP_HXCLI)
 	int found_app_hxcli = 1;
 #else
@@ -4228,56 +4223,6 @@ apply_cgi(const char *url, webs_t wp)
 #endif
 		return 0;
 	}
-	else if (!strcmp(value, " Updatehxsdwan "))
-	{
-#if defined(APP_HXSDWAN)
-		system("/usr/bin/hxsd.sh update &");
-#endif
-		return 0;
-	}
-	else if (!strcmp(value, " CMDhxinfo "))
-	{
-#if defined(APP_HXSDWAN)
-		system("/usr/bin/hxsd.sh hxinfo &");
-#endif
-		return 0;
-	}
-	else if (!strcmp(value, " CMDhxall "))
-	{
-#if defined(APP_HXSDWAN)
-		system("/usr/bin/hxsd.sh hxall &");
-#endif
-		return 0;
-	}
-	else if (!strcmp(value, " CMDhxlist "))
-	{
-#if defined(APP_HXSDWAN)
-		system("/usr/bin/hxsd.sh hxlist &");
-#endif
-		return 0;
-	}
-	else if (!strcmp(value, " CMDhxroute "))
-	{
-#if defined(APP_HXSDWAN)
-		system("/usr/bin/hxsd.sh hxroute &");
-#endif
-		return 0;
-	}
-	else if (!strcmp(value, " CMDhxstatus "))
-	{
-#if defined(APP_HXSDWAN)
-		system("/usr/bin/hxsd.sh hxstatus &");
-#endif
-		return 0;
-	}
-	else if (!strcmp(value, " ClearhxwanLog "))
-	{
-#if defined(APP_HXSDWAN)
-		unlink("/tmp/hxwan.log");
-#endif
-		websRedirect(wp, current_url);
-		return 0;
-	}
 	else if (!strcmp(value, " Restartcloudflared "))
 	{
 #if defined(APP_CLOUDFLARED)
@@ -5127,21 +5072,6 @@ static char mentohust_log_txt[] =
 
 #endif
 
-#if defined (APP_HXSDWAN)
-static void
-do_hxwan_log_file(const char *url, FILE *stream)
-{
-	dump_file(stream, "/tmp/hxwan.log");
-	fputs("\r\n", stream);
-}
-
-static char hxwan_log_txt[] =
-"Content-Disposition: attachment;\r\n"
-"filename=hxwan.log"
-;
-
-#endif
-
 #if defined (APP_HXCLI)
 static void
 do_hxcli_log_file(const char *url, FILE *stream)
@@ -5275,9 +5205,6 @@ struct mime_handler mime_handlers[] = {
 #endif
 #if defined(APP_MENTOHUST)
 	{ "mentohust.log", "application/force-download", mentohust_log_txt, NULL, do_mentohust_log_file, 1 },
-#endif
-#if defined(APP_HXSDWAN)
-	{ "hxwan.log", "application/force-download", hxwan_log_txt, NULL, do_hxwan_log_file, 1 },
 #endif
 #if defined(APP_HXCLI)
 	{ "hx-cli.log", "application/force-download", hxcli_log_txt, NULL, do_hxcli_log_file, 1 },
@@ -5626,9 +5553,6 @@ struct ej_handler ej_handlers[] =
 #endif
 #if defined (APP_NTWON)
 	{ "ntwon_status", ntwon_status_hook},
-#endif
-#if defined (APP_HXSDWAN)
-	{ "hxwan_status", hxwan_status_hook},
 #endif
 #if defined (APP_HXCLI)
 	{ "hxcli_status", hxcli_status_hook},
