@@ -452,7 +452,7 @@ if (found_app_cloudflared()){
 	tabtitle[23] = new Array("", "CloudFlared");
 }
 if (found_app_hxcli()){
-	tabtitle[24] = new Array("", "SD-WAN");
+	tabtitle[24] = new Array("", "宏兴智能组网");
 }
 if (found_app_ntwon()){
 	tabtitle[25] = new Array("", "N2V2组网");
@@ -683,7 +683,7 @@ if (found_app_cloudflared()){
 } else menuL2_title.push("");
 
 if (found_app_hxcli()){
-	menuL2_title.push("SD-WAN");
+	menuL2_title.push("宏兴智能组网");
 } else menuL2_title.push("");
 
 if (found_app_ntwon){
