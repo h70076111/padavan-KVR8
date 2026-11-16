@@ -86,7 +86,6 @@
 #define RCN_RESTART_NVPPROXY		"restart_nvpproxy"
 //#define RCN_RESTART_NPC				"restart_npc"
 #define RCN_RESTART_DDNSTO      "restart_ddnsto"
-#define RCN_RESTART_HXSDWAN	"restart_hxsdwan"
 #define RCN_RESTART_UUPLUGIN	"restart_uuplugin"
 #define RCN_RESTART_LUCKY	"restart_lucky"
 #define RCN_RESTART_N2V6		"restart_n2v6"
