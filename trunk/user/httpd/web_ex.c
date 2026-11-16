@@ -4228,13 +4228,12 @@ apply_cgi(const char *url, webs_t wp)
 #if defined(APP_HXCLI)
 		unlink("/tmp/hx-cli.log");
 #endif
-		websRedirect(wp, current_url);
 		return 0;
 	}
 	else if (!strcmp(value, " Restarthxsdwan "))
 	{
 #if defined(APP_HXSDWAN)
-		system("/usr/bin/hxsd.sh restart &");
+		system("/usr/bin/hxwan.sh restart &");
 #endif
 		return 0;
 	}
