@@ -40,7 +40,7 @@ jobs:
       env:
         TNAME: MA1210SDWAN
       run: |
-        cd /opt/padavan/trunk
+        cd /opt/rt-n56u/trunk
         if [ ! -f configs/templates/$TNAME.config ] ; then
         echo "configs/templates/$TNAME.config not found "
         exit 1
