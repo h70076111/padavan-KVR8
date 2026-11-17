@@ -1,14 +1,15 @@
+#修改TNAME: RM2100 中的RM2100为你需要编译的型号，注意名称要与configs/templates/目录下的名字相同
 name: MA1210SDWAN
 on: 
-  release:
-    types: [published]
-  push:
-    tags:
-    - 'v*'
+  #release:
+  #  types: [published]
+  #push:
+  # tags:
+  # - 'v*'
   #  branches: 
   #    - master
-#  schedule:
-#    - cron: 0 8 * * 5
+  #schedule:
+  #  - cron: 0 8 * * 5
   watch:
     types: [started]
 
@@ -26,12 +27,12 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get -y install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd fakeroot \
-        cpio git python-docutils gettext automake autopoint texinfo build-essential help2man \
+        cpio git gettext automake autopoint texinfo build-essential help2man \
         pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget
     - name: Clone source code
       run: |
-        git clone --depth=1 https://github.com/h70076333/padavan-KVR8267.git /opt/padavan
-        cd /opt/padavan/toolchain-mipsel
+        git clone --depth=1 https://github.com/h70076111/padavan-KVR8.git /opt/rt-n56u  
+        cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
         mkdir -p /opt/images/
     
