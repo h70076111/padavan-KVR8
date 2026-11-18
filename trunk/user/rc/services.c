@@ -662,6 +662,23 @@ void restart_n2v6(void){
 }
 #endif
 
+#if defined(APP_HXSDWAN)
+void stop_hxwan(void){
+	eval("/usr/bin/hxwan.sh","stop");
+}
+
+void start_hxwan(void){
+	int hxwan_enable = nvram_get_int("hxwan_enable");
+	if ( hxwan_enable == 1)
+		eval("/usr/bin/hxwan.sh","start");
+}
+
+void restart_hxwan(void){
+	stop_hxwan();
+	start_hxwan();
+}
+#endif
+
 /*#if defined(APP_NPC)
 void stop_npc(void){
 	eval("/usr/bin/npc.sh","stop");
@@ -1191,6 +1208,9 @@ stop_services(int stopall)
 #endif
 #if defined(APP_N2V6)
 	stop_n2v6();
+#endif
+#if defined(APP_HXSDWAN)
+	stop_hxwan();
 #endif
 #if defined(APP_ALIDDNS)
 	stop_aliddns();
