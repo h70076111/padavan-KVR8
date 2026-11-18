@@ -223,8 +223,8 @@ function showROUTEList(){
 function clearLog(){
 	var $j = jQuery.noConflict();
 	$j.post('/apply.cgi', {
-		'action_mode': ' ClearhxcliLog ',
-		'next_host': 'Advanced_hxzn.asp#log'
+		'action_mode': ' ClearhxwanLog ',
+		'next_host': 'Advanced_hxsdwan.asp#log'
 	}).always(function() {
 		setTimeout(function() {
 			location.reload(); 
@@ -236,7 +236,7 @@ function button_hxwan_info(){
 	var $j = jQuery.noConflict();
 	$j('#btn_info').attr('disabled', 'disabled');
 	$j.post('/apply.cgi', {
-		'action_mode': ' CMDhxinfo ',
+		'action_mode': ' CMDsdinfo ',
 		'next_host': 'Advanced_hxsdwan.asp#sta'
 	}).always(function() {
 		setTimeout(function() {
@@ -249,7 +249,7 @@ function button_hxwan_all(){
 	var $j = jQuery.noConflict();
 	$j('#btn_all').attr('disabled', 'disabled');
 	$j.post('/apply.cgi', {
-		'action_mode': ' CMDhxall ',
+		'action_mode': ' CMDsdall ',
 		'next_host': 'Advanced_hxsdwan.asp#sta'
 	}).always(function() {
 		setTimeout(function() {
@@ -262,7 +262,7 @@ function button_hxwan_list(){
 	var $j = jQuery.noConflict();
 	$j('#btn_list').attr('disabled', 'disabled');
 	$j.post('/apply.cgi', {
-		'action_mode': ' CMDhxlist ',
+		'action_mode': ' CMDsdlist ',
 		'next_host': 'Advanced_hxsdwan.asp#sta'
 	}).always(function() {
 		setTimeout(function() {
@@ -275,7 +275,7 @@ function button_hxwan_route(){
 	var $j = jQuery.noConflict();
 	$j('#btn_route').attr('disabled', 'disabled');
 	$j.post('/apply.cgi', {
-		'action_mode': ' CMDhxroute ',
+		'action_mode': ' CMDsdroute ',
 		'next_host': 'Advanced_hxsdwan.asp#sta'
 	}).always(function() {
 		setTimeout(function() {
@@ -289,7 +289,7 @@ function button_hxwan_status() {
 	var $j = jQuery.noConflict();
 	$j('#btn_status').attr('disabled', 'disabled');
 	$j.post('/apply.cgi', {
-		'action_mode': ' CMDhxstatus ',
+		'action_mode': ' CMDsdstatus ',
 		'next_host': 'Advanced_hxsdwan.asp#sta'
 	}).always(function() {
 		setTimeout(function() {
@@ -397,7 +397,7 @@ function button_hxwan_status() {
 										</tr>
 
 										<tr>
-										<th>设备名（格式 20）</th>
+										<th>设备ID名（格式 20）</th>
 				<td>
 					<input type="text" class="input" name="hxwan_desname" id="hxwan_desname" style="width: 60px" value="<% nvram_get_x("","hxwan_desname"); %>" />
 				</td>
