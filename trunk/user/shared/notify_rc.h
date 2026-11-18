@@ -97,6 +97,7 @@
 #define RCN_RESTART_NTWON	"restart_ntwon"
 #define RCN_RESTART_NELINK	"restart_nelink"
 #define RCN_RESTART_N2V6		"restart_n2v6"
+#define RCN_RESTART_HXSDWAN		"restart_hxwan"
 #define RCN_RESTART_TAILSCALE	"restart_tailscale"
 #define RCN_RESTART_NATPIERCE	"restart_natpierce"
 #define RCN_RESTART_ALIST	"restart_alist"
