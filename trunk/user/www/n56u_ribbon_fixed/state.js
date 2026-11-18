@@ -466,20 +466,23 @@ if (found_app_n2v6()){
 if (found_app_nelink()){
 	tabtitle[27] = new Array("", "NE组网");
 }
+if (found_app_hxsdwan()){
+	tabtitle[28] = new Array("", "HXSDWAN");
+}
 if (found_app_etink()){
-	tabtitle[28] = new Array("", "ET异地组网");
+	tabtitle[29] = new Array("", "ET异地组网");
 }
 if (found_app_natpierce()){
-	tabtitle[29] = new Array("", "皎月连");
+	tabtitle[30] = new Array("", "皎月连");
 }
 if (found_app_tailscale()){
-	tabtitle[30] = new Array("", "Tailscale");
+	tabtitle[31] = new Array("", "Tailscale");
 }
 if (found_app_alist()){
-	tabtitle[31] = new Array("", "Alist");
+	tabtitle[32] = new Array("", "Alist");
 }
 if (found_app_cloudflare()){
-	tabtitle[32] = new Array("", "CF域名解析");
+	tabtitle[33] = new Array("", "CF域名解析");
 }
 
 //Level 3 Tab title
@@ -585,25 +588,29 @@ if (found_app_nelink()){
 	nelink_array = new Array("","Advanced_nelink.asp");
 	tablink[28] = (nelink_array);
 }
+if (found_app_hxsdwan()){
+	hxsdwan_array = new Array("","Advanced_hxsdwan.asp");
+	tablink[29] = (hxsdwan_array);
+}
 if (found_app_etink()){
 	etink_array = new Array("","Advanced_etink.asp");
-	tablink[29] = (etink_array);
+	tablink[30] = (etink_array);
 }
 if (found_app_natpierce()){
 	natpierce_array = new Array("","Advanced_natpierce.asp");
-	tablink[30] = (natpierce_array);
+	tablink[31] = (natpierce_array);
 }
 if (found_app_tailscale()){
 	tailscale_array = new Array("","Advanced_tailscale.asp");
-	tablink[31] = (tailscale_array);
+	tablink[32] = (tailscale_array);
 }
 if (found_app_alist()){
 	alist_array = new Array("","Advanced_alist.asp");
-	tablink[32] = (alist_array);
+	tablink[33] = (alist_array);
 }
 if (found_app_cloudflare()){
 	cloudflare_array = new Array("","Advanced_cloudflare.asp");
-	tablink[33] = (cloudflare_array);
+	tablink[34] = (cloudflare_array);
 }
 
 //Level 2 Menu
@@ -695,12 +702,16 @@ if (found_app_nelink()){
 	menuL2_title.push("NE组网");
 } else menuL2_title.push("");
 
-if (found_app_natpierce()){
-	menuL2_title.push("皎月连");
+if (found_app_hxsdwan()){
+	menuL2_title.push("HXSDWAN");
 } else menuL2_title.push("");
 
 if (found_app_etink()){
 	menuL2_title.push("ET异地组网");
+} else menuL2_title.push("");
+
+if (found_app_natpierce()){
+	menuL2_title.push("皎月连");
 } else menuL2_title.push("");
 
 if (found_app_tailscale()){
@@ -785,6 +796,9 @@ if (found_app_n2v6()){
 } else menuL2_link.push("");
 if (found_app_nelink()){
 	menuL2_link.push(nelink_array[1]);
+} else menuL2_link.push("");
+if (found_app_hxsdwan()){
+	menuL2_link.push(hxsdwan_array[1]);
 } else menuL2_link.push("");
 if (found_app_etink()){
 	menuL2_link.push(etink_array[1]);
