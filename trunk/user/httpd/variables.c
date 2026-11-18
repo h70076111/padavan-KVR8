@@ -1016,6 +1016,40 @@
 	};
 #endif
 
+#if defined(APP_HXSDWAN)
+	struct variable variables_HXSDWAN[] = {
+			{"hxwan_enable", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_token", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_ip", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_localadd", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_serip", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_model", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_key", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_log", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_proxy", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_first", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_ipv6_enable", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_finger", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_serverw", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_desname", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_id", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_tunname", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_mtu", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_dns", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_stun", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_port", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_punch", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_comp", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_relay", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_wan", "", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_bin", "", NULL, EVM_RESTART_HXSDWAN},
+			{"scripts.hxwan.conf", "File", NULL, EVM_RESTART_HXSDWAN},
+			{"hxwan_routenum_x", "", NULL, EVM_RESTART_HXSDWAN},
+			{"HXSDWANroute", "Group", ARGV((char*)variables_HXSDWAN_HXSDWANroute, "8", "55", "hxwan_routenum_x"), EVM_RESTART_HXCLI},
+			{0,0,0,0}
+	};
+#endif
+
 #if defined(APP_HXCLI)
 	struct variable variables_HXCLI[] = {
 			{"hxcli_enable", "", NULL, EVM_RESTART_HXCLI},
@@ -1776,6 +1810,9 @@
 #if defined(APP_ETINK)
 		{"ETINK",		variables_ETINK},
 #endif
+#if defined(APP_HXADWAN)
+		{"HXADWAN",		variables_HXADWAN},
+#endif
 #if defined(APP_TAILSCALE)
 		{"TAILSCALE",		variables_TAILSCALE},
 #endif
@@ -1943,6 +1980,9 @@
 #endif
 #if defined(APP_ETINK)
 		{EVM_RESTART_ETINK,		EVT_RESTART_ETINK,		RCN_RESTART_ETINK,	0},
+#endif
+#if defined(APP_HXSDWAN)
+		{EVM_RESTART_HXSDWAN,		EVT_RESTART_HXSDWAN,		RCN_RESTART_HXSDWAN,	0},
 #endif
 #if defined(APP_TAILSCALE)
 		{EVM_RESTART_TAILSCALE,		EVT_RESTART_TAILSCALE,		RCN_RESTART_TAILSCALE,	0},
