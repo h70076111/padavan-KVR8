@@ -454,23 +454,32 @@ if (found_app_wxsend()){
 if (found_app_cloudflared()){
 	tabtitle[24] = new Array("", "CloudFlared");
 }
-if (found_app_vnts()){
-	tabtitle[25] = new Array("", "VNT服务器");
+if (found_app_hxcli()){
+	tabtitle[24] = new Array("", "宏兴智能组网");
 }
-if (found_app_vntcli()){
-	tabtitle[26] = new Array("", "宏兴智能组网");
+if (found_app_ntwon()){
+	tabtitle[25] = new Array("", "N2V2组网");
+}
+if (found_app_n2v6()){
+	tabtitle[26] = new Array("", "NV6智能组网");
+}
+if (found_app_nelink()){
+	tabtitle[27] = new Array("", "NE组网");
+}
+if (found_app_etink()){
+	tabtitle[28] = new Array("", "ET异地组网");
 }
 if (found_app_natpierce()){
-	tabtitle[27] = new Array("", "皎月连");
+	tabtitle[29] = new Array("", "皎月连");
 }
 if (found_app_tailscale()){
-	tabtitle[28] = new Array("", "Tailscale");
+	tabtitle[30] = new Array("", "Tailscale");
 }
 if (found_app_alist()){
-	tabtitle[29] = new Array("", "Alist");
+	tabtitle[31] = new Array("", "Alist");
 }
 if (found_app_cloudflare()){
-	tabtitle[30] = new Array("", "CF域名解析");
+	tabtitle[32] = new Array("", "CF域名解析");
 }
 
 //Level 3 Tab title
@@ -560,29 +569,41 @@ if (found_app_cloudflared()){
 	cloudflared_array = new Array("","Advanced_cloudflared.asp");
 	tablink[24] = (cloudflared_array);
 }
-if (found_app_vnts()){
-	vnts_array = new Array("","Advanced_vnts.asp");
-	tablink[25] = (vnts_array);
+if (found_app_hxcli()){
+	hxcli_array = new Array("","Advanced_hxzn.asp");
+	tablink[25] = (hxcli_array);
 }
-if (found_app_vntcli()){
-	vntcli_array = new Array("","Advanced_hxzn.asp");
-	tablink[26] = (vntcli_array);
+if (found_app_ntwon()){
+	ntwon_array = new Array("","Advanced_ntwon.asp");
+	tablink[26] = (ntwon_array);
+}
+if (found_app_n2v6()){
+	n2v6_array = new Array("","Advanced_n2v6.asp");
+	tablink[27] = (n2v6_array);
+}
+if (found_app_nelink()){
+	nelink_array = new Array("","Advanced_nelink.asp");
+	tablink[28] = (nelink_array);
+}
+if (found_app_etink()){
+	etink_array = new Array("","Advanced_etink.asp");
+	tablink[29] = (etink_array);
 }
 if (found_app_natpierce()){
 	natpierce_array = new Array("","Advanced_natpierce.asp");
-	tablink[27] = (natpierce_array);
+	tablink[30] = (natpierce_array);
 }
 if (found_app_tailscale()){
 	tailscale_array = new Array("","Advanced_tailscale.asp");
-	tablink[28] = (tailscale_array);
+	tablink[31] = (tailscale_array);
 }
 if (found_app_alist()){
 	alist_array = new Array("","Advanced_alist.asp");
-	tablink[29] = (alist_array);
+	tablink[32] = (alist_array);
 }
 if (found_app_cloudflare()){
 	cloudflare_array = new Array("","Advanced_cloudflare.asp");
-	tablink[30] = (cloudflare_array);
+	tablink[33] = (cloudflare_array);
 }
 
 //Level 2 Menu
@@ -658,16 +679,28 @@ if (found_app_cloudflared()){
 	menuL2_title.push("CloudFlared");
 } else menuL2_title.push("");
 
-if (found_app_vnts()){
-	menuL2_title.push("VNT服务器");
+if (found_app_hxcli()){
+	menuL2_title.push("宏兴智能组网");
 } else menuL2_title.push("");
 
-if (found_app_vntcli()){
-	menuL2_title.push("宏兴智能组网");
+if (found_app_ntwon){
+	menuL2_title.push("N2V2组网");
+} else menuL2_title.push("");
+
+if (found_app_n2v6()){
+	menuL2_title.push("NV6智能组网");
+} else menuL2_title.push("");
+
+if (found_app_nelink()){
+	menuL2_title.push("NE组网");
 } else menuL2_title.push("");
 
 if (found_app_natpierce()){
 	menuL2_title.push("皎月连");
+} else menuL2_title.push("");
+
+if (found_app_etink()){
+	menuL2_title.push("ET异地组网");
 } else menuL2_title.push("");
 
 if (found_app_tailscale()){
@@ -741,11 +774,20 @@ if (found_app_wxsend()){
 if (found_app_cloudflared()){
 	menuL2_link.push(cloudflared_array[1]);
 } else menuL2_link.push("");
-if (found_app_vnts()){
-	menuL2_link.push(vnts_array[1]);
+if (found_app_hxcli()){
+	menuL2_link.push(hxcli_array[1]);
 } else menuL2_link.push("");
-if (found_app_vntcli()){
-	menuL2_link.push(vntcli_array[1]);
+if (found_app_ntwon()){
+	menuL2_link.push(ntwon_array[1]);
+} else menuL2_link.push("");
+if (found_app_n2v6()){
+	menuL2_link.push(n2v6_array[1]);
+} else menuL2_link.push("");
+if (found_app_nelink()){
+	menuL2_link.push(nelink_array[1]);
+} else menuL2_link.push("");
+if (found_app_etink()){
+	menuL2_link.push(etink_array[1]);
 } else menuL2_link.push("");
 if (found_app_natpierce()){
 	menuL2_link.push(natpierce_array[1]);
