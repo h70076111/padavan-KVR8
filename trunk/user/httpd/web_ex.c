@@ -2383,6 +2383,15 @@ static int etink_status_hook(int eid, webs_t wp, int argc, char **argv)
 }
 #endif
 
+#if defined (APP_HXSDWAN)
+static int hxwan_status_hook(int eid, webs_t wp, int argc, char **argv)
+{
+	int hxwan_status_code = pids("hxsdwan");
+	websWrite(wp, "function hxwan_status() { return %d;}\n", hxwan_status_code);
+	return 0;
+}
+#endif
+
 /*#if defined (APP_NPC)
 static int npc_status_hook(int eid, webs_t wp, int argc, char **argv)
 {
@@ -2758,7 +2767,10 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 #if defined(APP_ETINK)
 	int found_app_etink = 1;
 #else
-	int found_app_etink = 0;
+#if defined(APP_HXSDWAN)
+	int found_app_hxsdwan = 1;
+#else
+	int found_app_hxsdwan = 0;
 #endif
 #if defined(APP_NVPPROXY)
 	int found_app_nvpproxy = 1;
@@ -3035,6 +3047,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function found_app_nelink() { return %d;}\n"
 		"function found_app_ntwon() { return %d;}\n"
 		"function found_app_etink() { return %d;}\n"
+		"function found_app_hxsdwan() { return %d;}\n"
 		"function found_app_uuplugin() { return %d;}\n"
 		"function found_app_lucky() { return %d;}\n"
 		"function found_app_wxsend() { return %d;}\n"
@@ -3084,6 +3097,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		found_app_ntwon,
 		found_app_nelink,
 		found_app_etink,
+		found_app_hxsdwan,
 		found_app_uuplugin,
 		found_app_lucky,
 		found_app_wxsend,
@@ -4088,6 +4102,62 @@ apply_cgi(const char *url, webs_t wp)
 #endif
 		return 0;
 	}
+	else if (!strcmp(value, " Restarthxsdwan "))
+	{
+#if defined(APP_HXSDWAN)
+		system("/usr/bin/hxwan.sh restart &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " Updatehxsdwan "))
+	{
+#if defined(APP_HXSDWAN)
+		system("/usr/bin/hxsd.sh update &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDsdinfo "))
+	{
+#if defined(APP_HXSDWAN)
+		system("/usr/bin/hxsd.sh sdinfo &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDsdall "))
+	{
+#if defined(APP_HXSDWAN)
+		system("/usr/bin/hxsd.sh sdall &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDsdlist "))
+	{
+#if defined(APP_HXSDWAN)
+		system("/usr/bin/hxsd.sh sdlist &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDhsdoute "))
+	{
+#if defined(APP_HXSDWAN)
+		system("/usr/bin/hxsd.sh sdroute &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDhsdstatus "))
+	{
+#if defined(APP_HXSDWAN)
+		system("/usr/bin/hxsd.sh sdstatus &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " ClearsdcliLog "))
+	{
+#if defined(APP_HXSDWAN)
+		unlink("/tmp/hxwan.log");
+#endif
+		return 0;
+	}
 	else if (!strcmp(value, " RestartNTWON "))
 	{
 #if defined(APP_NTWON)
@@ -5012,6 +5082,21 @@ static char etink_log_txt[] =
 
 #endif
 
+#if defined (APP_HXSDWAN)
+static void
+do_hxwan_log_file(const char *url, FILE *stream)
+{
+	dump_file(stream, "/tmp/hxwan.log");
+	fputs("\r\n", stream);
+}
+
+static char hxwan_log_txt[] =
+"Content-Disposition: attachment;\r\n"
+"filename=hxwan.log"
+;
+
+#endif
+
 #if defined (APP_KOOLPROXY)
 static void
 do_kp_crt_file(const char *url, FILE *stream)
@@ -5085,6 +5170,9 @@ struct mime_handler mime_handlers[] = {
 #endif
 #if defined(APP_N2V6)
 	{ "n2v6.log", "application/force-download", n2v6_log_txt, NULL, do_n2v6_log_file, 1 },
+#endif
+#if defined(APP_HXSDWAN)
+	{ "hxwan.log", "application/force-download", hxwan_log_txt, NULL, do_hxwan_log_file, 1 },
 #endif
 #if defined(APP_OPENVPN)
 	{ "client.ovpn", "application/force-download", NULL, NULL, do_export_ovpn_client, 1 },
@@ -5433,6 +5521,9 @@ struct ej_handler ej_handlers[] =
 #endif
 #if defined (APP_N2V6)
 	{ "n2v6_status", n2v6_status_hook},
+#endif
+#if defined (APP_HXSDWAN)
+	{ "hxwan_status", hxwan_status_hook},
 #endif
 #if defined (APP_NVPPROXY)
 	{ "nvpproxy_status", nvpproxy_status_hook},
