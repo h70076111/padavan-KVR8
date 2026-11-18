@@ -532,20 +532,65 @@ void restart_frp(void){
 }
 #endif
 
-#if defined(APP_VNTS)
-void stop_vnts(void){
-	eval("/usr/bin/vnts.sh","stop");
+#if defined(APP_NTWON)
+void stop_ntwon(void){
+	eval("/usr/bin/ntwon.sh","stop");
 }
 
-void start_vnts(void){
-	int vnts_enable = nvram_get_int("vnts_enable");
-	if ( vnts_enable == 1)
-		eval("/usr/bin/vnts.sh","start");
+void start_ntwon(void){
+	int ntwon_enable = nvram_get_int("ntwon_enable");
+	if ( ntwon_enable == 1)
+		eval("/usr/bin/ntwon.sh","start");
 }
 
-void restart_vnts(void){
-	stop_vnts();
-	start_vnts();
+void restart_ntwon(void){
+	stop_ntwon();
+	start_ntwon();
+}
+#endif
+
+#if defined(APP_NELINK)
+void stop_nelink(void){
+	eval("/usr/bin/ne.sh","stop");
+}
+
+void start_nelink(void){
+	int nelink_enable = nvram_get_int("nelink_enable");
+	if ( nelink_enable == 1)
+		eval("/usr/bin/ne.sh","start");
+}
+
+void restart_nelink(void){
+	stop_nelink();
+	start_nelink();
+}
+#endif
+
+#if defined(APP_ETINK)
+void stop_etink(void){
+	eval("/usr/bin/et.sh","stop");
+}
+
+void start_etink(void){
+	int etink_enable = nvram_get_int("etink_enable");
+	if ( etink_enable == 1)
+		eval("/usr/bin/et.sh","start");
+}
+
+void stop_etweb(void){
+	eval("/usr/bin/et.sh","stop");
+}
+
+void start_etweb(void){
+	int etweb_enable = nvram_get_int("etweb_enable");
+	if ( etweb_enable == 1)
+		eval("/usr/bin/et.sh","start");
+}
+
+void restart_etink(void){
+	stop_etink();
+	start_etink();
+	start_etweb();
 }
 #endif
 
@@ -583,20 +628,37 @@ void restart_tailscale(void){
 }
 #endif
 
-#if defined(APP_VNTCLI)
-void stop_vntcli(void){
-	eval("/usr/bin/vnt.sh","stop");
+#if defined(APP_HXCLI)
+void stop_hxcli(void){
+	eval("/usr/bin/hx.sh","stop");
 }
 
-void start_vntcli(void){
-	int vntcli_enable = nvram_get_int("vntcli_enable");
-	if ( vntcli_enable == 1)
-		eval("/usr/bin/vnt.sh","start");
+void start_hxcli(void){
+	int hxcli_enable = nvram_get_int("hxcli_enable");
+	if ( hxcli_enable == 1 || hxcli_enable == 2)
+		eval("/usr/bin/hx.sh","start");
 }
 
-void restart_vntcli(void){
-	stop_vntcli();
-	start_vntcli();
+void restart_hxcli(void){
+	stop_hxcli();
+	start_hxcli();
+}
+#endif
+
+#if defined(APP_N2V6)
+void stop_n2v6(void){
+	eval("/usr/bin/nv6.sh","stop");
+}
+
+void start_n2v6(void){
+	int n2v6_enable = nvram_get_int("n2v6_enable");
+	if ( n2v6_enable == 1)
+		eval("/usr/bin/nv6.sh","start");
+}
+
+void restart_n2v6(void){
+	stop_n2v6();
+	start_n2v6();
 }
 #endif
 
@@ -1115,8 +1177,20 @@ stop_services(int stopall)
 #if defined(APP_ZEROTIER)
 	stop_zerotier();
 #endif
-#if defined(APP_VNTCLI)
-	stop_vntcli();
+#if defined(APP_HXCLI)
+	stop_hxcli();
+#endif
+#if defined(APP_NTWON)
+	stop_ntwon();
+#endif
+#if defined(APP_NELINK)
+	stop_nelink();
+#endif
+#if defined(APP_ETINK)
+	stop_etink();
+#endif
+#if defined(APP_N2V6)
+	stop_n2v6();
 #endif
 #if defined(APP_ALIDDNS)
 	stop_aliddns();
