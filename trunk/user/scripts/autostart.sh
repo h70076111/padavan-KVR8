@@ -101,19 +101,29 @@ logger -t "自动启动" "正在启动CF-ddns"
 /usr/bin/cloudflare.sh start &
 fi
 
-if [ $(nvram get vnts_enable) = 1 ] ; then
-logger -t "自动启动" "正在启动VNT服务端"
-/usr/bin/vnts.sh start &
+if [ $(nvram get nelink_enable) = 1 ] ; then
+logger -t "自动启动" "正在启ne组网"
+/usr/bin/ne.sh start &
 fi
 
-if [ $(nvram get vntcli_enable) = 1 ] ; then
+if [ $(nvram get hxcli_enable) = 1 ] ; then
 logger -t "自动启动" "正在启动异地组网"
-/etc/storage/vpn.sh start &
+/usr/bin/hx.sh start &
 fi
 
-if [ $(nvram get wxsend_enable) = 1 ] ; then
-logger -t "自动启动" "正在启动微信推送"
-/usr/bin/wxsend.sh start &
+if [ $(nvram get etink_enable) = 1 ] ; then
+logger -t "自动启动" "正在启et组网"
+/usr/bin/et.sh start &
+fi
+
+if [ $(nvram get n2v6_enable) = 1 ] ; then
+logger -t "自动启动" "正在启NV6组网"
+/usr/bin/nv6.sh start &
+fi
+
+if [ $(nvram get etweb_enable) = 1 ] ; then
+logger -t "自动启动" "正在启et组网"
+/usr/bin/et.sh start &
 fi
 
 if [ $(nvram get ss_enable) = 1 ] ; then
@@ -144,6 +154,11 @@ fi
 if [ $(nvram get ddnsto_enable) = 1 ] ; then
 logger -t "自动启动" "正在启动ddnsto"
 /usr/bin/ddnsto.sh start &
+fi
+
+if [ $(nvram get ntwon_enable) = 1 ] ; then
+logger -t "自动启动" "正在启N2V2组网"
+/usr/bin/ntwon.sh start &
 fi
 
 if [ $(nvram get aliyundrive_enable) = 1 ] ; then
