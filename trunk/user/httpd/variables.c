@@ -1751,7 +1751,6 @@
 #if defined(APP_N2V6)
 		{"N2V6",		variables_N2V6},
 #endif
-#endif
 #if defined(APP_NTWON)
 		{"NTWON",		variables_NTWON},
 #endif
