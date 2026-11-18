@@ -1094,6 +1094,19 @@
 	};
 #endif
 
+#if defined(APP_N2V6)
+	struct variable variables_N2V6[] = {
+			{"n2v6_enable", "", NULL, EVM_RESTART_N2V6},
+			{"n2v6_keyg", "", NULL, EVM_RESTART_N2V6},
+			{"n2v6_xuip", "", NULL, EVM_RESTART_N2V6},
+			{"n2v6_log", "", NULL, EVM_RESTART_N2V6},
+			{"n2v6_inlan1", "", NULL, EVM_RESTART_N2V6},
+			{"n2v6_inlan2", "", NULL, EVM_RESTART_N2V6},
+			{"n2v6_inlan3", "", NULL, EVM_RESTART_N2V6},
+			{"scripts.n2v6.conf", "File", NULL, EVM_RESTART_N2V6},
+			{0,0,0,0}
+	};
+#endif
 
 /*#if defined(APP_NPC)
 	struct variable variables_NpcConf[] = {
