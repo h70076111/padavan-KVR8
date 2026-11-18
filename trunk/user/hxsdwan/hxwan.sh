@@ -22,7 +22,7 @@ fi
 hxwan_renum=`nvram get hxwan_renum`
 
 hxwan_restart () {
-relock="/var/lock/hxcli_restart.lock"
+relock="/var/lock/hxwan_restart.lock"
 if [ "$1" = "o" ] ; then
 	nvram set hxwan_renum="0"
 	[ -f $relock ] && rm -f $relock
