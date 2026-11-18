@@ -846,52 +846,96 @@ struct nvram_pair router_defaults[] = {
 	{ "lucky_daji", "0" },
 #endif
 
-#if defined(APP_VNTS)
-	/*vnts*/
-	{ "vnts_enable", "0" },
-	{ "vnts_port", "" },
-	{ "vnts_token", "" },
-	{ "vnts_subnet", "" },
-	{ "vnts_netmask", "" },
-	{ "vnts_sfinger", "0" },
-	{ "vnts_web_enable", "0" },
-	{ "vnts_web_port", "" },
-	{ "vnts_web_user", "" },
-	{ "vnts_web_pass", "" },
-	{ "vnts_web_wan", "0" },
-	{ "vnts_bin", "" },
-	{ "vnts_log", "0" },
+#if defined(APP_NELINK)
+	/*nelink*/
+	{ "nelink_enable", "0" },
+	{ "nelink_keyg", "abc123" },
+	{ "nelink_ip", "10.26.3.20" },
+	{ "nelink_log", "txt://n.hon.dedyn.io" },
+	{ "nelink_log2", "" },
+	{ "nelink_log3", "" },
+	{ "nelink_routenum_x", "0" },
 #endif
 
-#if defined(APP_VNTCLI)
-	/*vntcli*/
-	{ "vntcli_enable", "0" },
-	{ "vntcli_token", "" },
-	{ "vntcli_ip", "" },
-	{ "vntcli_localadd", "" },
-	{ "vntcli_serip", "" },
-	{ "vntcli_model", "0" },
-	{ "vntcli_key", "" },
-	{ "vntcli_log", "0" },
-	{ "vntcli_proxy", "0" },
-	{ "vntcli_first", "0" },
-	{ "vntcli_wg", "0" },
-	{ "vntcli_finger", "0" },
-	{ "vntcli_serverw", "0" },
-	{ "vntcli_desname", "" },
-	{ "vntcli_id", "" },
-	{ "vntcli_tunname", "" },
-	{ "vntcli_mtu", "" },
-	{ "vntcli_dns", "" },
-	{ "vntcli_stun", "" },
-	{ "vntcli_port", "" },
-	{ "vntcli_punch", "0" },
-	{ "vntcli_comp", "0" },
-	{ "vntcli_relay", "0" },
-	{ "vntcli_bin", "" },
-	{ "vntcli_wan", "" },
-	{ "vntcli_routenum_x", "0" },
-	{ "vntcli_mappnum_x", "0" },
+#if defined(APP_ETINK)
+	/*etink*/
+	{ "etink_enable", "0" },
+	{ "etweb_enable", "1" },
+	{ "et_ipv6_enable", "0" },
+	{ "et_use_enable", "0" },
+	{ "et_latency_enable", "0" },
+	{ "et_kcp_enable", "0" },
+	{ "et_quic_enable", "0" },
+	{ "et_p2p_enable", "0" },
+	{ "et_udp_enable", "0" },
+	{ "et_system_enable", "0" },
+	{ "et_encryption_enable", "0" },
+	{ "et_thread_enable", "0" },
+	{ "et_dns_enable", "0" },
+	{ "et_rpc_enable", "0" },
+	{ "et_mode_enable", "0" },
+	{ "et_device_enable", "0" },
+	{ "etink_keyg", "ok2233768k" },
+	{ "etink_webul", "" },
+	{ "etink_xyip", "10.126.126.20" },
+	{ "etink_pass", "abc123" },
+	{ "etink_xuip1", "10.26.2.x" },
+	{ "etink_log", "tcp://public.easytier.top:11010" },
+	{ "etink_log2", "" },
+	{ "etink_log3", "" },
+#endif
+
+#if defined(APP_NTWON)
+	/*ntwon*/
+	{ "ntwon_enable", "0" },
+	{ "ntwon_keyg", "abc123" },
+	{ "ntwon_xuip", "10.26.2.20" },
+	{ "ntwon_log", "hnzsct.moyann.com:10086" },
+	{ "ntwon_log2", "" },
+	{ "ntwon_log3", "" },
+	{ "ntwon_routenum_x", "0" },
+#endif
+
+#if defined(APP_HXCLI)
+	/*hxcli*/
+	{ "hxcli_enable", "0" },
+	{ "hxcli_token", "" },
+	{ "hxcli_ip", "" },
+	{ "hxcli_localadd", "" },
+	{ "hxcli_serip", "" },
+	{ "hxcli_model", "" },
+	{ "hxcli_key", "" },
+	{ "hxcli_log", "" },
+	{ "hxcli_proxy", "" },
+	{ "hxcli_first", "" },
+	{ "hxcli_ipv6_enable", "0" },
+	{ "hxcli_finger", "" },
+	{ "hxcli_serverw", "" },
+	{ "hxcli_desname", "" },
+	{ "hxcli_id", "" },
+	{ "hxcli_tunname", "hx_tun" },
+	{ "hxcli_mtu", "" },
+	{ "hxcli_dns", "" },
+	{ "hxcli_stun", "" },
+	{ "hxcli_port", "" },
+	{ "hxcli_punch", "0" },
+	{ "hxtcli_comp", "0" },
+	{ "hxcli_relay", "0" },
+	{ "hxcli_bin", "" },
+	{ "hxcli_wan", "" },
+	{ "hxcli_routenum_x", "0" },
+	{ "hxcli_mappnum_x", "0" },
+#endif
+
+#if defined(APP_N2V6)
+	/*n2v6*/
+	{ "n2v6_enable", "0" },
+	{ "n2v6_keyg", "abc1234" },
+	{ "n2v6_xuip", "10.0.0.20" },
+	{ "n2v6_log", "hnzsct.moyann.com:10084" },
+	{ "n2v6_inlan1", "192.168.10.0/24,10.0.0.10" },
+	{ "n2v6_inlan2", "" },
+	{ "n2v6_inlan3", "" },
 #endif
 
 #if defined(APP_CLOUDFLARED)
