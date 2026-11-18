@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title><#Web_Title#> - 宏兴智能组网</title>
+<title><#Web_Title#> - 智能组网</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
@@ -23,18 +23,17 @@
 <script type="text/javascript" src="/help.js"></script>
 <script>
 var $j = jQuery.noConflict();
-<% vntcli_status(); %>
+<% hxcli_status(); %>
 <% login_state_hook(); %>
 $j(document).ready(function() {
-
-	init_itoggle('vntcli_enable');
-	init_itoggle('vntcli_log');
-	init_itoggle('vntcli_proxy');
-	init_itoggle('vntcli_wg');
-	init_itoggle('vntcli_first');
-	init_itoggle('vntcli_finger');
-	init_itoggle('vntcli_serverw');
-	$j("#tab_vntcli_cfg, #tab_vntcli_pri, #tab_vntcli_sta, #tab_vntcli_log, #tab_vntcli_help").click(
+	init_itoggle('hxcli_enable');
+	init_itoggle('hxcli_ipv6_enable');
+	init_itoggle('hxcli_log');
+	init_itoggle('hxcli_proxy');
+	init_itoggle('hxcli_first');
+	init_itoggle('hxcli_finger');
+	init_itoggle('hxcli_serverw');
+	$j("#tab_hxcli_cfg, #tab_hxcli_pri, #tab_hxcli_sta, #tab_hxcli_log, #tab_hxcli_help").click(
 	function () {
 		var newHash = $j(this).attr('href').toLowerCase();
 		showTab(newHash);
@@ -46,7 +45,7 @@ $j(document).ready(function() {
 </script>
 <script>
 
-var m_routelist = [<% get_nvram_list("VNTCLI", "VNTCLIroute"); %>];
+var m_routelist = [<% get_nvram_list("HXCLI", "HXCLIroute"); %>];
 var mroutelist_ifield = 4;
 if(m_routelist.length > 0){
 	var m_routelist_ifield = m_routelist[0].length;
@@ -55,27 +54,13 @@ if(m_routelist.length > 0){
 	}
 }
 
-var m_mapplist = [<% get_nvram_list("VNTCLI", "VNTCLImapp"); %>];
-var mmapplist_ifield = 5;
-if(m_mapplist.length > 0){
-	var m_mapplist_ifield = m_mapplist[0].length;
-	for (var i = 0; i < m_mapplist.length; i++) {
-		m_mapplist[i][mmapplist_ifield] = i;
-	}
-}
-
 var isMenuopen = 0;
 function initial(){
 	show_banner(2);
-	show_menu(5, 27, 0);
+	show_menu(5, 17, 0);
 	showROUTEList();
-	showMAPPList();
+	fill_status(hxcli_status());
 	show_footer();
-	fill_status(vntcli_status());
-	change_vntcli_enable(1);
-	change_vntcli_model(1);
-	if (!login_safe())
-        		textarea_scripts_enabled(0);
 
 }
 
@@ -85,21 +70,21 @@ function fill_status(status_code){
 		stext = "<#Stopped#>";
 	else if (status_code == 1)
 		stext = "<#Running#>";
-	$("vntcli_status").innerHTML = '<span class="label label-' + (status_code != 0 ? 'success' : 'warning') + '">' + stext + '</span>';
+	$("hxcli_status").innerHTML = '<span class="label label-' + (status_code != 0 ? 'success' : 'warning') + '">' + stext + '</span>';
 }
 
 var arrHashes = ["cfg","pri","sta","log","help"];
 function showTab(curHash) {
-	var obj = $('tab_vntcli_' + curHash.slice(1));
+	var obj = $('tab_hxcli_' + curHash.slice(1));
 	if (obj == null || obj.style.display == 'none')
 	curHash = '#cfg';
 	for (var i = 0; i < arrHashes.length; i++) {
 		if (curHash == ('#' + arrHashes[i])) {
-			$j('#tab_vntcli_' + arrHashes[i]).parents('li').addClass('active');
-			$j('#wnd_vntcli_' + arrHashes[i]).show();
+			$j('#tab_hxcli_' + arrHashes[i]).parents('li').addClass('active');
+			$j('#wnd_hxcli_' + arrHashes[i]).show();
 		} else {
-			$j('#wnd_vntcli_' + arrHashes[i]).hide();
-			$j('#tab_vntcli_' + arrHashes[i]).parents('li').removeClass('active');
+			$j('#wnd_hxcli_' + arrHashes[i]).hide();
+			$j('#tab_hxcli_' + arrHashes[i]).parents('li').removeClass('active');
 			}
 		}
 	window.location.hash = curHash;
@@ -120,62 +105,56 @@ function done_validating(action){
 }
 
 function textarea_scripts_enabled(v){
-    	inputCtrl(document.form['scripts.vnt.conf'], v);
+    	inputCtrl(document.form['scripts.hx.conf'], v);
 }
 
-
-function change_vntcli_model(mflag){
-	var m = document.form.vntcli_model.value;
+function change_hxcli_model(mflag){
+	var m = document.form.hxcli_model.value;
 	var Showmodel = (m >= 1 && m <= 7);
 
 
-	showhide_div("vntcli_key_tr", Showmodel);
-	showhide_div("vntcli_key_td", Showmodel);
+	showhide_div("hxcli_key_tr", Showmodel);
+	showhide_div("hxcli_key_td", Showmodel);
 }
 
-function change_vntcli_enable(mflag){
-	var m = document.form.vntcli_enable.value;
-	var is_vntcli_enable = (m == "1" || m == "2") ? "重启" : "更新";
-	document.form.restartvntcli.value = is_vntcli_enable;
+function change_hxcli_enable(mflag){
+	var m = document.form.hxcli_enable.value;
+	var is_hxcli_enable = (m == "1" || m == "2") ? "重启" : "更新";
+	document.form.restarthxcli.value = is_hxcli_enable;
 
-	var is_vntcli_file = (m == "2") ? 1 : 0;
-	showhide_div("vntcli_file_tr", is_vntcli_file);
+		if(m == "2"){
+		showhide_div("hxcli_file_tr", 1);
+		showhide_div("hxcli_token_tr", 0);
+		showhide_div("hxcli_token_td", 0);
+		showhide_div("hxcli_ip_tr", 0);
 	
-	var is_vntcli_log = (m == "1" || m == "2") ? 1 : 0;
-	showhide_div("vntcli_log_tr", is_vntcli_log);
-	showhide_div("vntcli_log_td", is_vntcli_log);
-
-	var is_vntcli_cmd = (m == "1") ? 1 : 0;
-	showhide_div("vntcli_token_tr", is_vntcli_cmd);
-	showhide_div("vntcli_token_td", is_vntcli_cmd);
-	showhide_div("vntcli_ip_tr", is_vntcli_cmd);
-	showhide_div("vntcli_ip_td", is_vntcli_cmd);
-	showhide_div("vntcli_localadd_tr", is_vntcli_cmd);
-	showhide_div("vntcli_localadd_td", is_vntcli_cmd);
-	showhide_div("vntcli_serip_tr", is_vntcli_cmd);
-	showhide_div("vntcli_serip_td", is_vntcli_cmd);
-	showhide_div("vntcli_model_tr", is_vntcli_cmd);
-	showhide_div("vntcli_model_td", is_vntcli_cmd);
-	showhide_div("vntcli_subnet_table", is_vntcli_cmd);
-	showhide_div("vntcli_pri_table", is_vntcli_cmd);
-	showhide_div("vntcli_mapping_table", is_vntcli_cmd);
-
-	var is_vntcli_mtu = (m == "1") ? 1 : 0;
-	if(is_vntcli_mtu){
-		o_mtu = document.form.vntcli_mtu;
+		showhide_div("hxcli_mapping_table", 0);
+	} 
+	
+	if(m == "1"){	
+		showhide_div("hxcli_file_tr", 0);
+		showhide_div("hxcli_token_tr", 1);
+		showhide_div("hxcli_token_td", 1);
+		showhide_div("hxcli_ip_tr", 1);
+	
+		showhide_div("hxcli_mapping_table", 1);
+		o_mtu = document.form.hxcli_mtu;
+		
 		if (o_mtu && parseInt(o_mtu.value) == 0)
 			o_mtu.value = "";
+			
 		if (o_mtu && parseInt(o_mtu.value) > 1500)
 			o_mru.value = "1500";
 	}
+	
 }
 
-function button_restartvntcli() {
-    var m = document.form.vntcli_enable.value;
+function button_restarthxcli() {
+    var m = document.form.hxcli_enable.value;
 
-    var actionMode = (m == "1" || m == "2") ? ' Restartvntcli ' : ' Updatevntcli ';
+    var actionMode = (m == "1" || m == "2") ? ' Restarthxcli ' : ' Updatehxcli ';
 
-    change_vntcli_enable(m); 
+    change_hxcli_enable(m); 
 
     var $j = jQuery.noConflict(); 
     $j.post('/apply.cgi', {
@@ -184,72 +163,29 @@ function button_restartvntcli() {
 }
 
 function markrouteRULES(o, c, b) {
-	document.form.group_id.value = "VNTCLIroute";
+	document.form.group_id.value = "HXCLIroute";
 	if(b == " Add "){
-		if (document.form.vntcli_routenum_x_0.value >= c){
+		if (document.form.hxcli_routenum_x_0.value >= c){
 			alert("<#JS_itemlimit1#> " + c + " <#JS_itemlimit2#>");
 			return false;
-		}else if (document.form.vntcli_route_x_0.value==""){
+		}else if (document.form.hxcli_route_x_0.value==""){
 			alert("<#JS_fieldblank#>");
-			document.form.vntcli_route_x_0.focus();
-			document.form.vntcli_route_x_0.select();
+			document.form.hxcli_route_x_0.focus();
+			document.form.hxcli_route_x_0.select();
 			return false;
-		}else if(document.form.vntcli_ip_x_0.value==""){
+		}else if(document.form.hxcli_ip_x_0.value==""){
 			alert("<#JS_fieldblank#>");
-			document.form.vntcli_ip_x_0.focus();
-			document.form.vntcli_ip_x_0.select();
+			document.form.hxcli_ip_x_0.focus();
+			document.form.hxcli_ip_x_0.select();
 			return false;
 		}else{
 			for(i=0; i<m_routelist.length; i++){
-				if(document.form.vntcli_route_x_0.value==m_routelist[i][1]) {
-				if(document.form.vntcli_ip_x_0.value==m_routelist[i][2]) {
+				if(document.form.hxcli_route_x_0.value==m_routelist[i][1]) {
+				if(document.form.hxcli_ip_x_0.value==m_routelist[i][2]) {
 					alert('<#JS_duplicate#>' + ' (' + m_routelist[i][1] + ')' );
-					document.form.vntcli_route_x_0.focus();
-					document.form.vntcli_ip_x_0.select();
+					document.form.hxcli_route_x_0.focus();
+					document.form.hxcli_ip_x_0.select();
 					return false;
-					}
-				}
-			}
-		}
-	}
-	pageChanged = 0;
-	document.form.action_mode.value = b;
-	return true;
-}
-
-function markmappRULES(o, c, b) {
-	document.form.group_id.value = "VNTCLImapp";
-	if(b == " Add "){
-		if (document.form.vntcli_mappnum_x_0.value >= c){
-			alert("<#JS_itemlimit1#> " + c + " <#JS_itemlimit2#>");
-			return false;
-		}else if (document.form.vntcli_mappport_x_0.value==""){
-			alert("<#JS_fieldblank#>");
-			document.form.vntcli_mappport_x_0.focus();
-			document.form.vntcli_mappport_x_0.select();
-			return false;
-		}else if(document.form.vntcli_mappip_x_0.value==""){
-			alert("<#JS_fieldblank#>");
-			document.form.vntcli_mappip_x_0.focus();
-			document.form.vntcli_mappip_x_0.select();
-			return false;
-		}else if(document.form.vntcli_mapeerport_x_0.value==""){
-			alert("<#JS_fieldblank#>");
-			document.form.vntcli_mapeerport_x_0.focus();
-			document.form.vntcli_mapeerport_x_0.select();
-			return false;
-		}else{
-			for(i=0; i<m_mapplist.length; i++){
-				if(document.form.vntcli_mappnet_x_0.value==m_mapplist[i][0]) {
-					if(document.form.vntcli_mappport_x_0.value==m_mapplist[i][1]) {
-						if(document.form.vntcli_mappip_x_0.value==m_mapplist[i][2]) {
-							if(document.form.vntcli_mapeerport_x_0.value==m_mapplist[i][3]) {
-								alert('<#JS_duplicate#>' + ' (' + m_mapplist[i][1] + ')' );
-								document.form.vntcli_mapeerport_x_0.focus();
-								document.form.vntcli_mapeerport_x_0.select();
-								return false;
-							}
-						}
 					}
 				}
 			}
@@ -271,53 +207,23 @@ function showROUTEList(){
 		code +='<td width="38%">&nbsp;' + m_routelist[i][1] + '</td>';
 		code +='<td colspan="2" width="40%">' + m_routelist[i][2] + '</td>';
 		code +='<td width="50%"></td>';
-		code +='<center><td width="20%" style="text-align: center;"><input type="checkbox" name="VNTCLIroute_s" value="' + m_routelist[i][mroutelist_ifield] + '" onClick="changeBgColorrl(this,' + i + ');" id="check' + m_routelist[i][mroutelist_ifield] + '"></td></center>';
+		code +='<center><td width="20%" style="text-align: center;"><input type="checkbox" name="HXCLIroute_s" value="' + m_routelist[i][mroutelist_ifield] + '" onClick="changeBgColorrl(this,' + i + ');" id="check' + m_routelist[i][mroutelist_ifield] + '"></td></center>';
 		
 		code +='</tr>';
 	    }
 		code += '<tr>';
 		code += '<td colspan="5">&nbsp;</td>'
-		code += '<td><button class="btn btn-danger" type="submit" onclick="markrouteRULES(this, 64, \' Del \');" name="VNTCLIroute"><i class="icon icon-minus icon-white"></i></button></td>';
+		code += '<td><button class="btn btn-danger" type="submit" onclick="markrouteRULES(this, 64, \' Del \');" name="HXCLIroute"><i class="icon icon-minus icon-white"></i></button></td>';
 		code += '</tr>'
 	}
 	code +='</table>';
 	$("MrouteRULESList_Block").innerHTML = code;
 }
 
-function showMAPPList(){
-	var code = '<table width="100%" cellspacing="0" cellpadding="4" class="table table-list">';
-	if(m_mapplist.length == 0)
-		code +='<tr><td colspan="5" style="text-align: center;"><div class="alert alert-info"><#IPConnection_VSList_Norule#></div></td></tr>';
-	else{
-	    for(var i = 0; i < m_mapplist.length; i++){
-		if(m_mapplist[i][0] == 0)
-		vntcli_mappnet="TCP";
-		else{
-		vntcli_mappnet="UDP";
-		}
-		code +='<tr id="rowrl' + i + '">';
-		code +='<td width="15%">&nbsp;' + vntcli_mappnet + '</td>';
-		code +='<td width="25%">&nbsp;' + m_mapplist[i][1] + '</td>';
-		code +='<td width="30%">' + m_mapplist[i][2] + '</td>';
-		code +='<td width="20%">&nbsp;' + m_mapplist[i][3] + '</td>';
-		code +='<td width="50%"></td>';
-		code +='<center><td width="20%" style="text-align: center;"><input type="checkbox" name="VNTCLImapp_s" value="' + m_mapplist[i][mmapplist_ifield] + '" onClick="changeBgColorrl(this,' + i + ');" id="check' + m_mapplist[i][mmapplist_ifield] + '"></td></center>';
-		
-		code +='</tr>';
-	    }
-		code += '<tr>';
-		code += '<td colspan="5">&nbsp;</td>'
-		code += '<td><button class="btn btn-danger" type="submit" onclick="markmappRULES(this, 64, \' Del \');" name="VNTCLImapp"><i class="icon icon-minus icon-white"></i></button></td>';
-		code += '</tr>'
-	}
-	code +='</table>';
-	$("MmappRULESList_Block").innerHTML = code;
-}
-
 function clearLog(){
 	var $j = jQuery.noConflict();
 	$j.post('/apply.cgi', {
-		'action_mode': ' ClearvntcliLog ',
+		'action_mode': ' ClearhxcliLog ',
 		'next_host': 'Advanced_hxzn.asp#log'
 	}).always(function() {
 		setTimeout(function() {
@@ -326,11 +232,11 @@ function clearLog(){
 	});
 }
 
-function button_vntcli_info(){
+function button_hxcli_info(){
 	var $j = jQuery.noConflict();
 	$j('#btn_info').attr('disabled', 'disabled');
 	$j.post('/apply.cgi', {
-		'action_mode': ' CMDvntinfo ',
+		'action_mode': ' CMDhxinfo ',
 		'next_host': 'Advanced_hxzn.asp#sta'
 	}).always(function() {
 		setTimeout(function() {
@@ -339,11 +245,11 @@ function button_vntcli_info(){
 	});
 }
 
-function button_vntcli_all(){
+function button_hxcli_all(){
 	var $j = jQuery.noConflict();
 	$j('#btn_all').attr('disabled', 'disabled');
 	$j.post('/apply.cgi', {
-		'action_mode': ' CMDvntall ',
+		'action_mode': ' CMDhxall ',
 		'next_host': 'Advanced_hxzn.asp#sta'
 	}).always(function() {
 		setTimeout(function() {
@@ -352,11 +258,11 @@ function button_vntcli_all(){
 	});
 }
 
-function button_vntcli_list(){
+function button_hxcli_list(){
 	var $j = jQuery.noConflict();
 	$j('#btn_list').attr('disabled', 'disabled');
 	$j.post('/apply.cgi', {
-		'action_mode': ' CMDvntlist ',
+		'action_mode': ' CMDhxlist ',
 		'next_host': 'Advanced_hxzn.asp#sta'
 	}).always(function() {
 		setTimeout(function() {
@@ -365,11 +271,11 @@ function button_vntcli_list(){
 	});
 }
 
-function button_vntcli_route(){
+function button_hxcli_route(){
 	var $j = jQuery.noConflict();
 	$j('#btn_route').attr('disabled', 'disabled');
 	$j.post('/apply.cgi', {
-		'action_mode': ' CMDvntroute ',
+		'action_mode': ' CMDhxroute ',
 		'next_host': 'Advanced_hxzn.asp#sta'
 	}).always(function() {
 		setTimeout(function() {
@@ -379,11 +285,11 @@ function button_vntcli_route(){
 }
 
 
-function button_vntcli_status() {
+function button_hxcli_status() {
 	var $j = jQuery.noConflict();
 	$j('#btn_status').attr('disabled', 'disabled');
 	$j.post('/apply.cgi', {
-		'action_mode': ' CMDvntstatus ',
+		'action_mode': ' CMDhxstatus ',
 		'next_host': 'Advanced_hxzn.asp#sta'
 	}).always(function() {
 		setTimeout(function() {
@@ -416,12 +322,12 @@ function button_vntcli_status() {
 	<input type="hidden" name="current_page" value="Advanced_hxzn.asp">
 	<input type="hidden" name="next_page" value="">
 	<input type="hidden" name="next_host" value="">
-	<input type="hidden" name="sid_list" value="VNTCLI;LANHostConfig;General;">
-	<input type="hidden" name="group_id" value="VNTCLIroute;VNTCLImapp">
+	<input type="hidden" name="sid_list" value="HXCLI;LANHostConfig;General;">
+	<input type="hidden" name="group_id" value="HXCLIroute;HXCLImapp">
 	<input type="hidden" name="action_mode" value="">
 	<input type="hidden" name="action_script" value="">
-	<input type="hidden" name="vntcli_routenum_x_0" value="<% nvram_get_x("VNTCLIroute", "vntcli_routenum_x"); %>" readonly="1" />
-	<input type="hidden" name="vntcli_mappnum_x_0" value="<% nvram_get_x("VNTCLImapp", "vntcli_mappnum_x"); %>" readonly="1" />
+	<input type="hidden" name="hxcli_routenum_x_0" value="<% nvram_get_x("HXCLIroute", "hxcli_routenum_x"); %>" readonly="1" />
+	<input type="hidden" name="hxcli_mappnum_x_0" value="<% nvram_get_x("HXCLImapp", "hxcli_mappnum_x"); %>" readonly="1" />
 
 	<div class="container-fluid">
 	<div class="row-fluid">
@@ -442,38 +348,41 @@ function button_vntcli_status() {
 	<div class="row-fluid">
 	<div class="span12">
 	<div class="box well grad_colour_dark_blue">
-	<h2 class="box_head round_top">宏兴智能组网</h2>
+	<h2 class="box_head round_top"><#menu5_37#></h2>
 	<div class="round_bottom">
 	<div>
 	<ul class="nav nav-tabs" style="margin-bottom: 10px;">
-	<li class="active"><a id="tab_vntcli_cfg" href="#cfg">基本设置</a></li>
-	<li><a id="tab_vntcli_sta" href="#sta">运行状态</a></li>
-
-	</ul>
+	<li class="active"><a id="tab_hxcli_cfg" href="#cfg">基本设置</a></li>
+	<li><a id="tab_hxcli_sta" href="#sta">运行状态</a></li>
+	<li><a id="tab_hxcli_log" href="#log">运行日志</a></li>
+	</th>
+	</tr>
+	<tr>
 	</div>
 	<div class="row-fluid">
 									<div id="tabMenu" class="submenuBlock"></div>
 									<div class="alert alert-info" style="margin: 10px;">
-									<p>宏兴智能组网是一个易于配置异地组网 直连技术支持IPV6<br>
+									<p>宏兴智能组网是一个易于配置异地组网 直连技术支持IPV6【安卓 电脑 MACOS 】：<a href="https://pan.baidu.com/s/1JR-JZm09dJ3Og487o9b2AQ?pwd=3388" target="blank">点击百度网盘下载</a></div>
 									</p>
-									</div>
-
-
-
-									<table width="100%" align="center" cellpadding="4" cellspacing="0" class="table">
-
-
+										</div>
+		<table width="100%" cellpadding="4" cellspacing="0" class="table">
+	<tr>
+	<th><#running_status#>
+	</th>
+	<td colspan="4" id="hxcli_status"></td>
+	</tr><td colspan="4"></td>
+	<tr>
 										<tr>
 										<th width="30%" style="border-top: 0 none;">启用组网客户端</th>
 											<td style="border-top: 0 none;">
 													<div class="main_itoggle">
-													<div id="vntcli_enable_on_of">
-														<input type="checkbox" id="vntcli_enable_fake" <% nvram_match_x("", "vntcli_enable", "1", "value=1 checked"); %><% nvram_match_x("", "vntcli_enable", "0", "value=0"); %>  />
+													<div id="hxcli_enable_on_of">
+														<input type="checkbox" id="hxcli_enable_fake" <% nvram_match_x("", "hxcli_enable", "1", "value=1 checked"); %><% nvram_match_x("", "hxcli_enable", "0", "value=0"); %>  />
 													</div>
 												</div>
 												<div style="position: absolute; margin-left: -10000px;">
-													<input type="radio" value="1" name="vntcli_enable" id="vntcli_enable_1" class="input" value="1" <% nvram_match_x("", "vntcli_enable", "1", "checked"); %> /><#checkbox_Yes#>
-													<input type="radio" value="0" name="vntcli_enable" id="vntcli_enable_0" class="input" value="0" <% nvram_match_x("", "vntcli_enable", "0", "checked"); %> /><#checkbox_No#>
+													<input type="radio" value="1" name="hxcli_enable" id="hxcli_enable_1" class="input" value="1" <% nvram_match_x("", "hxcli_enable", "1", "checked"); %> /><#checkbox_Yes#>
+													<input type="radio" value="0" name="hxcli_enable" id="hxcli_enable_0" class="input" value="0" <% nvram_match_x("", "hxcli_enable", "0", "checked"); %> /><#checkbox_No#>
 												</div>
 											</td>
 
@@ -482,7 +391,7 @@ function button_vntcli_status() {
 										<tr>
 										<th>本机识别码(不要改动) </th>
 				<td>
-					<input type="text" class="input" name="vntcli_token" id="vntcli_token" style="width: 200px" value="<% nvram_get_x("","vntcli_token"); %>" />
+					<input type="text" class="input" name="hxcli_token" id="hxcli_token" style="width: 200px" value="<% nvram_get_x("","hxcli_token"); %>" />
 				</td>
 
 										</tr>
@@ -490,31 +399,56 @@ function button_vntcli_status() {
 										<tr>
 										<th>设备名（格式 20）</th>
 				<td>
-					<input type="text" class="input" name="vntcli_desname" id="vntcli_desname" style="width: 60px" value="<% nvram_get_x("","vntcli_desname"); %>" />
-				</td>
-
-										</tr>
-									
-										<tr>
-										<th>对端的IP（格式 192.168.x.0/24，10.26.0.x） </th>
-				<td>
-					<input type="text" class="input" name="vntcli_localadd" id="vntcli_localadd" style="width: 400px" value="<% nvram_get_x("","vntcli_localadd"); %>" />
+					<input type="text" class="input" name="hxcli_desname" id="hxcli_desname" style="width: 60px" value="<% nvram_get_x("","hxcli_desname"); %>" />
 				</td>
 
 										</tr>
 										<tr>
 										<th>本机虚拟ip（格式 10.26.0.x)</th>
 				<td>
-					<input type="text" class="input" name="vntcli_ip" id="vntcli_ip" style="width: 200px" value="<% nvram_get_x("","vntcli_ip"); %>" />
+					<input type="text" class="input" name="hxcli_ip" id="hxcli_ip" style="width: 200px" value="<% nvram_get_x("","hxcli_ip"); %>" />
 				</td>
+										<tr>
+										<th width="30%" style="border-top: 0 none;">仅使用IPV6连接（必须都有IPV6)</th>
+											<td style="border-top: 0 none;">
+													<div class="main_itoggle">
+													<div id="hxcli_ipv6_enable_on_of">
+														<input type="checkbox" id="hxcli_ipv6_enable_fake" <% nvram_match_x("", "hxcli_ipv6_enable", "1", "value=1 checked"); %><% nvram_match_x("", "hxcli_ipv6_enable", "0", "value=0"); %>  />
+													</div>
+												</div>
+												<div style="position: absolute; margin-left: -10000px;">
+													<input type="radio" value="1" name="hxcli_ipv6_enable" id="hxcli_ipv6_enable_1" class="input" value="1" <% nvram_match_x("", "hxcli_ipv6_enable", "1", "checked"); %> /><#checkbox_Yes#>
+													<input type="radio" value="0" name="hxcli_ipv6_enable" id="hxcli_ipv6_enable_0" class="input" value="0" <% nvram_match_x("", "hxcli_ipv6_enable", "0", "checked"); %> /><#checkbox_No#>
+												</div>
 
 										</tr>
 										<tr>
 										<th>服务器地址（默认不用填)</th>
 				<td>
-					<input type="text" class="input" name="vntcli_serip" id="vntcli_serip" style="width: 200px" value="<% nvram_get_x("","vntcli_serip"); %>" />
+					<input type="text" class="input" name="hxcli_serverw" id="hxcli_serverw" style="width: 200px" value="<% nvram_get_x("","hxcli_serverw"); %>" />
 				</td>
-
+	</div>
+	</td>
+	</tr><tr id="hxcli_log_td"><td colspan="3"></td></tr>
+	<table id="hxcli_subnet_table" width="100%" align="center" cellpadding="4" cellspacing="0" class="table">
+	<tr> <th colspan="4" style="background-color: #FF4040;">子网配置也就是接收对端的网关网段和上虚拟IP (多个可以点加号后再填入，如果作为发送点可以不填入）</th></tr>
+	<tr id="row_rules_caption">
+	<th width="10%"> 备注名称 </th>
+	<th width="20%">远端目标网段 </th>
+	<th width="20%">远端虚拟IP </th>
+	<th width="5%"><center><i class="icon-th-list"></i></center></th>
+	</tr>
+	<tr>
+	<th><input type="text" placeholder="如：家里" maxlength="128" class="span12" style="width: 100px" size="200" name="hxcli_name_x_0" value="<% nvram_get_x("", "hxcli_name_x_0"); %>"/></th>
+	<th><input type="text" placeholder="192.168.2.0/24" maxlength="255" class="span12" style="width: 150px" size="200" name="hxcli_route_x_0" value="<% nvram_get_x("", "hxcli_route_x_0"); %>"/></th>
+	<th><input type="text" placeholder="10.26.0.2" maxlength="255" class="span12" style="width: 150px" size="200" name="hxcli_ip_x_0" value="<% nvram_get_x("", "hxcli_ip_x_0"); %>" /></th>
+	<th><button class="btn" style="max-width: 219px" type="submit" onclick="return markrouteRULES(this, 64, ' Add ');" name="markrouteRULES2" value="<#CTL_add#>" size="12"><i class="icon icon-plus"></i></button></th>
+	</tr>
+	<tr id="row_rules_body" >
+	<td colspan="4" style="border-top: 0 none; padding: 0px;">
+	<div id="MrouteRULESList_Block"></div>
+	</td>
+	</tr>
 										</tr>
 										<tr>
 									
@@ -529,21 +463,21 @@ function button_vntcli_status() {
 	</div>
 	</div>
 	<!-- 状态 -->
-	<div id="wnd_vntcli_sta" style="display:none">
+	<div id="wnd_hxcli_sta" style="display:none">
 	<table width="100%" cellpadding="4" cellspacing="0" class="table">
 	<tr>
 		<td colspan="3" style="border-top: 0 none; padding-bottom: 0px;">
-			<textarea rows="21" class="span12" style="height:377px; font-family:'Courier New', Courier, mono; font-size:13px;" readonly="readonly" wrap="off" id="textarea"><% nvram_dump("vnt-cli_cmd.log",""); %></textarea>
+			<textarea rows="21" class="span12" style="height:377px; font-family:'Courier New', Courier, mono; font-size:13px;" readonly="readonly" wrap="off" id="textarea"><% nvram_dump("hx-cli_cmd.log",""); %></textarea>
 		</td>
 	</tr>
 	<tr>
 		<td colspan="5" style="border-top: 0 none; text-align: center;">
 			<!-- 按钮并排显示 -->
-			<input class="btn btn-success" id="btn_info" style="width:100px; margin-right: 10px;" type="button" name="vntcli_info" value="本机设备信息" onclick="button_vntcli_info()" />
-			<input class="btn btn-success" id="btn_all" style="width:100px; margin-right: 10px;" type="button" name="vntcli_all" value="所有设备信息" onclick="button_vntcli_all()" />
-			<input class="btn btn-success" id="btn_list" style="width:100px; margin-right: 10px;" type="button" name="vntcli_list" value="所有设备列表" onclick="button_vntcli_list()" />
-			<input class="btn btn-success" id="btn_route" style="width:100px; margin-right: 10px;" type="button" name="vntcli_route" value="路由转发信息" onclick="button_vntcli_route()" />
-			<input class="btn btn-success" id="btn_status" style="width:100px; margin-right: 10px;" type="button" name="vntcli_status" value="运行状态信息" onclick="button_vntcli_status()" />
+			<input class="btn btn-success" id="btn_info" style="width:100px; margin-right: 10px;" type="button" name="hxcli_info" value="本机设备信息" onclick="button_hxcli_info()" />
+			<input class="btn btn-success" id="btn_all" style="width:100px; margin-right: 10px;" type="button" name="hxcli_all" value="所有设备信息" onclick="button_hxcli_all()" />
+			<input class="btn btn-success" id="btn_list" style="width:100px; margin-right: 10px;" type="button" name="hxcli_list" value="所有设备列表" onclick="button_hxcli_list()" />
+			<input class="btn btn-success" id="btn_route" style="width:100px; margin-right: 10px;" type="button" name="hxcli_route" value="路由转发信息" onclick="button_hxcli_route()" />
+			<input class="btn btn-success" id="btn_status" style="width:100px; margin-right: 10px;" type="button" name="hxcli_status" value="运行状态信息" onclick="button_hxcli_status()" />
 		</td>
 	</tr>
 	<tr>
@@ -551,6 +485,30 @@ function button_vntcli_status() {
 			<span style="color:#888;">🔄 点击上方按钮刷新查看</span>
 		</td>
 	</tr>
+	</table>
+	</div>
+	<!-- 日志 -->
+	<div id="wnd_hxcli_log" style="display:none">
+	<table width="100%" cellpadding="4" cellspacing="0" class="table">
+	<tr>
+	<td colspan="3" style="border-top: 0 none; padding-bottom: 0px;">
+	<textarea rows="21" class="span12" style="height:377px; font-family:'Courier New', Courier, mono; font-size:13px;" readonly="readonly" wrap="off" id="textarea"><% nvram_dump("hx-cli.log",""); %></textarea>
+	</td>
+	</tr>
+	<tr>
+	<td width="15%" style="text-align: left; padding-bottom: 0px;">
+	<input type="button" onClick="location.reload()" value="刷新日志" class="btn btn-primary" style="width: 200px">
+	</td>
+	<td width="15%" style="text-align: left; padding-bottom: 0px;">
+	<input type="button" onClick="location.href='hx-cli.log'" value="<#CTL_onlysave#>" class="btn btn-success" style="width: 200px">
+	</td>
+	<td width="75%" style="text-align: right; padding-bottom: 0px;">
+	<input type="button" onClick="clearLog();" value="清除日志" class="btn btn-info" style="width: 200px">
+	</td>
+	</tr>
+	<br><td colspan="5" style="border-top: 0 none; text-align: center; padding-top: 4px;">
+	<span style="color:#888;">🚫注意：日志包含 token 和 密码 等隐私信息，切勿随意分享！</span>
+	</td>
 	</table>
 	</div>
 </body>
