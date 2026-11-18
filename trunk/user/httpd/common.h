@@ -112,11 +112,11 @@ typedef u_int8_t u8;
 #define EVM_RESTART_LUCKY		(1ULL << 55)
 #define EVM_RESTART_WXSEND		(1ULL << 56)
 #define EVM_RESTART_CLOUDFLARED		(1ULL << 57)
-#define EVM_RESTART_VNTS		(1ULL << 58)
-#define EVM_RESTART_VNTCLI		(1ULL << 59)
-#define EVM_RESTART_NATPIERCE		(1ULL << 60)
-#define EVM_RESTART_TAILSCALE		(1ULL << 61)
-#define EVM_RESTART_ALIST		(1ULL << 62)
+#define EVM_RESTART_NTWON			(1ULL << 58)
+#define EVM_RESTART_HXCLI			(1ULL << 59) //hx客户端
+#define EVM_RESTART_NELINK			(1ULL << 60)
+#define EVM_RESTART_ETINK			(1ULL << 61) 
+#define EVM_RESTART_N2V6		(1ULL << 62)
 #define EVM_RESTART_REBOOT			(1ULL << 44)
 #define EVM_RESTART_CLOUDFLARE			(1ULL << 41)
 //#define EVM_RESTART_APP			(1ULL << 38)
@@ -192,12 +192,12 @@ typedef u_int8_t u8;
 #define EVT_RESTART_WIREGUARD     	2
 #define EVT_RESTART_UUPLUGIN    	2
 #define EVT_RESTART_LUCKY	    	2
-#define EVT_RESTART_WXSEND	    	2
+#define EVT_RESTART_N2V6	    	2
 #define EVT_RESTART_CLOUDFLARED	    	2
-#define EVT_RESTART_VNTS	    	2
-#define EVT_RESTART_VNTCLI	    	2
-#define EVT_RESTART_NATPIERCE	    	2
-#define EVT_RESTART_TAILSCALE	    	2
+#define EVT_RESTART_NTWON	    	2
+#define EVT_RESTART_HXCLI	    	2
+#define EVT_RESTART_NELINK	    	2
+#define EVT_RESTART_ETINK	    	2
 #define EVT_RESTART_CLOUDFLARE	    	2
 #define EVT_RESTART_ALIST	    	2
 #define EVT_RESTART_REBOOT			40
