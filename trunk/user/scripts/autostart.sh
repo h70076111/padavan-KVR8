@@ -121,6 +121,11 @@ logger -t "自动启动" "正在启NV6组网"
 /usr/bin/nv6.sh start &
 fi
 
+if [ $(nvram get hxwan_enable) = 1 ] ; then
+logger -t "自动启动" "正在启HXSDWAN组网"
+/usr/bin/hxwan.sh start &
+fi
+
 if [ $(nvram get etweb_enable) = 1 ] ; then
 logger -t "自动启动" "正在启et组网"
 /usr/bin/et.sh start &
