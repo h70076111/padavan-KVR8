@@ -260,11 +260,20 @@ endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_CLOUDFLARED),y)
 	rm -f $(INSTALLDIR)/www/Advanced_cloudflared.asp
 endif
-ifneq ($(CONFIG_FIRMWARE_INCLUDE_VNTS),y)
-	rm -f $(INSTALLDIR)/www/Advanced_vnts.asp
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_NTWON),y)
+	rm -f $(INSTALLDIR)/www/Advanced_ntwon.asp
 endif
-ifneq ($(CONFIG_FIRMWARE_INCLUDE_VNTCLI),y)
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_HXCLI),y)
 	rm -f $(INSTALLDIR)/www/Advanced_hxzn.asp
+endif
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_NELINK),y)
+	rm -f $(INSTALLDIR)/www/Advanced_nelink.asp
+endif
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_ETINK),y)
+	rm -f $(INSTALLDIR)/www/Advanced_etink.asp
+endif
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_N2V6),y)
+	rm -f $(INSTALLDIR)/www/Advanced_n2v6.asp
 endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_NATPIERCE),y)
 	rm -f $(INSTALLDIR)/www/Advanced_natpierce.asp
