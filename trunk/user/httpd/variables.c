@@ -1001,61 +1001,99 @@
 	};
 #endif
 
-#if defined(APP_VNTS)
-	struct variable variables_VNTS[] = {
-			{"vnts_enable", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_port", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_token", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_subnet", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_netmask", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_sfinger", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_web_enable", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_web_port", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_web_user", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_web_pass", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_web_wan", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_vnts_bin", "", NULL, EVM_RESTART_VNTS},
-			{"vnts_log", "", NULL, EVM_RESTART_VNTS},
-			{"vnts.log", "File", NULL, EVM_RESTART_VNTS},
+#if defined(APP_NTWON)
+	struct variable variables_NTWON[] = {
+			{"ntwon_enable", "", NULL, EVM_RESTART_NTWON},
+			{"ntwon_keyg", "", NULL, EVM_RESTART_NTWON},
+			{"ntwon_xuip", "", NULL, EVM_RESTART_NTWON},
+			{"ntwon_log", "", NULL, EVM_RESTART_NTWON},
+			{"ntwon_log2", "", NULL, EVM_RESTART_NTWON},
+			{"ntwon_log3", "", NULL, EVM_RESTART_NTWON},
+			{"scripts.ntwon.conf", "File", NULL, EVM_RESTART_NTWON},
+			{"ntwon_routenum_x", "", NULL, EVM_RESTART_NTWON},
+			{"NTWONinrou", "Group", ARGV((char*)variables_NTWON_NTWONinrou, "8", "55", "ntwon_routenum_x"), EVM_RESTART_NTWON},
 			{0,0,0,0}
 	};
 #endif
 
-#if defined(APP_VNTCLI)
-	struct variable variables_VNTCLI[] = {
-			{"vntcli_enable", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_token", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_ip", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_localadd", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_serip", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_model", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_key", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_log", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_proxy", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_first", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_wg", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_finger", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_serverw", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_desname", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_id", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_tunname", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_mtu", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_dns", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_stun", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_port", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_punch", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_comp", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_relay", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_wan", "", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_bin", "", NULL, EVM_RESTART_VNTCLI},
-			{"scripts.vnt.conf", "File", NULL, EVM_RESTART_VNTCLI},
-			{"vntcli_routenum_x", "", NULL, EVM_RESTART_VNTCLI},
-			{"VNTCLIroute", "Group", ARGV((char*)variables_VNTCLI_VNTCLIroute, "8", "55", "vntcli_routenum_x"), EVM_RESTART_VNTCLI},
-			{"vntcli_mappnum_x", "", NULL, EVM_RESTART_VNTCLI},
-			{"VNTCLImapp", "Group", ARGV((char*)variables_VNTCLI_VNTCLImapp, "8", "55", "vntcli_mappnum_x"), EVM_RESTART_VNTCLI},
+#if defined(APP_HXCLI)
+	struct variable variables_HXCLI[] = {
+			{"hxcli_enable", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_token", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_ip", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_localadd", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_serip", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_model", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_key", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_log", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_proxy", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_first", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_ipv6_enable", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_finger", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_serverw", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_desname", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_id", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_tunname", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_mtu", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_dns", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_stun", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_port", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_punch", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_comp", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_relay", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_wan", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_bin", "", NULL, EVM_RESTART_HXCLI},
+			{"scripts.hx.conf", "File", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_routenum_x", "", NULL, EVM_RESTART_HXCLI},
+			{"HXCLIroute", "Group", ARGV((char*)variables_HXCLI_HXCLIroute, "8", "55", "hxcli_routenum_x"), EVM_RESTART_HXCLI},
 			{0,0,0,0}
 	};
 #endif
+
+#if defined(APP_NELINK)
+	struct variable variables_NELINK[] = {
+			{"nelink_enable", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_keyg", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_ip", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_log", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_log2", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_log3", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_routenum_x", "", NULL, EVM_RESTART_NTWON},
+			{"NELINKtorou", "Group", ARGV((char*)variables_NELINK_NELINKtorou, "8", "55", "nelink_routenum_x"), EVM_RESTART_NELINK},
+			{0,0,0,0}
+	};
+#endif
+
+#if defined(APP_ETINK)
+	struct variable variables_ETINK[] = {
+			{"etink_enable", "", NULL, EVM_RESTART_ETINK},
+			{"etweb_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_ipv6_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_use_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_latency_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_kcp_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_quic_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_p2p_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_udp_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_system_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_encryption_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_thread_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_dns_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_mode_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_device_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_rpc_enable", "", NULL, EVM_RESTART_ETINK},
+			{"etink_keyg", "", NULL, EVM_RESTART_ETINK},
+			{"etink_webul", "", NULL, EVM_RESTART_ETINK},
+			{"etink_xyip", "", NULL, EVM_RESTART_ETINK},
+			{"etink_pass", "", NULL, EVM_RESTART_ETINK},
+			{"etink_xuip1", "", NULL, EVM_RESTART_ETINK},
+			{"etink_log", "", NULL, EVM_RESTART_ETINK},
+			{"etink_log2", "", NULL, EVM_RESTART_ETINK},
+			{"etink_log3", "", NULL, EVM_RESTART_ETINK},
+			{0,0,0,0}
+	};
+#endif
+
 
 /*#if defined(APP_NPC)
 	struct variable variables_NpcConf[] = {
@@ -1710,11 +1748,21 @@
 #if defined(APP_CLOUDFLARE)
 		{"CLOUDFLARE",		variables_CLOUDFLARE},
 #endif
-#if defined(APP_VNTS)
-		{"VNTS",		variables_VNTS},
+#if defined(APP_N2V6)
+		{"N2V6",		variables_N2V6},
 #endif
-#if defined(APP_VNTCLI)
-		{"VNTCLI",		variables_VNTCLI},
+#endif
+#if defined(APP_NTWON)
+		{"NTWON",		variables_NTWON},
+#endif
+#if defined(APP_HXCLI)
+		{"HXCLI",		variables_HXCLI},
+#endif
+#if defined(APP_NELINK)
+		{"NELINK",		variables_NELINK},
+#endif
+#if defined(APP_ETINK)
+		{"ETINK",		variables_ETINK},
 #endif
 #if defined(APP_TAILSCALE)
 		{"TAILSCALE",		variables_TAILSCALE},
@@ -1869,11 +1917,20 @@
 #if defined(APP_CLOUDFLARED)
 		{EVM_RESTART_CLOUDFLARED,		EVT_RESTART_CLOUDFLARED,		RCN_RESTART_CLOUDFLARED,	0},
 #endif
-#if defined(APP_VNTS)
-		{EVM_RESTART_VNTS,		EVT_RESTART_VNTS,		RCN_RESTART_VNTS,	0},
+#if defined(APP_N2V6)
+		{EVM_RESTART_N2V6,		EVT_RESTART_N2V6,		RCN_RESTART_N2V6,	0},
 #endif
-#if defined(APP_VNTCLI)
-		{EVM_RESTART_VNTCLI,		EVT_RESTART_VNTCLI,		RCN_RESTART_VNTCLI,	0},
+#if defined(APP_NTWON)
+		{EVM_RESTART_NTWON,		EVT_RESTART_NTWON,		RCN_RESTART_NTWON,	0},
+#endif
+#if defined(APP_HXCLI)
+		{EVM_RESTART_HXCLI,		EVT_RESTART_HXCLI,		RCN_RESTART_HXCLI,	0},
+#endif
+#if defined(APP_NELINK)
+		{EVM_RESTART_NELINK,		EVT_RESTART_NELINK,		RCN_RESTART_NELINK,	0},
+#endif
+#if defined(APP_ETINK)
+		{EVM_RESTART_ETINK,		EVT_RESTART_ETINK,		RCN_RESTART_ETINK,	0},
 #endif
 #if defined(APP_TAILSCALE)
 		{EVM_RESTART_TAILSCALE,		EVT_RESTART_TAILSCALE,		RCN_RESTART_TAILSCALE,	0},
