@@ -112,17 +112,28 @@
 			{"zero_route_x", "24", NULL, FALSE},
 			{0,0,0,0}
 		};
-	struct variable variables_VNTCLI_VNTCLImapp[] = {
-			{"vntcli_mappnet_x", "24", NULL, FALSE},
-			{"vntcli_mappport_x", "24", NULL, FALSE},
-			{"vntcli_mappip_x", "24", NULL, FALSE},
-			{"vntcli_mapeerport_x", "24", NULL, FALSE},
+	struct variable variables_NELINK_NELINKtorou[] = {
+			{"nelink_name_x", "24", NULL, FALSE},
+			{"nelink_route_x", "24", NULL, FALSE},
+			{"nelink_ip_x", "24", NULL, FALSE},
 			{0,0,0,0}
 		};
-	struct variable variables_VNTCLI_VNTCLIroute[] = {
-			{"vntcli_name_x", "24", NULL, FALSE},
-			{"vntcli_route_x", "24", NULL, FALSE},
-			{"vntcli_ip_x", "24", NULL, FALSE},
+	struct variable variables_NTWON_NTWONinrou[] = {
+			{"ntwon_name_x", "24", NULL, FALSE},
+			{"ntwon_route_x", "24", NULL, FALSE},
+			{"ntwon_ip_x", "24", NULL, FALSE},
+			{0,0,0,0}
+		};
+	struct variable variables_HXCLI_HXCLIroute[] = {
+			{"hxcli_name_x", "24", NULL, FALSE},
+			{"hxcli_route_x", "24", NULL, FALSE},
+			{"hxcli_ip_x", "24", NULL, FALSE},
+			{0,0,0,0}
+		};
+	struct variable variables_HXSDWAN_HXSDWANroute[] = {
+			{"hxwan_name_x", "24", NULL, FALSE},
+			{"hxwan_route_x", "24", NULL, FALSE},
+			{"hxwan_ip_x", "24", NULL, FALSE},
 			{0,0,0,0}
 		};
 	struct variable variables_SspConf_SspList[] = {
