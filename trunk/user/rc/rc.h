@@ -582,15 +582,31 @@ void stop_frp(void);
 void start_frp(void);
 void restart_frp(void);
 #endif
-#if defined(APP_VNTS)
-void stop_vnts(void);
-void start_vnts(void);
-void restart_vnts(void);
+#if defined(APP_NTWON)
+void stop_ntwon(void);
+void start_ntwon(void);
+void restart_ntwon(void);
 #endif
-#if defined(APP_VNTCLI)
-void stop_vntcli(void);
-void start_vntcli(void);
-void restart_vntcli(void);
+#if defined(APP_HXCLI)
+void stop_hxcli(void);
+void start_hxcli(void);
+void restart_hxcli(void);
+#endif
+#if defined(APP_NELINK)
+void stop_nelink(void);
+void start_nelink(void);
+void restart_nelink(void);
+#endif
+#if defined(APP_ETINK)
+void stop_etink(void);
+void start_etink(void);
+void start_etweb(void);
+void restart_etink(void);
+#endif
+#if defined(APP_N2V6)
+void stop_n2v6(void);
+void start_n2v6(void);
+void restart_n2v6(void);
 #endif
 /*#if defined(APP_NPC)
 void stop_npc(void);
