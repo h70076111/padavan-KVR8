@@ -2338,20 +2338,47 @@ static int frps_status_hook(int eid, webs_t wp, int argc, char **argv)
 }
 #endif
 
-#if defined (APP_VNTS)
-static int vnts_status_hook(int eid, webs_t wp, int argc, char **argv)
+#if defined (APP_N2V6)
+static int n2v6_status_hook(int eid, webs_t wp, int argc, char **argv)
 {
-	int vnts_status_code = pids("vnts");
-	websWrite(wp, "function vnts_status() { return %d;}\n", vnts_status_code);
+	int n2v6_status_code = pids("edge6");
+	websWrite(wp, "function n2v6_status() { return %d;}\n", n2v6_status_code);
 	return 0;
 }
 #endif
 
-#if defined (APP_VNTCLI)
-static int vntcli_status_hook(int eid, webs_t wp, int argc, char **argv)
+#if defined (APP_NTWON)
+static int ntwon_status_hook(int eid, webs_t wp, int argc, char **argv)
 {
-	int vntcli_status_code = pids("vnt-cli");
-	websWrite(wp, "function vntcli_status() { return %d;}\n", vntcli_status_code);
+	int ntwon_status_code = pids("ntwon");
+	websWrite(wp, "function ntwon_status() { return %d;}\n", ntwon_status_code);
+	return 0;
+}
+#endif
+
+#if defined (APP_HXCLI)
+static int hxcli_status_hook(int eid, webs_t wp, int argc, char **argv)
+{
+	int hxcli_status_code = pids("hx-cli");
+	websWrite(wp, "function hxcli_status() { return %d;}\n", hxcli_status_code);
+	return 0;
+}
+#endif
+
+#if defined (APP_NELINK)
+static int nelink_status_hook(int eid, webs_t wp, int argc, char **argv)
+{
+	int nelink_status_code = pids("netlink");
+	websWrite(wp, "function nelink_status() { return %d;}\n", nelink_status_code);
+	return 0;
+}
+#endif
+
+#if defined (APP_ETINK)
+static int etink_status_hook(int eid, webs_t wp, int argc, char **argv)
+{
+	int etink_status_code = pids("easytier-core");
+	websWrite(wp, "function etink_status() { return %d;}\n", etink_status_code);
 	return 0;
 }
 #endif
@@ -2708,15 +2735,30 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 #else
 	int found_app_frp = 0;
 #endif
-#if defined(APP_VNTS)
-	int found_app_vnts = 1;
+#if defined(APP_N2V6)
+	int found_app_n2v6 = 1;
 #else
-	int found_app_vnts = 0;
+	int found_app_n2v6 = 0;
 #endif
-#if defined(APP_VNTCLI)
-	int found_app_vntcli = 1;
+#if defined(APP_NTWON)
+	int found_app_ntwon = 1;
 #else
-	int found_app_vntcli = 0;
+	int found_app_ntwon = 0;
+#endif
+#if defined(APP_HXCLI)
+	int found_app_hxcli = 1;
+#else
+	int found_app_hxcli = 0;
+#endif
+#if defined(APP_NELINK)
+	int found_app_nelink = 1;
+#else
+	int found_app_nelink = 0;
+#endif
+#if defined(APP_ETINK)
+	int found_app_etink = 1;
+#else
+	int found_app_etink = 0;
 #endif
 #if defined(APP_NVPPROXY)
 	int found_app_nvpproxy = 1;
@@ -2988,8 +3030,11 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function found_app_cloudflare() { return %d;}\n"
 		"function found_app_alist() { return %d;}\n"
 		"function found_app_xupnpd() { return %d;}\n"
-		"function found_app_vnts() { return %d;}\n"
-		"function found_app_vntcli() { return %d;}\n"
+		"function found_app_n2v6() { return %d;}\n"
+		"function found_app_hxcli() { return %d;}\n"
+		"function found_app_nelink() { return %d;}\n"
+		"function found_app_ntwon() { return %d;}\n"
+		"function found_app_etink() { return %d;}\n"
 		"function found_app_uuplugin() { return %d;}\n"
 		"function found_app_lucky() { return %d;}\n"
 		"function found_app_wxsend() { return %d;}\n"
@@ -3034,8 +3079,11 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		found_app_cloudflare,
 		found_app_alist,
 		found_app_xupnpd,
-		found_app_vnts,
-		found_app_vntcli,
+		found_app_n2v6,
+		found_app_hxcli,
+		found_app_ntwon,
+		found_app_nelink,
+		found_app_etink,
 		found_app_uuplugin,
 		found_app_lucky,
 		found_app_wxsend,
@@ -4040,81 +4088,66 @@ apply_cgi(const char *url, webs_t wp)
 #endif
 		return 0;
 	}
-	else if (!strcmp(value, " Restartvnts "))
+	else if (!strcmp(value, " RestartNTWON "))
 	{
-#if defined(APP_VNTS)
-		system("/usr/bin/vnts.sh restart &");
+#if defined(APP_NTWON)
+		system("/usr/bin/ntwon.sh restart &");
 #endif
 		return 0;
 	}
-	else if (!strcmp(value, " Updatevnts "))
+	else if (!strcmp(value, " Restarthxcli "))
 	{
-#if defined(APP_VNTS)
-		system("/usr/bin/vnts.sh update &");
-#endif
-		return 0;
-	}
-	else if (!strcmp(value, " ClearvntsLog "))
-	{
-#if defined(APP_VNTS)
-		unlink("/tmp/vnts.log");
-#endif
-		websRedirect(wp, current_url);
-		return 0;
-	}
-	else if (!strcmp(value, " Restartvntcli "))
-	{
-#if defined(APP_VNTCLI)
+#if defined(APP_HXCLI)
 		system("/usr/bin/hxzn.sh restart &");
 #endif
 		return 0;
 	}
-	else if (!strcmp(value, " Updatevntcli "))
+	else if (!strcmp(value, " Updatehxcli "))
 	{
-#if defined(APP_VNTCLI)
+#if defined(APP_HXCLI)
 		system("/usr/bin/hxzn.sh update &");
 #endif
 		return 0;
 	}
-	else if (!strcmp(value, " CMDvntinfo "))
+	else if (!strcmp(value, " CMDhxinfo "))
 	{
-#if defined(APP_VNTCLI)
-		system("/usr/bin/hxzn.sh vntinfo &");
+#if defined(APP_HXCLI)
+		system("/usr/bin/hxzn.sh hxinfo &");
 #endif
 		return 0;
 	}
-	else if (!strcmp(value, " CMDvntall "))
+	else if (!strcmp(value, " CMDhxall "))
 	{
-#if defined(APP_VNTCLI)
-		system("/usr/bin/hxzn.sh vntall &");
+#if defined(APP_HXCLI)
+		system("/usr/bin/hxzn.sh hxall &");
 #endif
 		return 0;
 	}
-	else if (!strcmp(value, " CMDvntlist "))
+	else if (!strcmp(value, " CMDhxlist "))
 	{
-#if defined(APP_VNTCLI)
-		system("/usr/bin/hxzn.sh vntlist &");
+#if defined(APP_HXCLI)
+		system("/usr/bin/hxzn.sh hxlist &");
 #endif
 		return 0;
 	}
-	else if (!strcmp(value, " CMDvntroute "))
+	else if (!strcmp(value, " CMDhxroute "))
 	{
-#if defined(APP_VNTCLI)
-		system("/usr/bin/hxzn.sh vntroute &");
+#if defined(APP_HXCLI)
+		system("/usr/bin/hxzn.sh hxroute &");
 #endif
 		return 0;
 	}
-	else if (!strcmp(value, " CMDvntstatus "))
+	else if (!strcmp(value, " CMDhxstatus "))
 	{
-#if defined(APP_VNTCLI)
-		system("/usr/bin/hxzn.sh vntstatus &");
+#if defined(APP_HXCLI)
+		system("/usr/bin/hxzn.sh hxstatus &");
 #endif
 		return 0;
 	}
-	else if (!strcmp(value, " ClearvntcliLog "))
+	else if (!strcmp(value, " ClearhxcliLog "))
 	{
-#if defined(APP_VNTCLI)
-		unlink("/tmp/vnt-cli.log");
+#if defined(APP_HXCLI)
+		unlink("/tmp/hx-cli.log");
 #endif
 		websRedirect(wp, current_url);
 		return 0;
@@ -4158,6 +4191,90 @@ apply_cgi(const char *url, webs_t wp)
 	{
 #if defined(APP_TAILSCALE)
 		system("/usr/bin/tailscale.sh update &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " Restartnelink "))
+	{
+#if defined(APP_NELINK)
+		system("/usr/bin/ne.sh restart &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " Restartetink "))
+	{
+#if defined(APP_ETINK)
+		system("/usr/bin/et.sh restart &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " Updateeasytier "))
+	{
+#if defined(APP_ETINK)
+		system("/usr/bin/easytier.sh update &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDetpeer "))
+	{
+#if defined(APP_ETINK)
+		system("/usr/bin/easytier.sh peer &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDetconnector "))
+	{
+#if defined(APP_ETINK)
+		system("/usr/bin/easytier.sh connector &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDetstun "))
+	{
+#if defined(APP_ETINK)
+		system("/usr/bin/easytier.sh stun &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDetroute "))
+	{
+#if defined(APP_ETINK)
+		system("/usr/bin/easytier.sh route &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDetpeer_center "))
+	{
+#if defined(APP_ETINK)
+		system("/usr/bin/easytier.sh peer-center &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDetvpn_portal "))
+	{
+#if defined(APP_ETINK)
+		system("/usr/bin/easytier.sh vpn-portal &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDetnode "))
+	{
+#if defined(APP_ETINK)
+		system("/usr/bin/easytier.sh node &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDetproxy "))
+	{
+#if defined(APP_ETINK)
+		system("/usr/bin/easytier.sh proxy &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDetstatus "))
+	{
+#if defined(APP_ETINK)
+		system("/usr/bin/et.sh status &");
 #endif
 		return 0;
 	}
@@ -4820,32 +4937,77 @@ static char mentohust_log_txt[] =
 
 #endif
 
-#if defined (APP_VNTCLI)
+#if defined (APP_HXCLI)
 static void
-do_vntcli_log_file(const char *url, FILE *stream)
+do_hxcli_log_file(const char *url, FILE *stream)
 {
-	dump_file(stream, "/tmp/vnt-cli.log");
+	dump_file(stream, "/tmp/hx-cli.log");
 	fputs("\r\n", stream);
 }
 
-static char vntcli_log_txt[] =
+static char hxcli_log_txt[] =
 "Content-Disposition: attachment;\r\n"
-"filename=vnt-cli.log"
+"filename=hx-cli.log"
 ;
 
 #endif
 
-#if defined (APP_VNTS)
+#if defined (APP_N2V6)
 static void
-do_vnts_log_file(const char *url, FILE *stream)
+do_n2v6_log_file(const char *url, FILE *stream)
 {
-	dump_file(stream, "/tmp/vnts.log");
+	dump_file(stream, "/tmp/n2v6.log");
 	fputs("\r\n", stream);
 }
 
-static char vnts_log_txt[] =
+static char n2v6_log_txt[] =
 "Content-Disposition: attachment;\r\n"
-"filename=vnts.log"
+"filename=n2v6.log"
+;
+
+#endif
+
+#if defined (APP_NTWON)
+static void
+do_ntwon_log_file(const char *url, FILE *stream)
+{
+	dump_file(stream, "/tmp/ntwon.log");
+	fputs("\r\n", stream);
+}
+
+static char ntwon_log_txt[] =
+"Content-Disposition: attachment;\r\n"
+"filename=ntwon.log"
+;
+
+#endif
+
+#if defined (APP_NELINK)
+static void
+do_nelink_log_file(const char *url, FILE *stream)
+{
+	dump_file(stream, "/tmp/nelink.log");
+	fputs("\r\n", stream);
+}
+
+static char nelink_log_txt[] =
+"Content-Disposition: attachment;\r\n"
+"filename=nelink.log"
+;
+
+#endif
+
+#if defined (APP_ETINK)
+static void
+do_etink_log_file(const char *url, FILE *stream)
+{
+	dump_file(stream, "/tmp/etink.log");
+	fputs("\r\n", stream);
+}
+
+static char etink_log_txt[] =
+"Content-Disposition: attachment;\r\n"
+"filename=etink.log"
 ;
 
 #endif
@@ -4909,11 +5071,20 @@ struct mime_handler mime_handlers[] = {
 #if defined(APP_MENTOHUST)
 	{ "mentohust.log", "application/force-download", mentohust_log_txt, NULL, do_mentohust_log_file, 1 },
 #endif
-#if defined(APP_VNTCLI)
-	{ "vnt-cli.log", "application/force-download", vntcli_log_txt, NULL, do_vntcli_log_file, 1 },
+#if defined(APP_HXCLI)
+	{ "hx-cli.log", "application/force-download", hxcli_log_txt, NULL, do_hxcli_log_file, 1 },
 #endif
-#if defined(APP_VNTS)
-	{ "vnts.log", "application/force-download", vnts_log_txt, NULL, do_vnts_log_file, 1 },
+#if defined(APP_NTWON)
+	{ "ntwon.log", "application/force-download", ntwon_log_txt, NULL, do_ntwon_log_file, 1 },
+#endif
+#if defined(APP_NELINK)
+	{ "nelink.log", "application/force-download", nelink_log_txt, NULL, do_nelink_log_file, 1 },
+#endif
+#if defined(APP_ETINK)
+	{ "etink.log", "application/force-download", etink_log_txt, NULL, do_etink_log_file, 1 },
+#endif
+#if defined(APP_N2V6)
+	{ "n2v6.log", "application/force-download", n2v6_log_txt, NULL, do_n2v6_log_file, 1 },
 #endif
 #if defined(APP_OPENVPN)
 	{ "client.ovpn", "application/force-download", NULL, NULL, do_export_ovpn_client, 1 },
@@ -5248,11 +5419,20 @@ struct ej_handler ej_handlers[] =
 	{ "frpc_status", frpc_status_hook},
 	{ "frps_status", frps_status_hook},
 #endif
-#if defined (APP_VNTS)
-	{ "vnts_status", vnts_status_hook},
+#if defined (APP_NTWON)
+	{ "ntwon_status", ntwon_status_hook},
 #endif
-#if defined (APP_VNTCLI)
-	{ "vntcli_status", vntcli_status_hook},
+#if defined (APP_HXCLI)
+	{ "hxcli_status", hxcli_status_hook},
+#endif
+#if defined (APP_NELINK)
+	{ "nelink_status", nelink_status_hook},
+#endif
+#if defined (APP_ETINK)
+	{ "etink_status", etink_status_hook},
+#endif
+#if defined (APP_N2V6)
+	{ "n2v6_status", n2v6_status_hook},
 #endif
 #if defined (APP_NVPPROXY)
 	{ "nvpproxy_status", nvpproxy_status_hook},
