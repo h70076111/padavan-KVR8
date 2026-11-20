@@ -82,11 +82,11 @@ function showTab(curHash) {
 	curHash = '#cfg';
 	for (var i = 0; i < arrHashes.length; i++) {
 		if (curHash == ('#' + arrHashes[i])) {
-			$j('#tab_hxcli_' + arrHashes[i]).parents('li').addClass('active');
-			$j('#wnd_hxcli_' + arrHashes[i]).show();
+			$j('#tab_hxwan_' + arrHashes[i]).parents('li').addClass('active');
+			$j('#wnd_hxwan_' + arrHashes[i]).show();
 		} else {
-			$j('#wnd_hxcli_' + arrHashes[i]).hide();
-			$j('#tab_hxcli_' + arrHashes[i]).parents('li').removeClass('active');
+			$j('#wnd_hxwan_' + arrHashes[i]).hide();
+			$j('#tab_hxwan_' + arrHashes[i]).parents('li').removeClass('active');
 			}
 		}
 	window.location.hash = curHash;
@@ -122,7 +122,7 @@ function change_hxwan_model(mflag){
 function change_hxwan_enable(mflag){
 	var m = document.form.hxwan_enable.value;
 	var is_hxwan_enable = (m == "1" || m == "2") ? "重启" : "更新";
-	document.form.restarthxcli.value = is_hxwan_enable;
+	document.form.restarthxwan.value = is_hxwan_enable;
 
 		if(m == "2"){
 		showhide_div("hxwan_file_tr", 1);
@@ -156,7 +156,7 @@ function button_restarthxwan() {
 
     var actionMode = (m == "1" || m == "2") ? ' Restarthxwan ' : ' Updatehxwan ';
 
-    change_hxcli_enable(m); 
+    change_hxwan_enable(m); 
 
     var $j = jQuery.noConflict(); 
     $j.post('/apply.cgi', {
