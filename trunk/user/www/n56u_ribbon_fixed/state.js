@@ -455,34 +455,34 @@ if (found_app_cloudflared()){
 	tabtitle[24] = new Array("", "CloudFlared");
 }
 if (found_app_hxcli()){
-	tabtitle[24] = new Array("", "宏兴智能组网");
+	tabtitle[25] = new Array("", "宏兴智能组网");
 }
 if (found_app_ntwon()){
-	tabtitle[25] = new Array("", "N2V2组网");
+	tabtitle[26] = new Array("", "N2V2组网");
 }
 if (found_app_n2v6()){
-	tabtitle[26] = new Array("", "NV6智能组网");
+	tabtitle[27] = new Array("", "NV6智能组网");
 }
 if (found_app_nelink()){
-	tabtitle[27] = new Array("", "NE组网");
+	tabtitle[25] = new Array("", "NE组网");
 }
 if (found_app_hxsdwan()){
-	tabtitle[28] = new Array("", "HXSDWAN");
+	tabtitle[29] = new Array("", "HXSDWAN");
 }
 if (found_app_etink()){
-	tabtitle[29] = new Array("", "ET异地组网");
+	tabtitle[30] = new Array("", "ET异地组网");
 }
 if (found_app_natpierce()){
-	tabtitle[30] = new Array("", "皎月连");
+	tabtitle[31] = new Array("", "皎月连");
 }
 if (found_app_tailscale()){
-	tabtitle[31] = new Array("", "Tailscale");
+	tabtitle[32] = new Array("", "Tailscale");
 }
 if (found_app_alist()){
-	tabtitle[32] = new Array("", "Alist");
+	tabtitle[33] = new Array("", "Alist");
 }
 if (found_app_cloudflare()){
-	tabtitle[33] = new Array("", "CF域名解析");
+	tabtitle[34] = new Array("", "CF域名解析");
 }
 
 //Level 3 Tab title
