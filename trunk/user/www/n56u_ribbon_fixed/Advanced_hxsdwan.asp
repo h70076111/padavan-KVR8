@@ -46,7 +46,7 @@ $j(document).ready(function() {
 </script>
 <script>
 
-var m_routelist = [<% get_nvram_list("HXSDWAN", "HXSDWANroute"); %>];
+var m_routelist = [<% get_nvram_list("HXSDWAN", "HXSDWANLrout"); %>];
 var mroutelist_ifield = 4;
 if(m_routelist.length > 0){
 	var m_routelist_ifield = m_routelist[0].length;
@@ -165,7 +165,7 @@ function button_restarthxwan() {
 }
 
 function markrouteRULES(o, c, b) {
-	document.form.group_id.value = "HXSDWANroute";
+	document.form.group_id.value = "HXSDWANLrout";
 	if(b == " Add "){
 		if (document.form.hxwan_routenum_x_0.value >= c){
 			alert("<#JS_itemlimit1#> " + c + " <#JS_itemlimit2#>");
@@ -209,13 +209,13 @@ function showROUTEList(){
 		code +='<td width="38%">&nbsp;' + m_routelist[i][1] + '</td>';
 		code +='<td colspan="2" width="40%">' + m_routelist[i][2] + '</td>';
 		code +='<td width="50%"></td>';
-		code +='<center><td width="20%" style="text-align: center;"><input type="checkbox" name="HXSDWANroute_s" value="' + m_routelist[i][mroutelist_ifield] + '" onClick="changeBgColorrl(this,' + i + ');" id="check' + m_routelist[i][mroutelist_ifield] + '"></td></center>';
+		code +='<center><td width="20%" style="text-align: center;"><input type="checkbox" name="HXSDWANLrout_s" value="' + m_routelist[i][mroutelist_ifield] + '" onClick="changeBgColorrl(this,' + i + ');" id="check' + m_routelist[i][mroutelist_ifield] + '"></td></center>';
 		
 		code +='</tr>';
 	    }
 		code += '<tr>';
 		code += '<td colspan="5">&nbsp;</td>'
-		code += '<td><button class="btn btn-danger" type="submit" onclick="markrouteRULES(this, 64, \' Del \');" name="HXSDWANroute"><i class="icon icon-minus icon-white"></i></button></td>';
+		code += '<td><button class="btn btn-danger" type="submit" onclick="markrouteRULES(this, 64, \' Del \');" name="HXSDWANLrout"><i class="icon icon-minus icon-white"></i></button></td>';
 		code += '</tr>'
 	}
 	code +='</table>';
@@ -325,10 +325,10 @@ function button_hxwan_status() {
 	<input type="hidden" name="next_page" value="">
 	<input type="hidden" name="next_host" value="">
 	<input type="hidden" name="sid_list" value="HXSDWAN;LANHostConfig;General;">
-	<input type="hidden" name="group_id" value="HXSDWANroute;HXSDWANmapp">
+	<input type="hidden" name="group_id" value="HXSDWANLrout;HXSDWANmapp">
 	<input type="hidden" name="action_mode" value="">
 	<input type="hidden" name="action_script" value="">
-	<input type="hidden" name="hxwan_routenum_x_0" value="<% nvram_get_x("HXSDWANroute", "hxwan_routenum_x"); %>" readonly="1" />
+	<input type="hidden" name="hxwan_routenum_x_0" value="<% nvram_get_x("HXSDWANLrout", "hxwan_routenum_x"); %>" readonly="1" />
 	<input type="hidden" name="hxwan_mappnum_x_0" value="<% nvram_get_x("HXSDWANmapp", "hxwan_mappnum_x"); %>" readonly="1" />
 
 	<div class="container-fluid">
