@@ -1,5 +1,5 @@
 #修改TNAME: RM2100 中的RM2100为你需要编译的型号，注意名称要与configs/templates/目录下的名字相同
-name: ZN8800N
+name: MA1210SDWAN
 on: 
   #release:
   #  types: [published]
@@ -38,7 +38,7 @@ jobs:
     
     - name: Build Firmware
       env:
-        TNAME: ZN8800N
+        TNAME: MA1210SDWAN
       run: |
         cd /opt/rt-n56u/trunk
         if [ ! -f configs/templates/$TNAME.config ] ; then
@@ -54,7 +54,10 @@ jobs:
         sed -i 's/CONFIG_FIRMWARE_INCLUDE_MENTOHUST=y/CONFIG_FIRMWARE_INCLUDE_MENTOHUST=n/g' .config
         sed -i 's/CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT=y/CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT=n/g' .config
         sed -i 's/CONFIG_FIRMWARE_INCLUDE_SRELAY=y/CONFIG_FIRMWARE_INCLUDE_SRELAY=n/g' .config
-        sed -i 's/CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=y/CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=n/g' .config
+        sed -i 's/CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=y/CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=n/g'.config
+        sed -i 's/CONFIG_FIRMWARE_INCLUDE_NTWON=y/CONFIG_FIRMWARE_INCLUDE_NTWON=n/g' .config
+        sed -i 's/CONFIG_FIRMWARE_INCLUDE_HXCLI=y/CONFIG_FIRMWARE_INCLUDE_HXCLI=n/g' .config
+        sed -i 's/CONFIG_FIRMWARE_INCLUDE_N2V6=y/CONFIG_FIRMWARE_INCLUDE_N2V6=n/g' .config
         sed -i 's/CONFIG_FIRMWARE_INCLUDE_HXSDWAN=y/CONFIG_FIRMWARE_INCLUDE_HXSDWAN=n/g' .config
         ######################################################################
         #以下选项是定义你需要的功能（y=集成,n=忽略），重新写入到.config文件
