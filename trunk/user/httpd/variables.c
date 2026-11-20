@@ -1810,8 +1810,8 @@
 #if defined(APP_ETINK)
 		{"ETINK",		variables_ETINK},
 #endif
-#if defined(APP_HXADWAN)
-		{"HXADWAN",		variables_HXADWAN},
+#if defined(APP_HXSDWAN)
+		{"HXSDWAN",		variables_HXSDWAN},
 #endif
 #if defined(APP_TAILSCALE)
 		{"TAILSCALE",		variables_TAILSCALE},
