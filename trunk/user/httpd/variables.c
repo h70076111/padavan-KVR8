@@ -130,7 +130,7 @@
 			{"hxcli_ip_x", "24", NULL, FALSE},
 			{0,0,0,0}
 		};
-	struct variable variables_HXSDWAN_HXSDWANroute[] = {
+	struct variable variables_HXSDWAN_HXSDWANLrout[] = {
 			{"hxwan_name_x", "24", NULL, FALSE},
 			{"hxwan_route_x", "24", NULL, FALSE},
 			{"hxwan_ip_x", "24", NULL, FALSE},
@@ -1045,7 +1045,7 @@
 			{"hxwan_bin", "", NULL, EVM_RESTART_HXSDWAN},
 			{"scripts.hxwan.conf", "File", NULL, EVM_RESTART_HXSDWAN},
 			{"hxwan_routenum_x", "", NULL, EVM_RESTART_HXSDWAN},
-			{"HXSDWANroute", "Group", ARGV((char*)variables_HXSDWAN_HXSDWANroute, "8", "55", "hxwan_routenum_x"), EVM_RESTART_HXSDWAN},
+			{"HXSDWANLrout", "Group", ARGV((char*)variables_HXSDWAN_HXSDWANrout, "8", "55", "hxwan_routenum_x"), EVM_RESTART_HXSDWAN},
 			{0,0,0,0}
 	};
 #endif
