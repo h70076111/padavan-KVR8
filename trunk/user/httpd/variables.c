@@ -1045,7 +1045,7 @@
 			{"hxwan_bin", "", NULL, EVM_RESTART_HXSDWAN},
 			{"scripts.hxwan.conf", "File", NULL, EVM_RESTART_HXSDWAN},
 			{"hxwan_routenum_x", "", NULL, EVM_RESTART_HXSDWAN},
-			{"HXSDWANroute", "Group", ARGV((char*)variables_HXSDWAN_HXSDWANroute, "8", "55", "hxwan_routenum_x"), EVM_RESTART_HXCLI},
+			{"HXSDWANroute", "Group", ARGV((char*)variables_HXSDWAN_HXSDWANroute, "8", "55", "hxwan_routenum_x"), EVM_RESTART_HXSDWAN},
 			{0,0,0,0}
 	};
 #endif
