@@ -34,7 +34,7 @@ $j(document).ready(function() {
 	init_itoggle('hxwan_first');
 	init_itoggle('hxwan_finger');
 	init_itoggle('hxwan_serverw');
-	$j("#tab_hxwan_cfg, #tab_hxwan_pri, #tab_hxwan_sta, #tab_hxwan_log, #tab_hxwan_help").click(
+	$j("#tab_hxwan_cfg, #tab_hxwan_sta, #tab_hxwan_log").click(
 	function () {
 		var newHash = $j(this).attr('href').toLowerCase();
 		showTab(newHash);
@@ -75,7 +75,7 @@ function fill_status(status_code){
 	$("hxwan_status").innerHTML = '<span class="label label-' + (status_code != 0 ? 'success' : 'warning') + '">' + stext + '</span>';
 }
 
-var arrHashes = ["cfg","pri","sta","log","help"];
+var arrHashes = ["cfg","sta","log"];
 function showTab(curHash) {
 	var obj = $('tab_hxwan_' + curHash.slice(1));
 	if (obj == null || obj.style.display == 'none')
@@ -107,7 +107,7 @@ function done_validating(action){
 }
 
 function textarea_scripts_enabled(v){
-    	inputCtrl(document.form['scripts.hx.conf'], v);
+    	inputCtrl(document.form['scripts.hxwan.conf'], v);
 }
 
 function change_hxwan_model(mflag){
@@ -325,11 +325,9 @@ function button_hxwan_status() {
 	<input type="hidden" name="next_page" value="">
 	<input type="hidden" name="next_host" value="">
 	<input type="hidden" name="sid_list" value="HXSDWAN;LANHostConfig;General;">
-	<input type="hidden" name="group_id" value="HXSDWANLrout;HXSDWANmapp">
 	<input type="hidden" name="action_mode" value="">
 	<input type="hidden" name="action_script" value="">
 	<input type="hidden" name="hxwan_routenum_x_0" value="<% nvram_get_x("HXSDWANLrout", "hxwan_routenum_x"); %>" readonly="1" />
-	<input type="hidden" name="hxwan_mappnum_x_0" value="<% nvram_get_x("HXSDWANmapp", "hxwan_mappnum_x"); %>" readonly="1" />
 
 	<div class="container-fluid">
 	<div class="row-fluid">
