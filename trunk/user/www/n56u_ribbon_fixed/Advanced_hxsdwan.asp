@@ -23,6 +23,7 @@
 <script type="text/javascript" src="/help.js"></script>
 <script>
 var $j = jQuery.noConflict();
+
 <% hxwan_status(); %>
 <% login_state_hook(); %>
 $j(document).ready(function() {
@@ -57,10 +58,11 @@ if(m_routelist.length > 0){
 var isMenuopen = 0;
 function initial(){
 	show_banner(2);
-	show_menu(5, 17, 0);
-	showROUTEList();
-	fill_status(hxcli_status());
+	show_menu(5,33,0);
+	fill_status(hxwan_status());
 	show_footer();
+	if (!login_safe())
+        		textarea_scripts_enabled(0);
 
 }
 
@@ -152,7 +154,7 @@ function change_hxwan_enable(mflag){
 function button_restarthxwan() {
     var m = document.form.hxwan_enable.value;
 
-    var actionMode = (m == "1" || m == "2") ? ' Restarthxwan ' : ' Updatehxcli ';
+    var actionMode = (m == "1" || m == "2") ? ' Restarthxwan ' : ' Updatehxwan ';
 
     change_hxcli_enable(m); 
 
@@ -500,7 +502,7 @@ function button_hxwan_status() {
 	<input type="button" onClick="location.reload()" value="刷新日志" class="btn btn-primary" style="width: 200px">
 	</td>
 	<td width="15%" style="text-align: left; padding-bottom: 0px;">
-	<input type="button" onClick="location.href='hx-cli.log'" value="<#CTL_onlysave#>" class="btn btn-success" style="width: 200px">
+	<input type="button" onClick="location.href='hxwan.log'" value="<#CTL_onlysave#>" class="btn btn-success" style="width: 200px">
 	</td>
 	<td width="75%" style="text-align: right; padding-bottom: 0px;">
 	<input type="button" onClick="clearLog();" value="清除日志" class="btn btn-info" style="width: 200px">
