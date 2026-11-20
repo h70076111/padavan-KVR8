@@ -399,7 +399,7 @@ function button_hxwan_status() {
 										<tr>
 										<th>设备ID名（格式 20）</th>
 				<td>
-					<input type="text" class="input" name="hxwan_desname" id="hxwan_desname" style="width: 60px" value="<% nvram_get_x("","hxwan_desname"); %>" />
+					<input type="text" class="input" name="hxwan_desname" id="hxwan_desname" style="width: 100px" value="<% nvram_get_x("","hxwan_desname"); %>" />
 				</td>
 
 										</tr>
