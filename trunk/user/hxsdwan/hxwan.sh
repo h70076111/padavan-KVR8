@@ -56,7 +56,6 @@ start_hxwan() {
 	[ "$hxwan_enable" = "0" ] && exit 1
 	logger -t "【HX客户端】" "正在启动hx-cli"
 CMD="/usr/bin/hxsdwan -n $hxwan_token -s $hxwan_serverw --tun-name hx2_tun --device-id $hxwan_desname"
- [ "$(nvram get hxwan_ipv6_enable)" = "1" ] && CMD="${CMD} --punch ipv6"
 	routenum=`nvram get hxwan_routenum_x`
 	for r in $(seq 1 $routenum)
 	do
