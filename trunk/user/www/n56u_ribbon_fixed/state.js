@@ -690,7 +690,7 @@ if (found_app_hxcli()){
 	menuL2_title.push("宏兴智能组网");
 } else menuL2_title.push("");
 
-if (found_app_ntwon){
+if (found_app_ntwon()){
 	menuL2_title.push("N2V2组网");
 } else menuL2_title.push("");
 
