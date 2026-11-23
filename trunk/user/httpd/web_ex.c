@@ -3080,7 +3080,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function found_app_v2raya() { return %d;}\n"
 		"function found_app_cloudflared() { return %d;}\n"
 		"function found_app_cloudflare() { return %d;}\n"
-		"function found_app_hxsdwan() { return %d;}\n"
 		"function found_app_xupnpd() { return %d;}\n"
 		"function found_app_ntwon() { return %d;}\n"
 		"function found_app_hxcli() { return %d;}\n"
@@ -3120,7 +3119,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		found_app_zerotier,
 		found_app_ddnsto,
 		found_app_aldriver,
-		found_app_hxsdwan,
 		found_app_wireguard,
 		found_app_nelink,
 		found_app_tailscale,
@@ -4213,13 +4211,6 @@ apply_cgi(const char *url, webs_t wp)
 	{
 #if defined(APP_HXCLI)
 		unlink("/tmp/hx-cli.log");
-#endif
-		return 0;
-	}
-	else if (!strcmp(value, " Restarthxsdwan "))
-	{
-#if defined(APP_HXSDWAN)
-		system("/usr/bin/hxwan.sh restart &");
 #endif
 		return 0;
 	}
