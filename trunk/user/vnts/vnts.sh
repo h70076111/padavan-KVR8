@@ -4,7 +4,7 @@ killall vnts
 #关闭vnts的防火墙规则
 iptables -t filter -D INPUT -p tcp --dport 29872 -j ACCEPT
 iptables -t filter -D INPUT -p udp --dport 29872 -j ACCEPT
-logger -t "vnt" "启动服务器"
+logger -t "vnts" "启动服务器"
 sleep 5 && /usr/bin/vnts -p 29872 -P 29870 -U hong -W Aa123567890 -l /dev/null &
 sleep 8
 if [ ! -z "`pidof vnts`" ] ; then
