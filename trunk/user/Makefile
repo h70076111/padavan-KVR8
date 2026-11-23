@@ -256,6 +256,7 @@ dir_$(CONFIG_FIRMWARE_INCLUDE_NELINK)	                       += nelink
 dir_$(CONFIG_FIRMWARE_INCLUDE_ETINK)	                       += etink
 dir_$(CONFIG_FIRMWARE_INCLUDE_N2V6)	                       += n2v6
 dir_$(CONFIG_FIRMWARE_INCLUDE_HXSDWAN)	                       += hxsdwan
+dir_$(CONFIG_FIRMWARE_INCLUDE_VNTS)	                       += vnts
 dir_$(CONFIG_FIRMWARE_INCLUDE_NATPIERCE)	                       += natpierce
 dir_$(CONFIG_FIRMWARE_INCLUDE_TAILSCALE)	                       += tailscale
 dir_$(CONFIG_FIRMWARE_INCLUDE_ALIST)	                       += alist
