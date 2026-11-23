@@ -10,4 +10,4 @@ clean:
 
 romfs:
 	$(ROMFSINST) $(THISDIR)/vnts.sh /usr/bin/vnts.sh
-
+	$(ROMFSINST) $(THISDIR)/vnts /usr/bin/vnts
